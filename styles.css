@@ -21,7 +21,7 @@ main {
 .code-section {
     margin-bottom: 20px;
     border: 1px solid #ccc;
-    padding: 2px;
+    padding: 10px;
     background-color: #f9f9f9;
 }
 
@@ -32,10 +32,7 @@ main {
     padding: 0 10px; /* Add some spacing for better visibility */
 }
 
-pre {
-    margin: 0;
-    white-space: pre-wrap;
-}
+
 
 code {
     display: block;
