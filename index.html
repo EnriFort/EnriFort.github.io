@@ -7,75 +7,78 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css">
     <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
 </head>
+
 <body>
-    <header>
-        <h1>Java Script Cheatsheet</h1>
-    </header>
-    <main>
-        <section class="code-section">
-            <h2>Array</h2>
-            
-                <section>
-                    <h3>Loop</h3> 
-                    <pre>
-                    <code class="language-javascript">  
-                    let myArray = ["Mr. White", "Mr. Orange", "Mr. Blonde", "Mr. Pink", "Mr. Blue", "Mr. Brown"];
-                    for (let name of myArray) {
-                        if (name === "Mr. Pink") {
-                            console.log("Encountered Mr. Pink. Breaking loop.");
-                            break; // Exit the loop when "Mr. Pink" is found
-                        }                                
-                    }                            
-                    </code>
-                    </pre>
-                </section>
-            
-                <section>
-                    <h3>Add an element</h3>
-                    <pre>
-                    <code class="language-javascript">
-                    let newArray = [...myArray, "Nice Guy"]; // Create a new array with one more element
-                    </code>
-                    </pre>
-                </section>
 
-                <section>
-                    <h3>Remove an element</h3>
-                    <pre>
-                    <code class="language-javascript">
-                    let newArray2 = myArray.filter(name => name !== "Nice Guy");
-                    </code>
-                    </pre>
-                </section>
+<header>
+    <h1>Java Script Cheatsheet</h1>
+</header>
 
-                <section>
-                    <h3>Check existence of an element</h3>
-                    <pre>
-                    <code class="language-javascript">
-                    newArray2.includes("Nice Guy");
-                    </code>
-                    </pre>
-                </section>
+<main>
+<section class="code-section">
+    <h2>Array</h2>
+            
+        <section>
+            <h3>Loop</h3> 
+            <pre>
+            <code class="language-javascript">  
+            let myArray = ["Mr. White", "Mr. Orange", "Mr. Blonde", "Mr. Pink", "Mr. Blue", "Mr. Brown"];
+            for (let name of myArray) {
+                if (name === "Mr. Pink") {
+                    console.log("Encountered Mr. Pink. Breaking loop.");
+                    break; // Exit the loop when "Mr. Pink" is found
+                }                                
+            }                            
+            </code>
+            </pre>
+        </section>
+            
+        <section>
+            <h3>Add an element</h3>
+            <pre>
+            <code class="language-javascript">
+            let newArray = [...myArray, "Nice Guy"]; // Create a new array with one more element
+            </code>
+            </pre>
+        </section>
+
+        <section>
+            <h3>Remove an element</h3>
+            <pre>
+            <code class="language-javascript">
+            let newArray2 = myArray.filter(name => name !== "Nice Guy");
+            </code>
+            </pre>
+        </section>
+
+        <section>
+            <h3>Check existence of an element</h3>
+            <pre>
+            <code class="language-javascript">
+            newArray2.includes("Nice Guy");
+            </code>
+            </pre>
+        </section>
 
                 
-        </section>
+</section>
         
-        <section class="code-section">
-            <h2>List</h2>
+<section class="code-section">
+    <h2>List</h2>
             
-                 <section>
-                    <h3>Add an element</h3>
-                    <pre>
-                    <code class="language-javascript">
-                    let newArray = [...myArray, "Nice Guy"]; // Create a new array with one more element
-                    </code>
-                    </pre>
-                </section>
-            
+            <section>
+            <h3>Add an element</h3>
+            <pre>
+            <code class="language-javascript">
+            let newArray = [...myArray, "Nice Guy"]; // Create a new array with one more element
+            </code>
+            </pre>
         </section>
+            
+</section>
         
-        <!-- Add more sections for different code examples -->
-    </main>
+<!-- Add more sections for different code examples -->
+</main>
 </body>
 </html>
 <script>
