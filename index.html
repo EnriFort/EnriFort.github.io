@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>JSCheatsheet</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
 </head>
 <body>
     <header>
@@ -15,7 +17,7 @@
                 <section>
                     <h3>Loop</h3> 
                     <pre>
-                        <code>  
+                        <code class="language-javascript">  
                         let myArray = ["Mr. White", "Mr. Orange", "Mr. Blonde", "Mr. Pink", "Mr. Blue", "Mr. Brown"];
                         for (let name of myArray) {
                             if (name === "Mr. Pink") {
@@ -34,7 +36,7 @@
         <section class="code-section">
             <h2>List</h2>
             <pre>
-                <code>
+                <code class="language-javascript">
                     h1 {
                         color: #3366cc;
                         font-size: 24px;
@@ -47,3 +49,7 @@
     </main>
 </body>
 </html>
+<script>
+    Prism.highlightAll();
+</script>
+
