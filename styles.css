@@ -25,6 +25,13 @@ main {
     background-color: #f9f9f9;
 }
 
+/* Add styles for the section headers */
+.code-section h3 {
+    border-bottom: 2px solid #333; /* Add a bottom border to h3 elements within .code-section */
+    display: inline-block; /* Keep the border within the line */
+    padding: 0 10px; /* Add some spacing for better visibility */
+}
+
 pre {
     margin: 0;
     white-space: pre-wrap;
@@ -32,4 +39,5 @@ pre {
 
 code {
     display: block;
+    padding: 10px; /* Adjust the padding to control code indentation */
 }
