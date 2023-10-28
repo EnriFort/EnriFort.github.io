@@ -1,45 +1,50 @@
 /* styles.css */
 body {
+    background-color: #e5e5e5;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: #333;
-    color: #fff;
+    background-color: #f0db4f;
+    color: #323330;
     text-align: center;
     padding: 20px;
 }
 
-main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+div {
+    padding-top: 15px;
+    /*padding-right: 30px;
+    padding-bottom: 50px;*/
+    padding-left: 15px;
+    /*border-top: 1px solid #ccc;*/
+    width: fit-content;
 }
 
-.code-section {
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
-    border-radius: 5px; /* Add rounded corners to the code section */
-    padding: 0; /* Remove padding to align code block with section names */
+/* styles.css */
+.color-title {
+    text-align: center; /* Set the background color for the highlighted row */
+    color: #4c4c4c;
+}
+.color-title2 {
+    background-color: #dda6a8; /* Set the background color for the highlighted row */
 }
 
-    /* Add styles for the section headers */
-    .code-section h3 {
-        border-bottom: 2px solid #333; /* Add a bottom border to h3 elements within .code-section */
-        display: inline-block; /* Keep the border within the line */
-        padding: 10px 20px; /* Add some spacing for better visibility */
-        margin: 0; /* Remove the default margin for h3 elements */
-    }
-
-pre {
-    margin: 0; /* Remove margin from code block */
+/* styles.css */
+.outer-border {
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 5px 5px 5px #888; /* Add shadow effect */
+    border-radius: 10px; /* Rounded corners for the table */
+    margin-right: 20px; /* Add margin between tables for spacing */
 }
 
-code {
-    padding: 10px; /* Adjust the padding to control code indentation */
-    display: block;
-    white-space: pre; /* Maintain white-space formatting within the code block */
+.table-container {
+    display: flex; /* Use flexbox to make tables display side by side */
 }
+
+.function-name{
+    padding-left: 15px;
+}
+
