@@ -2,6 +2,7 @@
 body {
     background-color: #e5e5e5;
     font-family: Arial, sans-serif;
+    font-size: 13px;
     margin: 0;
     padding: 0;
 }
@@ -26,9 +27,10 @@ div {
 .color-title {
     text-align: center; /* Set the background color for the highlighted row */
     color: #4c4c4c;
+    font-size: 18px;
 }
 .color-title2 {
-    background-color: #dda6a8; /* Set the background color for the highlighted row */
+    background-color: #fcc8c7; /* Set the background color for the highlighted row */
 }
 
 /* styles.css */
@@ -42,6 +44,7 @@ div {
 
 .table-container {
     display: flex; /* Use flexbox to make tables display side by side */
+
 }
 
 .function-name{
