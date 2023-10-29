@@ -16,10 +16,10 @@ header {
 
 div {
     padding-top: 15px;
-    /*padding-right: 30px;
-    padding-bottom: 50px;*/
+    /* padding-right: 30px;
+    padding-bottom: 50px; */
     padding-left: 15px;
-    /*border-top: 1px solid #ccc;*/
+    /* border-top: 1px solid #ccc; */
     width: fit-content;
 }
 
@@ -29,6 +29,7 @@ div {
     color: #4c4c4c;
     font-size: 18px;
 }
+
 .color-title2 {
     background-color: #fcc8c7; /* Set the background color for the highlighted row */
 }
@@ -37,17 +38,38 @@ div {
 .outer-border {
     border-collapse: collapse;
     background-color: #ffffff;
-    box-shadow: 5px 5px 5px #888; /* Add shadow effect */
+    box-shadow: 5px 5px 5px #888; /* Add a shadow effect */
     border-radius: 10px; /* Rounded corners for the table */
     margin-right: 20px; /* Add margin between tables for spacing */
 }
 
 .table-container {
     display: flex; /* Use flexbox to make tables display side by side */
-
 }
 
-.function-name{
+.function-name {
     padding-left: 15px;
 }
 
+
+/* Media queries for responsiveness */
+@media screen and (max-width: 768px) {
+    div {
+        padding: 10px;
+    }
+
+    .outer-border {
+        margin: 10px 0;
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .table-container {
+        flex-direction: column;
+    }
+
+    .outer-border {
+        margin: 10px;
+    }
+}
