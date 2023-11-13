@@ -4,43 +4,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <script src="Rectangle.js"></script>
-    <script src="utils.js"></script>
-
-    <title>Attack Simulation</title>
-    
-    <style>
-
-        h3 {
-            font-family:Arial, Helvetica, sans-serif;
-            color: green;
-        }
-
-        body * {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        label {
-            font-weight: bold;
-            color:navy;
-        }
-
-        input[type="number"] {
-            margin-right: 20px;
-        }
-
-        canvas {
-            background-color: #17181B;
-            border: 2px solid green;
-            vertical-align: top;
-        }
-    </style>
-
+    <script src="../../../JSLibrary/Rectangle.js"></script>
+    <script src="../../../JSLibrary/utils.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../styles.css">
+    <title>Attack Simulation</title>   
 </head>
 
 <body>
 
-    <h3>HW. 5 - Attack Simulation</h3>
+    <h3>HW. 5 - Attack Simulation: Poissont Distribution</h3>
 
     <label for="inputSystems"># Systems: </label>
     <input type="number" id="inputSystems" value=100 min="10" max="1000" step="10">
@@ -68,21 +40,22 @@
         const myChart = document.getElementById("myChart"); // Get the canvas element by its ID
         const rct = myChart.getContext("2d"); // Get the 2D rendering context, the rectangle where i draw
 
+        // Global Variables
         let nSystems, nAttacks, lambda;
         let xOrigin, yOrigin;
         let allLines; // contains all the lines to be drawn
         let myRandomY;
         let myFrequency;
         let minValue, maxValue, rangeValues;
-        let frequencies; // contains the frequency at time N: key:Ycoordinate, Value:Frequency
-        let histoFrequencies;
+        let frequencies; 
+        let histoFrequencies; // contains the frequency at time N: key:Ycoordinate, Value:Frequency
 
         const rectChart = new Rectangle(20, 30, myChart.width - 200, myChart.height - 60);
         buttonCompute.onclick = main;
         //main();
 
         // get the values passed from the user
-        function getUserValues(){
+        function calcGraphicsValues(){
 
             lambda = Number(inputLambda.value); // get the value of the desired box
             nAttacks = Math.round(Number(inputAttacks.value));
@@ -91,7 +64,7 @@
             minValue = 0;
             maxValue = lambda * 1.5; // the max values get by Y is lambda. Scaled to 1.5
             
-            myRandomY = () => utils.generateWithProbability(lambda / nAttacks); // generate the random value for the attack
+            myRandomY = () => utils.BernoulliDist(lambda / nAttacks); // generate the random value for the attack
             myFrequency = (y) => y; // javaScript arrow (lambda) function
             
             rangeValues = maxValue - minValue;
@@ -102,7 +75,7 @@
     
         function main(){
             
-            getUserValues();
+            calcGraphicsValues();
             rct.clearRect(0, 0, myChart.width, myChart.height);
             allLines = [];
             histoFrequencies = {};
@@ -118,10 +91,9 @@
 
             //console.log(histoFrequencies); // Add this line to inspect histoFrequencies
             rectChart.drawRectangle(rct, "white", 2, []);
-            const HistogramRectangle = new Rectangle(utils.XtoDevice(nAttacks, 0, nAttacks, rectChart.x, rectChart.width), rectChart.y, 150, rectChart.height) // instantiate new rectangle for the histograms
-            HistogramRectangle.drawRectangle(rct, "rgba(250,100,150,0.5)", 2, [1, 1]); // draw this rectangle
-
-            utils.drawHistograms(rct, histoFrequencies, HistogramRectangle, "LightGreen", 1, "LightGreen");
+            const HistogramRectangle = new Rectangle(utils.XtoDevice(nAttacks, 0, nAttacks, rectChart.x, rectChart.width), rectChart.y, 160, rectChart.height) // instantiate new rectangle for the histograms
+            HistogramRectangle.drawRectangle(rct, "rgba(0,100,160,0.5)", 2, [1, 1]); // draw this rectangle
+            utils.drawHistogramsFromDict(rct, histoFrequencies, HistogramRectangle, "red", "lightgreen");
 
             
         }
