@@ -1,0 +1,77 @@
+<!-- Exercise 3 of homework 2-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <style>
+        h3 {
+            font-family:Arial, Helvetica, sans-serif;
+            color: green;
+        }
+
+        body{
+            font-family:Arial, Helvetica, sans-serif;
+            background-color:#FFFAED;
+        }
+
+        label {
+            font-weight: bold;
+            color:navy;
+        }
+
+        input[type="number"] {
+            margin-right: 20px;
+        }
+
+        canvas {
+            background-color: #17181B;
+            border: 2px solid green;
+            vertical-align: top;
+        }
+    </style>
+    <title>Random Variates</title>
+</head>
+<body>
+    <h3>HW. 2.3 - uniform random variates</h3>
+
+    <label for="nInput">Enter N: </label>
+    <input type="text" id="nInput">
+    <button onclick="generateRandomVariates()">Generate</button>
+    <br>
+    <pre id="results"></pre>
+
+    <script>
+        function generateRandomVariates() {
+            const nInput = document.getElementById("nInput");
+            const resultsTextArea = document.getElementById("results");
+            
+            const N = parseInt(nInput.value, 10);
+            if (isNaN(N) || N <= 0) {
+                resultsTextArea.textContent = "Please enter a valid positive integer for N.";
+                return;
+            }
+
+            const k = 10; // Number of interval classes
+            const intervalCounts = new Array(k).fill(0);
+
+            for (let i = 0; i < N; i++) {
+                const randomValue = Math.random(); // Generates a random value in [0, 1)
+
+                const interval = Math.floor(randomValue * k);
+                intervalCounts[interval]++;
+            }
+
+            resultsTextArea.textContent = ""; // Clear the results
+
+            for (let i = 0; i < k; i++) {
+                const lowerBound = i / k;
+                const upperBound = (i + 1) / k;
+                const relativeFrequency = intervalCounts[i] / N;
+
+                resultsTextArea.textContent +=
+                    `Interval [${lowerBound.toFixed(2)}, ${upperBound.toFixed(2)}): Relative Frequency = ${relativeFrequency.toFixed(4)}\n`;
+            }
+        }
+    </script>
+</body>
+</html>
