@@ -136,7 +136,6 @@
                 
                 const xDevice = utils.XtoDevice(x / nAttacks, 0, 1, rectChart.x, rectChart.width);
                 const yDevice = utils.YtoDevice(frequency, minValue, rangeValues, rectChart.y, rectChart.height);
-                console.log(xDevice + ", ")
                 myLine.lineTo(xDevice, prevY);
                 prevY = yDevice
                 myLine.lineTo(xDevice, yDevice);
