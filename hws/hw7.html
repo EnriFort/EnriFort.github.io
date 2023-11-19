@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src="../JSLibrary/Rectangle.js"></script>
+    <script src="../JSLibrary/utils.js"></script>
+    <style>
+        h3 {
+            font-family:Arial, Helvetica, sans-serif;
+            color: green;
+        }
+
+        body{
+            font-family:Arial, Helvetica, sans-serif;
+            background-color:#FFFAED;
+        }
+
+        label {
+            font-weight: bold;
+            color:navy;
+        }
+
+        input[type="number"] {
+            margin-right: 20px;
+        }
+
+        canvas {
+            background-color: #17181B;
+            border: 2px solid green;
+            vertical-align: top;
+        }
+    </style>
+    <title>Attack Simulation - SDEs</title>
+</head>
+
+<body>
+
+    <h3>HW. 7 - Attack Simulation: stochastic differential equation (SDE) </h3>
+
+    <label for="inputSystems"># Systems: </label>
+    <input type="number" id="inputSystems" value=100 min="10" max="1000" step="10">
+    <label for="inputAttacks"> # Attacks: </label>
+    <input type="number" id="inputAttacks" value=500 min="10" max="1000" step="10">
+
+    <label for="inputMu"> μ: </label>
+    <input type="number" id="inputMu" value="0" min="-20" max="20" step=".1">
+    <label for="inputSigma">σ:</label>
+    <input type="number" id="inputSigma" value=1 min="0.1" max="1000" step=".1">
+    <label for="inputLambda"> λ: </label>
+    <input type="number" id="inputLambda" value="50" min="1" max="1000" step="1">
+
+    <br><br>
+    <label for="SDE"> Stochastic Differential Equations (SDE): </label>
+    <select id="SDE">
+        <option value="RANDOM_WALK">Random walk</option>
+        <option value="POISSON">Poisson</option>
+        <option value="ARITHMETIC_BROWNIAN">Arithmetic Brownian</option>
+        <option value="GEOMETRIC_BROWNIAN">Geometric Brownian</option>
+    </select>
+
+    <button id="compute" type="button" style="margin-right: 20px;">Simulate Attacks</button>
+    
+    <hr>
+    <canvas id="myChart" width="1000" height="700" oncontextmenu="return false"></canvas>
+
+    
+    <script>
+
+        "use strict";
+        
+        const inputSystems = document.getElementById("inputSystems");
+        const inputAttacks = document.getElementById("inputAttacks"); 
+        const inputMu = document.getElementById("inputMu");
+        const inputSigma = document.getElementById("inputSigma");
+        const inputLambda = document.getElementById("inputLambda");
+        
+        const selectedSDE = document.getElementById("SDE");
+        const buttonCompute = document.getElementById("compute");
+
+        const myChart = document.getElementById("myChart"); // Get the canvas element by its ID
+        const rct = myChart.getContext("2d"); // Get the 2D rendering context, the rectangle where i draw 
+        
+        // Global Variables
+        let nSystems, nAttacks, mu, sigma, lambda, SDE;
+        let xOrigin, yOrigin;
+        let myRandomY;
+        let myFrequency;
+        let minValue, maxValue, rangeValues;
+        let histoFrequencies; // contains the frequency at time N: key:Ycoordinate, Value:Frequency
+        let description;
+        let rangeScaler;
+
+        
+        const rectChart = new Rectangle(10, 10, myChart.width - 200, myChart.height - 20); // chart where there are the histograms
+        buttonCompute.onclick = main;
+        //main();
+
+        function calcGraphicsValues(){
+
+            nAttacks = Math.round(Number(inputAttacks.value));
+            nSystems = Number(inputSystems.value);
+            mu = Number(inputMu.value);
+            sigma = Number(inputSigma.value);
+            lambda = Number(inputLambda.value);
+            SDE = selectedSDE.value;
+
+            const dt = 1 / nAttacks;
+
+            // Based on the frequency type, I set all the variables
+            if (SDE == "RANDOM_WALK"){
+                description = "Random Walk";
+                rangeScaler = 4;
+                minValue = -rangeScaler * Math.sqrt(nAttacks);
+                maxValue = rangeScaler * Math.sqrt(nAttacks);
+                myRandomY = () => utils.RademacherDist(); // generate the random value for the attack
+                myFrequency = (y) => y; // javaScript arrow (lambda) function                
+            }
+
+            else if (SDE == "POISSON"){
+                description = "Poisson";
+                rangeScaler = 1.5;
+                minValue = 0;
+                maxValue = rangeScaler * lambda;
+                myRandomY = () => utils.BernoulliDist(lambda / nAttacks); // generate the random value for the attack
+                myFrequency = (y) => y; // javaScript arrow (lambda) function               
+            }   
+
+            else if (SDE == "ARITHMETIC_BROWNIAN"){
+                description = "Arithmetic Brownian";
+                rangeScaler = 20;
+                minValue = Math.min(0, mu - rangeScaler * sigma);
+                maxValue = Math.max(0, mu + rangeScaler * sigma);
+                myRandomY = () => mu*dt + Math.sqrt(dt)*sigma * utils.RademacherDist(0.5);
+                myFrequency = (y) => y;
+            }
+
+            else if (SDE == "GEOMETRIC_BROWNIAN"){
+                description = "Geometric Brownian";
+                rangeScaler = 20;
+                minValue = Math.min(0, mu - rangeScaler * sigma);
+                maxValue = Math.max(0, mu + rangeScaler * sigma);
+                myRandomY = () => mu*dt + Math.sqrt(dt)*sigma * utils.RademacherDist(0.5);
+                myFrequency = (y) => y;
+            }
+
+            rangeValues = maxValue - minValue;
+            [xOrigin, yOrigin] = utils.XYtoDevice([0, 0], 0, nAttacks, minValue, rangeValues, rectChart); 
+
+        }
+
+        function main(){
+            
+            rct.clearRect(0, 0, myChart.width, myChart.height);
+            
+              
+            calcGraphicsValues();
+            //console.log(minValue);
+            //allLines = [];
+            histoFrequencies = {};
+
+            // generate multiple attack lines (one for each system)
+            for (let m = 1; m <= nSystems; m++){
+                const newLine = drawLine(histoFrequencies); // draw line for system m and update frequencis dictionary
+                //allLines.push(newLine); // add the line to the list wich contains all the lines
+                rct.lineWidth = 1; 
+                rct.strokeStyle = utils.randomColorCSS()// set the stroke of the line
+                rct.stroke(newLine);
+            }
+
+            //console.log(histoFrequencies); // Add this line to inspect histoFrequencies
+            rectChart.drawRectangle(rct, "white", 2, []);
+            const HistoRect = new Rectangle(utils.XtoDevice(nAttacks, 0, nAttacks, rectChart.x, rectChart.width), rectChart.y, myChart.width - rectChart.width - 20, rectChart.height) // instantiate new rectangle for the histograms
+            HistoRect.drawRectangle(rct, "rgba(0,100,160,0.5)", 2, [1, 1]); // draw this rectangle
+            utils.drawHistogramsFromDict(rct, histoFrequencies, HistoRect, "red", "LightGreen");    
+            legend();       
+            
+               
+        }
+
+        // The function which draw the lines 
+        function drawLine(frequencies){
+            const myLine = new Path2D(); // the line i which i draw
+            
+            let y = 0; // Y coordinates
+            let prevY = yOrigin;
+            let lastY;
+            
+            myLine.moveTo(xOrigin, yOrigin);
+
+            for (let x = 1; x <= nAttacks; x++){ // X coordinates
+                
+                y += myRandomY();
+                let frequency = myFrequency(y, x, nAttacks); 
+                
+                const xDevice = utils.XtoDevice(x / nAttacks, 0, 1, rectChart.x, rectChart.width);
+                const yDevice = utils.YtoDevice(frequency, minValue, rangeValues, rectChart.y, rectChart.height);
+
+                myLine.lineTo(xDevice, prevY);
+                prevY = yDevice
+                myLine.lineTo(xDevice, yDevice);
+                
+                if (x == nAttacks){lastY = yDevice}
+
+            }
+            
+            if (lastY in histoFrequencies) {
+                histoFrequencies[lastY] += 1;
+            } else {
+                histoFrequencies[lastY] = 1;
+            }
+            return myLine;
+        }
+
+        function legend(){
+            rct.font = "13px Verdana";
+            rct.fillStyle = "white";
+            rct.fillText(description, rectChart.x + 20, rectChart.y + 20);
+        }
+
+    </script>
+</body>
+</html>

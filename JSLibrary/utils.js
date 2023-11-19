@@ -4,8 +4,8 @@ class utils {
         return (Math.random() <= p) ? 1 : 0;
     }
 
-    static RademacherDist(p){ // 1 penetrated, -1 protected
-        return (Math.random() <= p) ? 1 : -1;
+    static RademacherDist(){ // 1 penetrated, -1 protected
+        return (Math.random() <= 0.5) ? 1 : -1;
     }
 
     // transform the "real" X to the "device" X
