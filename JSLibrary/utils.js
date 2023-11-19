@@ -108,6 +108,10 @@ class utils {
             let barWidth = frequencies[i] / maxFrequency * (devRect.width) - 1;
             let barHeight = (devRect.height - (bins - 1) * gap) / bins * barHeightFactor;
 
+            // Ensure the bar width is at least 1
+            barWidth = Math.max(barWidth, 1);
+
+
             let x = devRect.x + 2;
             let y = devRect.top() + (devRect.height/4) + (i + 1) * (barHeight + gap);
 

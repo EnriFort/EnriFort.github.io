@@ -116,9 +116,7 @@
             rectChart.drawRectangle(rct, "white", 2, []);
             const HistogramRectangle = new Rectangle(utils.XtoDevice(nAttacks, 0, nAttacks, rectChart.x, rectChart.width), rectChart.y, 160, rectChart.height) // instantiate new rectangle for the histograms
             HistogramRectangle.drawRectangle(rct, "rgba(0,100,160,0.5)", 2, [1, 1]); // draw this rectangle
-            utils.drawHistogramsFromDict(rct, histoFrequencies, HistogramRectangle, "red", "lightgreen");
-
-            
+            utils.drawHistogramsFromDict(rct, histoFrequencies, HistogramRectangle, "red", "lightgreen");    
         }
 
         // The function which draw the lines 
@@ -138,7 +136,7 @@
                 
                 const xDevice = utils.XtoDevice(x / nAttacks, 0, 1, rectChart.x, rectChart.width);
                 const yDevice = utils.YtoDevice(frequency, minValue, rangeValues, rectChart.y, rectChart.height);
-                
+                console.log(xDevice + ", ")
                 myLine.lineTo(xDevice, prevY);
                 prevY = yDevice
                 myLine.lineTo(xDevice, yDevice);
