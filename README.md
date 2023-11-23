@@ -1,2 +1,2 @@
 # EnriFort.github.io
-Web Site containing all JavaScript exercises done during the Statistics CyberSecurity course
+Web Site containing all JavaScript exercises and theses done during the Statistics CyberSecurity course
