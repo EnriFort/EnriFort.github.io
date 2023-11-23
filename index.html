@@ -2,15 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8">
-    
     <link href='https://fonts.googleapis.com/css?family=Source Serif Pro' rel='stylesheet'>
     <link rel="icon" href="img/icon.png">
     <!-- For useful links icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
-    
     <title>Statistics JS Homeworks</title>
-
     <style>
+
         body {
             background-color:#FFFAED;
             font-family: 'Source Serif Pro';
@@ -36,34 +34,67 @@
         }
 
         li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
+
+        .list-container { /* css for list of hws and thesis*/
+            display: flex;
+        }
+
+        .second {
+            padding-left: 100px;
+        }
+
     </style>
 </head>
 <body>
     <h2>Statistics JS Homeworks</h2>
-    <h3>The following page contains all the homework done during my Statistics Cybersecurity course in the academic year 2023-24.</h3>
+    <h3>The following page contains all the <b>homework</b> and <b>theses</b> done during my Statistics Cybersecurity course in the academic year 2023-24.</h3>
     
     <hr>
-    <b>Homework list:</body></b>
-    <div style="background-color: #e0e0e0; padding: 10px;">
-        <ul>
-            <li><a href="hws/hw7.html">Homework 7 (last Homework)</a></li>
-            <li><a href="hws/hw6.html">Homework 6</a></li>
-            <li><a href="hws/hw5.html">Homework 5</a></li>
-            <li><a href="hws/hw3.html">Homework 3</a></li>
-            <li>
-                Homework 2:
-                <ul>
-                    <li><a href="hws/hw2_1.html">Ex. 1</a></li>
-                    <li><a href="hws/hw2_3.html">Ex. 3</a></li>
-                </ul>
-            </li>
-            <li><a href="hws/hw1.html">Homework 1</a></li>
-            <li><a href="cheatSheet.html">Cheatsheet</a></li>
-        </ul>
-    </div>
+    
+    <div class="list-container" style="background-color: #e0e0e0; padding: 10px;">
+        
+        <div>
+            <b>Homework list:</b>
+            <ul>
+                <li><a href="hws/hw7.html">Homework 7: stochastic differential equation (SDE)</a></li>
+                <li><a href="hws/hw6.html">Homework 6: Gambler's Ruin Problem</a></li>
+                <li><a href="hws/hw5.html">Homework 5: Poissont Distribution</a></li>
+                <li><a href="hws/hw3.html">Homework 3: Attack Simulation</a></li>
+                <li>
+                    Homework 2:
+                    <ul>
+                        <li><a href="hws/hw2_1.html">Ex. 1</a></li>
+                        <li><a href="hws/hw2_3.html">Ex. 3</a></li>
+                    </ul>
+                </li>
+                <li><a href="hws/hw1.html">Homework 1: Draw Figures</a></li>
+                <li><a href="cheatSheet.html">Cheatsheet</a></li>
+            </ul>
+        </div>
 
+        <div class="second">
+            <b>Theses list:</b>
+            <ul>
+                <li><a href="ths/th1.html">Thesis 1: The LLN Meaning, Proof, Simulations</a></li>
+                <li><a href="ths/th2.html">Thesis 2: The CLT Meaning, Proof, Simulations</a></li>
+                <li><a href="ths/th3.html">Thesis 3: The Gaussian Distribution Meaning, Derivations, Simulations</a></li>
+                <li><a href="ths/th4.html">Thesis 4: The Glivenko–Cantelli theorem, Proof, Simulations</a></li>
+                <li><a href="ths/th5.html">Thesis 5: Statistical Distributions: Continuous, Discrete, Properties and simulations</a></li>
+                <li><a href="ths/th6.html">Thesis 6: Algorithms for random variates generation</a></li>
+                <li><a href="ths/th7.html">Thesis 7: "Online" Algorithms (Data Streams): Ideas and code</a></li>
+                <li><a href="ths/th8.html">Thesis 8: Stochastic processes and SDE's</a></li>
+                <li><a href="ths/th9.html">Thesis 9: The Poisson Process: Meaning, Properties,Simulations</a></li>
+                <li><a href="ths/th10.html">Thesis 10: The Viener process and the GBM, Derivations and simulations</a></li>
+                <li><a href="ths/th11.html">Thesis 11: The functional CLT (Donsker's invariance principle): Proof, Simulations</a></li>
+                <li><a href="ths/th12.html">Thesis 12: Ito Integration ans Calculus, Concept and Didactical Simulations</a></li>
+                
+            </ul>
+        </div>
+        
+    </div>
+    
     <!-- Footer section with usefull links -->
     <div style="background-color: #f8f8f8; padding: 10px; margin-top: 20px; text-align: center;">
         <p style="font-size: 14px; color: #555;">

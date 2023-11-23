@@ -1,0 +1,36 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #FFFAED;
+    max-width: 800px; /* Set a maximum width for paragraphs and lists */
+    margin: 0 auto; /* Center-align the paragraphs and lists */
+    text-align: left; /* Left-align the text within paragraphs and lists */
+}
+
+h3 {
+    color: green;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+h4 {
+    color: green;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

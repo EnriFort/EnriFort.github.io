@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The LLN Meaning, Proof, Simulations</title>
+    <link rel="icon" href="../img/icon.png">
+    <link rel="stylesheet" type="text/css" href="../CSS/ths.css">
+    <!-- MathJax library for LaTeX rendering -->
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+</head>
+<body>
+    <h3>The Law of Large Numbers (LLN)</h3>
+
+    <p>The Law of Large Numbers states that as the sample size (\(n\)) increases, the sample mean (\(\bar{x}\)) converges in probability to the expected value (\(\mu\)) of the population:</p>
+
+    <p>\[\lim_{{n \to \infty}} P(|\bar{x} - \mu| < \epsilon) = 1\]</p>
+
+    <p>This means that, with a sufficiently large sample size, the sample mean becomes a reliable estimate of the population mean.</p>
+
+    <h4>Proof Sketch:</h4>
+
+    <p>The proof involves concepts from probability theory and converges to the application of the Chebyshev's inequality:</p>
+
+    <p>\[P(|\bar{x} - \mu| < \epsilon) \geq 1 - \frac{{\sigma^2}}{{n\epsilon^2}}\]</p>
+
+    <p>Where \(\sigma^2\) is the population variance. As \(n\) increases, the probability converges to 1.</p>
+
+    <h4>Simulations:</h4>
+
+    <p>Simulations can visually demonstrate the LLN. Consider a fair six-sided die. As the number of rolls increases (\(n\)), the average value of the rolls approaches the expected average of 3.5:</p>
+
+    <canvas id="llnCanvas" width="500" height="300" style="border: 1px solid #000;"></canvas>
+
+    <script>
+        const canvas = document.getElementById('llnCanvas');
+        const ctx = canvas.getContext('2d');
+        const numSides = 6;
+        const expectedAverage = (1 + numSides) / 2; // Expected average of a fair die
+        const simulationData = [];
+
+        function simulateLLN(numRolls) {
+            let sum = 0;
+            for (let i = 0; i < numRolls; i++) {
+                const roll = Math.floor(Math.random() * numSides) + 1;
+                sum += roll;
+                const average = sum / (i + 1);
+                simulationData.push(average);
+            }
+        }
+
+        function drawSimulation() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw expected average line
+            ctx.strokeStyle = 'red';
+            ctx.beginPath();
+            ctx.moveTo(0, expectedAverage * 50);
+            ctx.lineTo(canvas.width, expectedAverage * 50);
+            ctx.stroke();
+
+            // Draw simulation data
+            ctx.strokeStyle = 'blue';
+            ctx.beginPath();
+            for (let i = 0; i < simulationData.length; i++) {
+                const x = (i / simulationData.length) * canvas.width;
+                const y = (numSides - simulationData[i]) * 50; // Reverse y-axis
+                ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+        }
+
+        simulateLLN(500); // Simulate 500 rolls initially
+        drawSimulation();
+    </script>
+    <p>The <span style="color: blue;">blue line</span> on the graphic represents the average value as the number of rolls increases, converging toward the expected average (<span style="color: red;">red line</span> = 3.5). </p>
+    
+    <h4>References:</h4>
+    <ul>
+        <li><a href="https://en.wikipedia.org/wiki/Law_of_large_numbers#Weak_law">[1]</a></li>
+        <li><a href="#your-second-reference-link">[2]</a></li>
+        <!-- Add more references as needed -->
+    </ul>
+
+</body>
+</html>
