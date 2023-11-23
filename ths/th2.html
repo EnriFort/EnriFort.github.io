@@ -4,10 +4,152 @@
     <meta charset="UTF-8">
     <title>The CLT Meaning, Proof, Simulations</title>
     <link rel="icon" href="../img/icon.png">
-    <link rel="stylesheet" type="text/css" href="../CSS/hws.css">
     <link rel="stylesheet" type="text/css" href="../CSS/ths.css">
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
 </head>
 <body>
 
+    <div>
+        <a href="../index.html">Statistics Homeworks</a>
+    </div>
+
+    <h3>Central Limit Theorem (CLT)</h3>
+
+    <p>
+        The <b>Central Limit Theorem</b> is a statistical concept that states that when you have a large enough sample size, 
+        the distribution of the sample mean (or sum) of a set of independent, identically distributed random variables will be approximately normally distributed, 
+        regardless of the shape of the original distribution of the variables.
+    </p>
+
+    <p>This theorem is fundamental in statistics and allows researchers to make inferences about a population based on the distribution of sample means, even if the underlying population is not normally distributed.</p>
+
+    <p>Consider a set of independent, identically distributed random variables \(X_1, X_2, \ldots, X_n\) with a common mean \(\mu\) and a finite variance \(\sigma^2\), and let \(\overline{X_n}\) denote the sample mean of that sample. Then:
+        \[
+            \lim_{{n \to \infty}} \frac{{\bar{X}_n - \mu}}{{\sigma_{\bar{X}_n}}} = Z, \quad \text{where } \sigma_{\bar{X}_n} = \frac{\sigma}{\sqrt{n}}
+        \]
+    </p>
+
+    <h4>Simulations:</h4>
+    <p>
+        As observed in the simulation, the distribution of the population mean becomes increasingly similar to a normal distribution as 
+        the number of samples grows larger. The top-left graph displays the original distribution, while the top-right, bottom-left, and 
+        bottom-right graphs depict CLT simulations with 1000, 50, and 30 samples, respectively.
+    </p>
+
+    <canvas id="originalCanvas" width="375" height="300" style="border: 1px solid #000;"></canvas>
+    <canvas id="cltCanvasHigh" width="375" height="300" style="border: 1px solid #000;"></canvas>
+    <canvas id="cltCanvasMedium" width="375" height="300" style="border: 1px solid #000;"></canvas>
+    <canvas id="cltCanvasLow" width="375" height="300" style="border: 1px solid #000;"></canvas>
+
+    <script>
+        // Get canvas elements and their 2D contexts
+        const originalCanvas = document.getElementById('originalCanvas');
+        const cltCanvasHigh = document.getElementById('cltCanvasHigh');
+        const cltCanvasMedium = document.getElementById('cltCanvasMedium');
+        const cltCanvasLow = document.getElementById('cltCanvasLow');
+        const ctxOriginal = originalCanvas.getContext('2d');
+        const ctxCLTHigh = cltCanvasHigh.getContext('2d');
+        const ctxCLTMedium = cltCanvasMedium.getContext('2d');
+        const ctxCLTLow = cltCanvasLow.getContext('2d');
+    
+        // Number of samples for high, medium, and low simulations
+        const numSamplesHigh = 1000;
+        const numSamplesMedium = 50;
+        const numSamplesLow = 10;
+        const sampleSize = 30;
+    
+        // Arrays to store data for the original distribution and CLT simulations
+        const dataOriginal = [];
+        const dataCLTHigh = [];
+        const dataCLTMedium = [];
+        const dataCLTLow = [];
+    
+        // Function to generate the original distribution
+        function generateOriginalDistribution() {
+            for (let i = 0; i < numSamplesHigh; i++) {
+                // Generate random values between 0 and 1
+                dataOriginal.push(Math.random());
+            }
+        }
+    
+        // Function to generate a single sample
+        function generateSample() {
+            const sample = [];
+            for (let i = 0; i < sampleSize; i++) {
+                // Generate random values between 0 and 1 for the sample
+                sample.push(Math.random());
+            }
+            return sample;
+        }
+    
+        // Function to calculate the mean of a sample
+        function calculateSampleMean(sample) {
+            // Sum up all values in the sample and divide by the sample size
+            const sum = sample.reduce((acc, value) => acc + value, 0);
+            return sum / sample.length;
+        }
+    
+        // Function to simulate the Central Limit Theorem (CLT)
+        function simulateCLT(numSamples, data) {
+            for (let i = 0; i < numSamples; i++) {
+                // Generate a sample and calculate its mean
+                const sample = generateSample();
+                const sampleMean = calculateSampleMean(sample);
+                data.push(sampleMean);
+            }
+        }
+    
+        // Function to draw a histogram on a canvas
+        function drawHistogram(canvas, data) {
+            const ctx = canvas.getContext('2d');
+            // Clear the canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+            // Number of bins in the histogram
+            const bins = 50;
+            // Width of each bin
+            const binWidth = canvas.width / bins;
+            // Array to store frequencies of values in each bin
+            const frequencies = new Array(bins).fill(0);
+    
+            // Count frequencies of values in each bin
+            data.forEach((value) => {
+                const binIndex = Math.floor((value * bins) / 1);
+                frequencies[binIndex]++;
+            });
+    
+            // Find the maximum frequency for scaling
+            const maxFrequency = Math.max(...frequencies);
+    
+            // Set the fill color for the bars in the histogram
+            ctx.fillStyle = "green";
+    
+            // Draw bars for each bin
+            frequencies.forEach((frequency, index) => {
+                const barHeight = (frequency / maxFrequency) * canvas.height;
+                const x = index * binWidth;
+                const y = canvas.height - barHeight;
+                ctx.fillRect(x, y, binWidth, barHeight);
+            });
+        }
+    
+        // Generate the original distribution, simulate CLT with different numbers of samples, and draw histograms
+        generateOriginalDistribution();
+        simulateCLT(numSamplesHigh, dataCLTHigh);
+        simulateCLT(numSamplesMedium, dataCLTMedium);
+        simulateCLT(numSamplesLow, dataCLTLow);
+        drawHistogram(originalCanvas, dataOriginal);
+        drawHistogram(cltCanvasHigh, dataCLTHigh);
+        drawHistogram(cltCanvasMedium, dataCLTMedium);
+        drawHistogram(cltCanvasLow, dataCLTLow);
+    </script>
+
+    <h4>References:</h4>
+    <ul>
+        <li><a href="https://en.wikipedia.org/wiki/Law_of_large_numbers#Weak_law">[1]</a></li>
+        <!-- Add more references as needed -->
+    </ul>
 </body>
 </html>
