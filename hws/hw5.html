@@ -2,14 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+
     <script src="../JSLibrary/Rectangle.js"></script>
-    <script src="../JSLibrary/utils.js"></script>
+    <script src="../JSLibrary/distUtils.js"></script>
+    <script src="../JSLibrary/coordUtils.js"></script>
+    <script src="../JSLibrary/chartUtils.js"></script>
+    
     <link rel="icon" href="../img/icon.png">
     <link rel="stylesheet" type="text/css" href="../CSS/hws.css">
+    
     <title>Attack Simulation - Poisson</title>   
 </head>
 
 <body>
+    
+    <div>
+        <a href="../index.html">Statistics Homeworks</a>
+    </div>
 
     <h3>HW. 5 - Attack Simulation: Poissont Distribution</h3>
     
@@ -48,7 +57,6 @@
         let myFrequency;
         let minValue, maxValue, rangeValues;
         let frequencies; 
-        let histoFrequencies; // contains the frequency at time N: key:Ycoordinate, Value:Frequency
 
         const rectChart = new Rectangle(20, 30, myChart.width - 200, myChart.height - 60);
         buttonCompute.onclick = main;
@@ -64,11 +72,11 @@
             minValue = 0;
             maxValue = lambda * 1.5; // the max values get by Y is lambda. Scaled to 1.5
             
-            myRandomY = () => utils.BernoulliDist(lambda / nAttacks); // generate the random value for the attack
+            myRandomY = () => distUtils.BernoulliDist(lambda / nAttacks); // generate the random value for the attack
             myFrequency = (y) => y; // javaScript arrow (lambda) function
             
             rangeValues = maxValue - minValue;
-            [xOrigin, yOrigin] = utils.XYtoDevice([0, 0], 0, nAttacks, minValue, rangeValues, rectChart); 
+            [xOrigin, yOrigin] = coordUtils.XYtoDevice([0, 0], 0, nAttacks, minValue, rangeValues, rectChart); 
             // add others values if you want
         }
 
@@ -78,22 +86,22 @@
             calcGraphicsValues();
             rct.clearRect(0, 0, myChart.width, myChart.height);
             allLines = [];
-            histoFrequencies = {};
+            let histoFrequencies = {}; // contains the frequency at time N: key:Ycoordinate, Value:Frequency
 
             // generate multiple attack lines (one for each system)
             for (let m = 1; m <= nSystems; m++){
                 const newLine = drawLine(histoFrequencies); // draw line for system m and update frequencis dictionary
                 allLines.push(newLine); // add the line to the list wich contains all the lines
                 rct.lineWidth = 1; 
-                rct.strokeStyle = utils.randomColorCSS()// set the stroke of the line
+                rct.strokeStyle = chartUtils.randomColorCSS()// set the stroke of the line
                 rct.stroke(newLine);
             }
 
             //console.log(histoFrequencies); // Add this line to inspect histoFrequencies
             rectChart.drawRectangle(rct, "white", 2, []);
-            const HistogramRectangle = new Rectangle(utils.XtoDevice(nAttacks, 0, nAttacks, rectChart.x, rectChart.width), rectChart.y, 160, rectChart.height) // instantiate new rectangle for the histograms
+            const HistogramRectangle = new Rectangle(coordUtils.XtoDevice(nAttacks, 0, nAttacks, rectChart.x, rectChart.width), rectChart.y, 160, rectChart.height) // instantiate new rectangle for the histograms
             HistogramRectangle.drawRectangle(rct, "rgba(0,100,160,0.5)", 2, [1, 1]); // draw this rectangle
-            utils.drawHistogramsFromDict(rct, histoFrequencies, HistogramRectangle, "red", "lightgreen");    
+            chartUtils.drawHistogramsFromDict(rct, histoFrequencies, HistogramRectangle, "red", "lightgreen");    
         }
 
         // The function which draw the lines 
@@ -111,20 +119,20 @@
                 y += myRandomY();
                 let frequency = myFrequency(y); 
                 
-                const xDevice = utils.XtoDevice(x / nAttacks, 0, 1, rectChart.x, rectChart.width);
-                const yDevice = utils.YtoDevice(frequency, minValue, rangeValues, rectChart.y, rectChart.height);
+                const xDevice = coordUtils.XtoDevice(x / nAttacks, 0, 1, rectChart.x, rectChart.width);
+                const yDevice = coordUtils.YtoDevice(frequency, minValue, rangeValues, rectChart.y, rectChart.height);
                 myLine.lineTo(xDevice, prevY);
                 prevY = yDevice
                 myLine.lineTo(xDevice, yDevice);
                 
-                if (x == nAttacks){lastY = yDevice}
+                if (x == nAttacks){lastY = yDevice;}
 
             }
             
-            if (lastY in histoFrequencies) {
-                histoFrequencies[lastY] += 1;
+            if (lastY in frequencies) {
+                frequencies[lastY] += 1;
             } else {
-                histoFrequencies[lastY] = 1;
+                frequencies[lastY] = 1;
             }
             return myLine;
         }

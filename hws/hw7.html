@@ -3,13 +3,21 @@
 <head>
     <meta charset="utf-8">
     <script src="../JSLibrary/Rectangle.js"></script>
-    <script src="../JSLibrary/utils.js"></script>
+
+    <script src="../JSLibrary/distUtils.js"></script>
+    <script src="../JSLibrary/coordUtils.js"></script>
+    <script src="../JSLibrary/chartUtils.js"></script>
+    
     <link rel="icon" href="../img/icon.png">
     <link rel="stylesheet" type="text/css" href="../CSS/hws.css">
     <title>Attack Simulation - SDEs</title>
 </head>
 
 <body>
+    
+    <div>
+        <a href="../index.html">Statistics Homeworks</a>
+    </div>
 
     <h3>HW. 7 - Attack Simulation: stochastic differential equation (SDE) </h3>
 
@@ -18,15 +26,15 @@
     <label for="inputAttacks"> # Attacks: </label>
     <input type="number" id="inputAttacks" value=500 min="10" max="1000" step="10">
 
-    <label for="inputMu"> μ: </label>
+    <label for="inputMu"> μ (drift): </label>
     <input type="number" id="inputMu" value="0" min="-20" max="20" step=".1">
-    <label for="inputSigma">σ:</label>
+    <label for="inputSigma">σ (volatility):</label>
     <input type="number" id="inputSigma" value=1 min="0.1" max="1000" step=".1">
     <label for="inputLambda"> λ: </label>
     <input type="number" id="inputLambda" value="50" min="1" max="1000" step="1">
 
     <br><br>
-    <label for="SDE"> Stochastic Differential Equations (SDE): </label>
+    <label for="SDE"> SDE: </label>
     <select id="SDE">
         <option value="RANDOM_WALK">Random walk</option>
         <option value="POISSON">Poisson</option>
@@ -62,9 +70,7 @@
         let myRandomY;
         let myFrequency;
         let minValue, maxValue, rangeValues;
-        let histoFrequencies; // contains the frequency at time N: key:Ycoordinate, Value:Frequency
         let description;
-        let rangeScaler;
 
         
         const rectChart = new Rectangle(10, 10, myChart.width - 200, myChart.height - 20); // chart where there are the histograms
@@ -79,78 +85,68 @@
             sigma = Number(inputSigma.value);
             lambda = Number(inputLambda.value);
             SDE = selectedSDE.value;
-
+            
+            const sigmaRangeScaler = 4;
             const dt = 1 / nAttacks;
 
             // Based on the frequency type, I set all the variables
             if (SDE == "RANDOM_WALK"){
                 description = "Random Walk";
-                rangeScaler = 4;
-                minValue = -rangeScaler * Math.sqrt(nAttacks);
-                maxValue = rangeScaler * Math.sqrt(nAttacks);
-                myRandomY = () => utils.RademacherDist(); // generate the random value for the attack
-                myFrequency = (y) => y; // javaScript arrow (lambda) function                
+                minValue = -sigmaRangeScaler * sigma * Math.sqrt(nAttacks);
+                maxValue = sigmaRangeScaler * sigma * Math.sqrt(nAttacks);
+                myRandomY = () => distUtils.RademacherDist(); // generate the random value for the attack
+                myFrequency = (y) => (sigma * y); // javaScript arrow (lambda) function                
             }
 
             else if (SDE == "POISSON"){
                 description = "Poisson";
-                rangeScaler = 1.5;
                 minValue = 0;
-                maxValue = rangeScaler * lambda;
-                myRandomY = () => utils.BernoulliDist(lambda / nAttacks); // generate the random value for the attack
+                maxValue = 1.5 * lambda;
+                myRandomY = () => distUtils.BernoulliDist(lambda / nAttacks); // generate the random value for the attack
                 myFrequency = (y) => y; // javaScript arrow (lambda) function               
             }   
 
             else if (SDE == "ARITHMETIC_BROWNIAN"){
                 description = "Arithmetic Brownian";
-                rangeScaler = 20;
-                minValue = Math.min(0, mu - rangeScaler * sigma);
-                maxValue = Math.max(0, mu + rangeScaler * sigma);
-                myRandomY = () => mu*dt + Math.sqrt(dt)*sigma * utils.RademacherDist(0.5);
+                minValue = Math.min(0, mu - sigmaRangeScaler * sigma);
+                maxValue = Math.max(0, mu + sigmaRangeScaler * sigma);
+                myRandomY = () => distUtils.GaussianDist(mu * dt, Math.sqrt(dt) * sigma);
                 myFrequency = (y) => y;
             }
 
             else if (SDE == "GEOMETRIC_BROWNIAN"){
                 description = "Geometric Brownian";
-                rangeScaler = 20;
-                minValue = Math.min(0, mu - rangeScaler * sigma);
-                maxValue = Math.max(0, mu + rangeScaler * sigma);
-                myRandomY = () => mu*dt + Math.sqrt(dt)*sigma * utils.RademacherDist(0.5);
+                minValue = Math.min(0, mu - sigmaRangeScaler * sigma);
+                maxValue = Math.max(0, mu + sigmaRangeScaler * sigma);
+                myRandomY = () => mu*dt + Math.sqrt(dt)*sigma * distUtils.GaussianDist();
                 myFrequency = (y) => y;
             }
 
             rangeValues = maxValue - minValue;
-            [xOrigin, yOrigin] = utils.XYtoDevice([0, 0], 0, nAttacks, minValue, rangeValues, rectChart); 
+            [xOrigin, yOrigin] = coordUtils.XYtoDevice([0, 0], 0, nAttacks, minValue, rangeValues, rectChart); 
 
         }
 
         function main(){
             
             rct.clearRect(0, 0, myChart.width, myChart.height);
-            
-              
             calcGraphicsValues();
-            //console.log(minValue);
-            //allLines = [];
-            histoFrequencies = {};
+            let histoFrequencies = {}; // contains the frequency at time N: key:Ycoordinate, Value:Frequency
 
             // generate multiple attack lines (one for each system)
             for (let m = 1; m <= nSystems; m++){
-                const newLine = drawLine(histoFrequencies); // draw line for system m and update frequencis dictionary
-                //allLines.push(newLine); // add the line to the list wich contains all the lines
+                const newLine = drawLine(histoFrequencies); // draw line for system m and update frequencies dictionary
                 rct.lineWidth = 1; 
-                rct.strokeStyle = utils.randomColorCSS()// set the stroke of the line
+                rct.strokeStyle = chartUtils.randomColorCSS()// set the stroke of the line
                 rct.stroke(newLine);
             }
 
-            //console.log(histoFrequencies); // Add this line to inspect histoFrequencies
+            console.log(histoFrequencies); // Add this line to inspect histoFrequencies
             rectChart.drawRectangle(rct, "white", 2, []);
-            const HistoRect = new Rectangle(utils.XtoDevice(nAttacks, 0, nAttacks, rectChart.x, rectChart.width), rectChart.y, myChart.width - rectChart.width - 20, rectChart.height) // instantiate new rectangle for the histograms
+            const HistoRect = new Rectangle(coordUtils.XtoDevice(nAttacks, 0, nAttacks, rectChart.x, rectChart.width), rectChart.y, myChart.width - rectChart.width - 20, rectChart.height) // instantiate new rectangle for the histograms
             HistoRect.drawRectangle(rct, "rgba(0,100,160,0.5)", 2, [1, 1]); // draw this rectangle
-            utils.drawHistogramsFromDict(rct, histoFrequencies, HistoRect, "red", "LightGreen");    
-            legend();       
-            
-               
+            chartUtils.drawHistogramsFromDict(rct, histoFrequencies, HistoRect, "red", "LightGreen");    
+            legend();          
         }
 
         // The function which draw the lines 
@@ -159,7 +155,7 @@
             
             let y = 0; // Y coordinates
             let prevY = yOrigin;
-            let lastY;
+            let lastY = 0;
             
             myLine.moveTo(xOrigin, yOrigin);
 
@@ -168,21 +164,20 @@
                 y += myRandomY();
                 let frequency = myFrequency(y, x, nAttacks); 
                 
-                const xDevice = utils.XtoDevice(x / nAttacks, 0, 1, rectChart.x, rectChart.width);
-                const yDevice = utils.YtoDevice(frequency, minValue, rangeValues, rectChart.y, rectChart.height);
+                const xDevice = coordUtils.XtoDevice(x / nAttacks, 0, 1, rectChart.x, rectChart.width);
+                const yDevice = coordUtils.YtoDevice(frequency, minValue, rangeValues, rectChart.y, rectChart.height);
 
                 myLine.lineTo(xDevice, prevY);
                 prevY = yDevice
                 myLine.lineTo(xDevice, yDevice);
                 
-                if (x == nAttacks){lastY = yDevice}
-
+                if (x == nAttacks){lastY = yDevice;}
             }
             
-            if (lastY in histoFrequencies) {
-                histoFrequencies[lastY] += 1;
+            if (lastY in frequencies) {
+                frequencies[lastY] += 1;
             } else {
-                histoFrequencies[lastY] = 1;
+                frequencies[lastY] = 1;
             }
             return myLine;
         }

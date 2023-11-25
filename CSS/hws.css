@@ -22,3 +22,12 @@ canvas {
     border: 2px solid green;
     vertical-align: top;
 }
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

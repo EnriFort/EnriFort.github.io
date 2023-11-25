@@ -3,13 +3,22 @@
 <head>
     <meta charset="utf-8">
     <script src="../JSLibrary/Rectangle.js"></script>
-    <script src="../JSLibrary/utils.js"></script>
+
+    <script src="../JSLibrary/distUtils.js"></script>
+    <script src="../JSLibrary/coordUtils.js"></script>
+    <script src="../JSLibrary/chartUtils.js"></script>
+
     <link rel="icon" href="../img/icon.png">
     <link rel="stylesheet" type="text/css" href="../CSS/hws.css">
+
     <title>Attack Simulation - Gambler's</title>
 </head>
 
 <body>
+    
+    <div>
+        <a href="../index.html">Statistics Homeworks</a>
+    </div>
 
     <h3>HW. 6 - Attack Simulation: Gambler's Ruin Problem</h3>
 
@@ -45,7 +54,6 @@
         let myRandomY;
         let myFrequency;
         let minValue, maxValue, rangeValues;
-        let penetrations; // contains the FREQUENCIES of the penetrations
         let P; // penetration Score
 
 
@@ -66,11 +74,11 @@
             minValue = -rangeScaler * Math.sqrt(nAttacks);
             maxValue = rangeScaler * Math.sqrt(nAttacks);
 
-            myRandomY = () => utils.RademacherDist(0.5); // generate the random value for the attack
+            myRandomY = () => distUtils.RademacherDist(); // generate the random value for the attack
             myFrequency = (y) => y; // javaScript arrow (lambda) function
 
             rangeValues = maxValue - minValue;
-            [xOrigin, yOrigin] = utils.XYtoDevice([0, 0], 0, nAttacks, minValue, rangeValues, rectChart);
+            [xOrigin, yOrigin] = coordUtils.XYtoDevice([0, 0], 0, nAttacks, minValue, rangeValues, rectChart);
             //add others values if you want...
         }
 
@@ -81,22 +89,22 @@
 
             // clear stuff
             rct.clearRect(0, 0, myChart.width, myChart.height);
-            penetrations = new Array(10).fill(0);
+            let penetrations = new Array(10).fill(0); // contains the FREQUENCIES of the penetrations
             //allLines = [];
 
             // generate multiple attack lines (one for each system)
             for (let m = 1; m <= nSystems; m++) {
                 const newLine = drawLine(penetrations); // draw line for system m and update penetrations array
                 rct.lineWidth = 1;
-                rct.strokeStyle = utils.randomColorCSS()// set the stroke of the line
+                rct.strokeStyle = chartUtils.randomColorCSS()// set the stroke of the line
                 rct.stroke(newLine);
             }
 
             //console.log(histoFrequencies); // Add this line to inspect histoFrequencies
             rectChart.drawRectangle(rct, "white", 2, []);
-            const HistogramRectangle = new Rectangle(utils.XtoDevice(nAttacks, 0, nAttacks, rectChart.x, rectChart.width), rectChart.y, 160, rectChart.height) // instantiate new rectangle for the histograms
+            const HistogramRectangle = new Rectangle(coordUtils.XtoDevice(nAttacks, 0, nAttacks, rectChart.x, rectChart.width), rectChart.y, 160, rectChart.height) // instantiate new rectangle for the histograms
             HistogramRectangle.drawRectangle(rct, "rgba(0,100,160,0.5)", 2, [1, 1]); // draw this rectangle
-            utils.drawHistogramsFromArr(rct, penetrations, HistogramRectangle, "red", "lightgreen");
+            chartUtils.drawHistogramsFromArr(rct, penetrations, HistogramRectangle, "red", "lightgreen");
         }
 
 
@@ -115,8 +123,8 @@
                 y += myRandomY(); // security/penetration score
                 let frequency = myFrequency(y);
 
-                const xDevice = utils.XtoDevice(x / nAttacks, 0, 1, rectChart.x, rectChart.width);
-                const yDevice = utils.YtoDevice(frequency, minValue, rangeValues, rectChart.y, rectChart.height);
+                const xDevice = coordUtils.XtoDevice(x / nAttacks, 0, 1, rectChart.x, rectChart.width);
+                const yDevice = coordUtils.YtoDevice(frequency, minValue, rangeValues, rectChart.y, rectChart.height);
 
                 myLine.lineTo(xDevice, prevY);
                 prevY = yDevice

@@ -5,6 +5,7 @@
 <head>
     <meta charset="utf-8">
     <script src="../JSLibrary/Rectangle.js"></script>
+    <script src="../JSLibrary/distUtils.js"></script>
     <script src="../JSLibrary/utils.js"></script>
     <link rel="icon" href="../img/icon.png">
     <link rel="stylesheet" type="text/css" href="../CSS/hws.css">
@@ -12,6 +13,10 @@
 </head>
 
 <body>
+    
+    <div>
+        <a href="../index.html">Statistics Homeworks</a>
+    </div>
 
     <h3>HW. 6 - Attack Simulation: Gambler's Ruin Problem</h3>
 
@@ -68,7 +73,7 @@
             minValue = -rangeScaler * Math.sqrt(nAttacks);
             maxValue = rangeScaler * Math.sqrt(nAttacks);
 
-            myRandomY = () => utils.RademacherDist(0.5); // generate the random value for the attack
+            myRandomY = () => distUtils.RademacherDist(0.5); // generate the random value for the attack
             myFrequency = (y) => y; // javaScript arrow (lambda) function
 
             rangeValues = maxValue - minValue;

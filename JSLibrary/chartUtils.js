@@ -1,64 +1,5 @@
-class utils {
-
-    static BernoulliDist(p){
-        return (Math.random() <= p) ? 1 : 0;
-    }
-
-    static RademacherDist(){ // 1 penetrated, -1 protected
-        return (Math.random() <= 0.5) ? 1 : -1;
-    }
-
-    /* this function is been taken from: https://rb.gy/5b3jjc */
-    static gaussianRandom(mean, stdDev, numSamples) {
-        const data = [];
-        for (let i = 0; i < numSamples; i++) {
-            // Standard Normal variate using Box-Muller transform.
-            const u = 1 - Math.random(); // Converting [0,1) to (0,1]
-            const v = Math.random();
-            const z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
-            // Transform to the desired mean and standard deviation:
-            const value = z * stdDev + mean;
-            data.push(value);
-        }
-        return data;
-    }
-
-    // transform the "real" X to the "device" X
-    static XtoDevice(X, minX, rangeX, left, width){
-        return left + width * (X - minX) / rangeX; 
-    }  
-
-    static YtoDevice(Y, minY, rangeY, top, height){
-        return top + height - (height * (Y - minY) / rangeY);
-    }  
-
-    // transform the "real" [X,Y] to the "device" [X,Y]
-    static XYtoDevice([X, Y], minX, rangeX, minY, rangeY, devRect){
-        return (
-            [
-                utils.XtoDevice(X, minX, rangeX, devRect.x, devRect.width),
-                utils.YtoDevice(Y, minY, rangeY, devRect.y, devRect.height)
-            ]
-        )
-    }
-
-    // transform the "device" X to the "real" X
-    static XtoWorld(X, minX, rangeX, left, width){
-        return minX + rangeX * (X - left) / width;
-    }
-
-    static YtoWorld(Y, minY, rangeY, top, height){
-        return minY + rangeY - rangeY * (Y - top) / height;
-    }
-
-    static XYtoWorld([X, Y], rectWorld, devRect){
-        return (
-            [
-                utils.XtoWorld(X, rectWorld.x, rectWorld.width, devRect.x, devRect.width),
-                utils.YtoWorld(Y, rectWorld.y - rectWorld.height, rectWorld.height, devRect.y, devRect.height)
-            ]   
-        )
-    }
+/* Utils file for drawing chart */
+class chartUtils {
 
     static randomColor() {
         return '#' + (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6);
@@ -99,9 +40,7 @@ class utils {
             // Fill with gradient
             rct.fillStyle = grd;
             rct.fillRect(rectHisto.x, rectHisto.y, rectHisto.width, rectHisto.height)
-
         }
-
     }
 
     static drawHistogramsFromArr(rct, frequencies, devRect, startGrdColor, endGrdColor) {
@@ -117,7 +56,6 @@ class utils {
         }
         
         for (let i=0; i < bins; i++){
-
 
             // width and height are reversed because the histogram is horizontal
             let barWidth = frequencies[i] / maxFrequency * (devRect.width) - 1;
@@ -147,10 +85,7 @@ class utils {
             rct.font = "9px Verdana";
             rct.fillStyle = "white";
             rct.fillText(frequencies[i].toString(), rectHisto.x, rectHisto.y + (rectHisto.height/2));
-            
-
         }
-
     }
 
     
