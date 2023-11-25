@@ -7,13 +7,16 @@ class drawUtils {
         const bins = 50;
         const binWidth = canvas.width / bins;
         const frequencies = new Array(bins).fill(0);
+        let maxFrequency = 0;
     
         data.forEach((value) => {
             const binIndex = Math.floor((value * bins) / 1);
             frequencies[binIndex]++;
         });
     
-        const maxFrequency = Math.max(...frequencies);
+        for (let i = 0; i < bins; i++) {
+            maxFrequency = Math.max(maxFrequency, frequencies[i]);
+        }
     
         ctx.fillStyle = "green";
     

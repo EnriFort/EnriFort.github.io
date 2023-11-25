@@ -4,10 +4,129 @@
     <meta charset="UTF-8">
     <title>The Glivenko–Cantelli theorem, Proof, Simulations</title>
     <link rel="icon" href="../img/icon.png">
-    <link rel="stylesheet" type="text/css" href="../CSS/hws.css">
     <link rel="stylesheet" type="text/css" href="../CSS/ths.css">
+    <script src="drawUtils.js"></script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
 </head>
 <body>
+
+    <div>
+        <a href="../index.html">Statistics Homeworks</a>
+    </div>
+
+    <h3>The Glivenko–Cantelli theorem</h3>
+    
+    <p>
+        The <b>Glivenko-Cantelli theorem</b>, also called as the Fundamental Theorem of Statistics, describe the asymptotic behaviour of the <b>empirical distribution function</b>
+        when the number of independent and identically distributed random variables grows.   
+    </p>
+    
+    <p>
+    For better understanding what Glivenko–Cantelli theorem is, we must first define the following two definitions:
+        <ul>
+            <li>
+                The <b>Cumulative Distribution Function (CDF)</b> of a random variable \(X\), evaluated at \(x\), is the probability that \(X\) will take a value less than or equal to \(x\):  
+                \( F_X(x) = P(X \le x) \).
+            </li>
+            <li>
+                The <b>Empirical Distribution Function (EDF)</b>, for a given set of observed data points, assigns a probability to each data point based on its rank order in the dataset. 
+                It provides a step function that increases by \(1/n\) at each data point, where \(n\) is the total number of observations. Mathematically, the EDF is defined as:
+                \[
+                F_n(x) = \frac{1}{n} \sum_{i=1}^{n} I(X_i \le x)
+                \]
+                where \(n\) is the number of observations, \(X_i\) is the \(i\)-th observation, and \(I(\cdot)\) is the indicator function.
+            </li>
+        </ul>
+    </p>
+
+    <h4>Definition:</h4>
+    
+    <p>
+        Let \(X_1, \dots, X_n\) be independent and identically distributed real random variables with CDF \(F(x)\). The EDF for \(X_1, \dots, X_n\)
+        is defined as follows:
+
+        \[ F_n(x)=\frac{1}{n}\sum_{i=1}^{n} I_{[X, \infty]}(x) \]
+    </p>
+
+    <p>
+        The <b>Glivenko-Cantelli theorem</b> states that, as the number of independent and identically distributed random variables \(n\) grows, the empirical distribution function 
+        \(F_n(x)\), based on these variables, converges almost surely and uniformly to the true cumulative distribution function \(F(x)\). Formally, this can be represented as follows:
+    </p>
+
+    <p>
+        \[
+        \lim_{{n \to \infty}} P\left( \left| F_n(x) - F(x) \right| > \epsilon\right) = 0
+        \]
+    </p>
+
+    <p>
+        Here
+        
+        \(n\) is the number of observations or sample size; 
+        \(\sup_x\) denotes the supremum over all possible values of \(x\) in the range of the random variable;
+        \(\epsilon\) is a small positive value;
+        \(\lim_{{n \to \infty}}\) denotes the limit as \(n\) approaches infinity.
+    </p>
+        
+    <h4>Simulations:</h4>
+    
+    <canvas id="gcCanvas" width="500" height="300" style="border: 1px solid #000;"></canvas>
+    
+    <script>
+        const canvas = document.getElementById('gcCanvas');
+        const ctx = canvas.getContext('2d');
+        const numSamples = 1000;
+
+        function generateUniformSamples(numSamples) {
+            const samples = [];
+            for (let i = 0; i < numSamples; i++) {
+                samples.push(Math.random());
+            }
+            return samples;
+        }
+
+        function calculateEDF(samples) {
+            const edf = [];
+            const n = samples.length;
+            samples.sort((a, b) => a - b);
+
+            for (let i = 0; i < n; i++) {
+                edf.push({ x: samples[i], y: (i + 1) / n });
+            }
+
+            return edf;
+        }
+
+        function drawEDF(canvas, edf) {
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const scaleX = canvas.width;
+            const scaleY = canvas.height;
+
+            ctx.beginPath();
+            ctx.moveTo(edf[0].x * scaleX, (1 - edf[0].y) * scaleY);
+
+            for (let i = 1; i < edf.length; i++) {
+                ctx.lineTo(edf[i].x * scaleX, (1 - edf[i].y) * scaleY);
+            }
+
+            ctx.strokeStyle = 'blue';
+            ctx.stroke();
+        }
+
+        for (let i = 1; i <= numSamples; i++) {
+            const samples = generateUniformSamples(i);
+            const edf = calculateEDF(samples);
+            drawEDF(canvas, edf);
+        }
+    </script>
+
+    <h4>References:</h4>
+    <a href="https://en.wikipedia.org/wiki/Glivenko%E2%80%93Cantelli_theorem">[1]</a>
+
 
 </body>
 </html>

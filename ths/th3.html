@@ -40,34 +40,35 @@
         const canvas = document.getElementById('normalCanvas');
         const ctx = canvas.getContext('2d');
 
-        const mean = 0; // Mean of the normal distribution
-        const stdDev = 1; // Standard deviation of the normal distribution
-        const numSamples = 1000; // Number of samples
+        const mean = 0; 
+        const stdDev = 1; 
+        const numSamples = 1000; 
 
-        function generateNormalDistribution(mean, stdDev, numSamples) {
+        /* this function is been taken from: https://rb.gy/5b3jjc */
+        function gaussianRandom(mean, stdDev, numSamples) {
             const data = [];
             for (let i = 0; i < numSamples; i++) {
-                // Using the Box-Muller transform to generate random samples from a standard normal distribution
-                const u1 = Math.random();
-                const u2 = Math.random();
-                const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
-
-                // Scale and shift the standard normal distribution to match the desired mean and standard deviation
-                const value = mean + stdDev * z;
+                // Standard Normal variate using Box-Muller transform.
+                const u = 1 - Math.random(); // Converting [0,1) to (0,1]
+                const v = Math.random();
+                const z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+                // Transform to the desired mean and standard deviation:
+                const value = z * stdDev + mean;
                 data.push(value);
             }
             return data;
         }
 
-        const data = generateNormalDistribution(mean, stdDev, numSamples);
+        const data = gaussianRandom(mean, stdDev, numSamples);
         drawUtils.drawHistogram(canvas, data);
+        
     </script>
 
     <h4>References:</h4>
-    <ul>
-        <li><a href="https://it.mathworks.com/help/stats/normal-distribution.html">[1]</a></li>
-
-    </ul>
-
+    
+    <a href="https://it.mathworks.com/help/stats/normal-distribution.html">[3]</a>,
+    <a href="https://www.investopedia.com/terms/n/normaldistribution.asp">[4]</a></li>,
+    <a href="https://en.wikipedia.org/wiki/Normal_distribution">[5]</a></li>,
+    <a href="https://www.britannica.com/topic/normal-distribution">[6]</a></li>.
 </body>
 </html>

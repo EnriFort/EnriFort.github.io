@@ -8,6 +8,21 @@ class utils {
         return (Math.random() <= 0.5) ? 1 : -1;
     }
 
+    /* this function is been taken from: https://rb.gy/5b3jjc */
+    static gaussianRandom(mean, stdDev, numSamples) {
+        const data = [];
+        for (let i = 0; i < numSamples; i++) {
+            // Standard Normal variate using Box-Muller transform.
+            const u = 1 - Math.random(); // Converting [0,1) to (0,1]
+            const v = Math.random();
+            const z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+            // Transform to the desired mean and standard deviation:
+            const value = z * stdDev + mean;
+            data.push(value);
+        }
+        return data;
+    }
+
     // transform the "real" X to the "device" X
     static XtoDevice(X, minX, rangeX, left, width){
         return left + width * (X - minX) / rangeX; 
