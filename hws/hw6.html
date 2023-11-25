@@ -87,7 +87,6 @@
             // generate multiple attack lines (one for each system)
             for (let m = 1; m <= nSystems; m++) {
                 const newLine = drawLine(penetrations); // draw line for system m and update penetrations array
-                //allLines.push(newLine); // add the line to the list wich contains all the lines
                 rct.lineWidth = 1;
                 rct.strokeStyle = utils.randomColorCSS()// set the stroke of the line
                 rct.stroke(newLine);

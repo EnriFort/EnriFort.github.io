@@ -5,7 +5,7 @@
     <title>The LLN Meaning, Proof, Simulations</title>
     <link rel="icon" href="../img/icon.png">
     <link rel="stylesheet" type="text/css" href="../CSS/ths.css">
-    <!-- MathJax library for LaTeX rendering -->
+    <!-- library for LaTeX -->
     <script type="text/javascript" async
       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
@@ -58,14 +58,12 @@
         function drawSimulation() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Draw expected average line
             ctx.strokeStyle = 'red';
             ctx.beginPath();
             ctx.moveTo(0, expectedAverage * 50);
             ctx.lineTo(canvas.width, expectedAverage * 50);
             ctx.stroke();
 
-            // Draw simulation data
             ctx.strokeStyle = 'blue';
             ctx.beginPath();
             for (let i = 0; i < simulationData.length; i++) {
@@ -76,7 +74,7 @@
             ctx.stroke();
         }
 
-        simulateLLN(500); // Simulate 500 rolls initially
+        simulateLLN(500);
         drawSimulation();
     </script>
     <p>The <span style="color: blue;">blue line</span> on the graphic represents the average value as the number of rolls increases, converging toward the expected average (<span style="color: red;">red line</span> = 3.5). </p>
@@ -84,7 +82,6 @@
     <h4>References:</h4>
     <ul>
         <li><a href="https://en.wikipedia.org/wiki/Law_of_large_numbers#Weak_law">[1]</a></li>
-        <!-- Add more references as needed -->
     </ul>
 
 </body>
