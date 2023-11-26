@@ -61,8 +61,6 @@ class distUtils {
 	    return Math.round(r);
     }
 
-
-
     static gaussianPair(mean, stdDev) {
         let u, v, s = 0;
         while (s >= 1 || s === 0) {

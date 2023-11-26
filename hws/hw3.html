@@ -83,8 +83,8 @@
                 rangeScaler = 1;
                 minValue = 0;
                 maxValue = rangeScaler * nAttacks;
-                myRandomY = () => distUtils.BernoulliDist(0.5); // generate the random value for the attack
-                myFrequency = (y) => y; // javaScript arrow (lambda) function
+                myRandomY = () => distUtils.BernoulliDist(0.5); 
+                myFrequency = (y) => y; 
                 rectChart = new Rectangle(myChart.width/2 + 10, 20, myChart.width/2 - 180, myChart.height/2 - 30);
                 rectChart.drawRectangle(rct, "white", 2, []);
             }   
@@ -94,8 +94,8 @@
                 rangeScaler = 1.5;
                 minValue = 0;
                 maxValue = rangeScaler * nAttacks;
-                myRandomY = () => distUtils.BernoulliDist(0.5); // generate the random value for the attack
-                myFrequency = (y, x, nAttacks) => (y*nAttacks)/(x + 1); // javaScript arrow (lambda) function
+                myRandomY = () => distUtils.BernoulliDist(0.5); 
+                myFrequency = (y, x, nAttacks) => (y*nAttacks)/(x + 1); 
                 rectChart = new Rectangle(10, myChart.height/2 + 10, myChart.width/2 - 180, myChart.height/2 - 30);
                 rectChart.drawRectangle(rct, "white", 2, []);
             }
@@ -105,8 +105,8 @@
                 rangeScaler = 1;
                 minValue = 0;
                 maxValue = rangeScaler * (nAttacks/Math.sqrt(nAttacks));
-                myRandomY = () => distUtils.BernoulliDist(0.5); // generate the random value for the attack
-                myFrequency = (y, x) => y/(Math.sqrt(x + 1)); // javaScript arrow (lambda) function
+                myRandomY = () => distUtils.BernoulliDist(0.5); 
+                myFrequency = (y, x) => y/(Math.sqrt(x + 1)); 
                 rectChart = new Rectangle(myChart.width/2 + 10, myChart.height/2 + 10, myChart.width/2 - 180, myChart.height/2 - 30);
                 rectChart.drawRectangle(rct, "white", 2, []);
             }

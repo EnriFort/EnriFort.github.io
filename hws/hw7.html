@@ -71,7 +71,6 @@
         let myFrequency;
         let minValue, maxValue, rangeValues;
         let description;
-
         
         const rectChart = new Rectangle(10, 10, myChart.width - 200, myChart.height - 20); // chart where there are the histograms
         buttonCompute.onclick = main;
@@ -102,8 +101,8 @@
                 description = "Poisson";
                 minValue = 0;
                 maxValue = 1.5 * lambda;
-                myRandomY = () => distUtils.BernoulliDist(lambda / nAttacks); // generate the random value for the attack
-                myFrequency = (y) => y; // javaScript arrow (lambda) function               
+                myRandomY = () => distUtils.BernoulliDist(lambda / nAttacks); 
+                myFrequency = (y) => y;                
             }   
 
             else if (SDE == "ARITHMETIC_BROWNIAN"){

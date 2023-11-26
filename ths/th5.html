@@ -6,8 +6,137 @@
     <link rel="icon" href="../img/icon.png">
     <link rel="stylesheet" type="text/css" href="../CSS/hws.css">
     <link rel="stylesheet" type="text/css" href="../CSS/ths.css">
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
 </head>
 <body>
+    <div>
+        <a href="../index.html">Statistics Homeworks</a>
+    </div>
+
+    <h3>Statistical Distributions</h3>
+    
+    <p>
+        The statistical (or probability) distribution is a parameterized mathematical function which can be used to compute the probability of 
+        any single observation from the sample space. This function defines the density of the observations, known as <strong>probability density function</strong> (PDF). 
+        The latter decribes how the probability of the proportion of observations change over the range of the distribution. 
+        More in practice, a distribution function describes the relationship between observations in a sample space.
+    </p> 
+
+    <p>
+        Probability distribution can be discrete or continuous. The <strong>discrete</strong> probability distribution deals with scenarios where the sample space is discrete 
+        (e.g. drawing a card from a deck, rolling a die...). On the opposite, if we are in scenarios where the sample space can take values in a continuos domain 
+        (e.g. measuring the height of adult humans) we are talking of <strong>continous</strong>  probability distribution.
+    </p>
+
+    <p>
+        Instead of using the probability density function, we can describe the distribution using the <strong>cumulative distribution function</strong> (CDF), 
+        which calculates the probability of an observation equal or less than a value (i.e. \( F(x) = P(X \leq x) \) for some \(x\) ).
+        In the case of a real-valued random variable, the cumulative distribution function has the following <strong>properties</strong>:
+        <ul>
+            <li>
+                \(F(x)\) is non-decreasing;
+            </li>
+            <br>
+            <li>
+                \(F(x)\) is right-continous;
+            </li>
+            <br>
+            <li>
+                \(0 \leq F(x) \leq 1\);
+            </li>
+            <br>
+            <li>
+                \( \lim_{{x \to -\infty}} F(x) = 0, \quad \lim_{{x \to \infty}} F(x) = 1 \) and
+            </li>
+            <br>
+            <li>
+                \( Pr(a \lt X \leq b) = F(b) - F(a) \).
+            </li>
+        </ul>
+    </p>
+
+    <h4>Simulations:</h4>
+
+    <p>
+        The following graph shows the simulation of two cumulative distributions functions. The blue line represent the discrete case, while the red line 
+        represent the continous one.     
+    </p>
+
+    <canvas id="cdfCanvas" width="500" height="300"></canvas>
+
+    <script>
+        // JavaScript code for simulating and visualizing CDF
+
+        const cdfCanvas = document.getElementById("cdfCanvas");
+        const cdfCtx = cdfCanvas.getContext("2d");
+
+        // Simulate a discrete CDF
+        function simulateDiscreteCDF() {
+            const data = [0.1, 0.2, 0.4, 0.6, 0.9]; // Example discrete probabilities
+            const cumulativeProbabilities = [];
+
+            let cumulativeProbability = 0;
+            for (const probability of data) {
+                cumulativeProbability += probability;
+                cumulativeProbabilities.push(cumulativeProbability);
+            }
+
+            return cumulativeProbabilities;
+        }
+
+        // Simulate a continuous CDF (using a normal distribution for example)
+        function simulateContinuousCDF() {
+            const mean = 0;
+            const stdDev = 1;
+            const numPoints = 100;
+            const step = 0.1;
+
+            const cumulativeProbabilities = [];
+
+            for (let i = -3; i <= 3; i += step) {
+                const probability = standardNormalDistribution(i, mean, stdDev);
+                cumulativeProbabilities.push(probability);
+            }
+
+            return cumulativeProbabilities;
+        }
+
+        // Standard normal distribution function
+        function standardNormalDistribution(x, mean, stdDev) {
+            return (1 / (stdDev * Math.sqrt(2 * Math.PI))) * Math.exp(-((x - mean) ** 2) / (2 * stdDev ** 2));
+        }
+
+        // Draw CDF on canvas
+        function drawCDF(cumulativeProbabilities, color) {
+            cdfCtx.beginPath();
+            cdfCtx.moveTo(0, 0);
+
+            const stepX = cdfCanvas.width / (cumulativeProbabilities.length - 1);
+            for (let i = 0; i < cumulativeProbabilities.length; i++) {
+                const x = i * stepX;
+                const y = cdfCanvas.height - cumulativeProbabilities[i] * cdfCanvas.height;
+                cdfCtx.lineTo(x, y);
+            }
+
+            cdfCtx.strokeStyle = color;
+            cdfCtx.lineWidth = 2;
+            cdfCtx.stroke();
+            cdfCtx.closePath();
+        }
+
+        // Call the functions to get simulated data and draw the CDFs
+        const discreteCDF = simulateDiscreteCDF();
+        drawCDF(discreteCDF, "blue");
+
+        const continuousCDF = simulateContinuousCDF();
+        drawCDF(continuousCDF, "red");
+    </script>
+
+    <h4>References:</h4>
+    <a href="https://machinelearningmastery.com/statistical-data-distributions/">[1]</a>,
+    <a href="https://en.wikipedia.org/wiki/Probability_distribution">[2]</a>.
 
 </body>
 </html>
