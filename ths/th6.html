@@ -6,6 +6,9 @@
     <link rel="icon" href="../img/icon.png">
     <link rel="stylesheet" type="text/css" href="../CSS/hws.css">
     <link rel="stylesheet" type="text/css" href="../CSS/ths.css">
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
 </head>
 <body>
     
@@ -16,13 +19,187 @@
     <h3>Algorithms for random variates generation</h3>
 
     <p>
-        In statistics, a <strong>random variate</strong> is a specific outcome of a random variable. 
-        So 
-
+        In statistics, a <strong>random variate</strong> is a specific outcome of a random variable,  
+        which is used to simulate stochastic processes. The generation of a random variate from a given distribution is known 
+        as <i>random number generation</i> or <i>non-uniform pseudo-random variate generation</i>.
     </p>
 
+    <p>
+        There are several methods (or algorithms) to generate a random variate, in which the main goal is to use \(\mathcal{U}(0, 1)\) 
+        (i.e. the <i>standard uniform distribution</i>, where every point in the continous range \([0.0, 1.0]\) has the same opportunity of appearing)
+        to generate variates from other distributions, e.g. discrete distributions like Bernoulli, Binomial and Poisson, or continous distributions like 
+        exponential or normal; below are the main ones.
+    </p>
+    <hr>
+
+    <p>
+        <b>1. Inverse Transform Method</b><br>
+        Let \(X\) be a continous R.V. with cdf \(F(x)\). Then
+        \[F(x) \sim \mathcal{U}(0, 1).\]
+        
+        Is it possible to define the inverse cdf as follows:
+        \[F^{-1}(u) = inf[x: F(x) \geq u] \quad u \in [0, 1].\]
+        
+        Let \(U \sim \mathcal{U}(0,1) \). Then the random variable \( F^{-1}(U) \) has the same distribution as \(X\).
+
+        The <i>inverse transform method</i> for generating a RV \(X\) having cdf \(F(x)\) is the following:
+        <ol>
+            <li>
+                Sample \(U\) from \(\mathcal{U}(0, 1)\).
+            </li>
+            <li>
+                Return \(X = F^{-1}(U)\).
+            </li>
+        </ol>   
+    </p>
+    <hr>
+
+    <p>
+        <b>2. Cutpoint Method</b><br>    
+        In this case we want to generate from the following discrete distribution:
+        \[P(X=k) = p_k, \quad k = a, a+1, \dots, b \]
+
+        with large \(b - a\). <br>
+
+        Let 
+        \[ q_k = P(X \leq k), \quad k = a, a+1, \dots, b.\]
+
+        For fixed \(m\), the cutpoint method of Fishman and Moore computes and store the cutpoints:
+        \[I_j = min \left[ k:q_k > \frac{j-1}{m}  \right], \quad j=1,\dots, m. \]
+
+        With these cutpoints is possible to scan trough the list of possible \(k\)-values much more quickly
+        than regular inverse transform. <br>
+
+        <p>
+            The algorithms that computes the cutpoints is the following: <br>
+            <ul>
+                <li>
+                    <b>Algorithm CMSET</b><br>
+
+                    \(j \leftarrow 0\) ,  \( k \leftarrow\ a - 1 \), and \( A \leftarrow 0 \) <br>
+                    
+                    While \(j \lt m\): <br>
+                    &emsp;  While \( A \leq j \): <br>
+                    &emsp; &emsp; \( k \leftarrow k + 1 \) <br>
+                    &emsp; &emsp; \( A \leftarrow mq_k\) <br>
+                    &emsp; \( j \leftarrow j + 1\) <br>
+                    &emsp; \( I_j \leftarrow k \)
+                </li>
+            </ul>
+        </p>
+
+        <p>
+            Then we can use the cutpoint method: <br>
+            <ul>
+                <li>
+                    <b>Algorithm CM</b><br>
+
+                    generate \(U\) from \( \mathcal{U} (0,1)\) <br>
+                    \(L \leftarrow \lfloor mU \rfloor + 1\) <br>
+                    \(X \leftarrow I_L\) <br>
+                    While \(U \gt q_X: X \leftarrow X + 1\)    
+                </li>
+            </ul>
+            Briefly, the algorithm select an integer \(L = \lfloor mU \rfloor + 1\) and starts the search at the value
+            \( I_L \). It is correct because of:
+            \[ P(I_L \leq X \leq I_{L+1}) = 1 \quad (I_{m+1} = b). \]
+        </p>
+    </p>
+    <hr>
+
+    <p>
+        <b>3. Convolution Method</b><br>
+        Convolution means adding things up. <br>
+        <p>
+            <b> Example:</b> Binomial(\(n, p\)). <br>
+            Suppose \(X_1, \dots, X_n\) are <i>indipendent and identically Distributed (iid)</i> Bern\((p)\).
+            
+            Then \(Y = \sum_{i=1}^{n} X_i \sim \) Bin(\(n, p\)). <br>
+            
+            How to get Bernoullis RV's? <br>
+
+            Suppose \( U_1, \dots, U_n \) are iid U(0,1): <br>
+            &emsp; If \(U_i \leq p \) then \(X_i = 1\) <br>
+            &emsp; Otherwise \(X_i = 0\) <br>
+            Repeat for \(i = 1, \dots, n\).
+        </p>
+    </p>
+    <hr>
+
+    <p>
+        <b>4. Acceptance-Rejection Method</b><br>
+        <p>
+            <b> Simple Example:</b> Generate a \( \mathcal{U} (2/3, 1) \) RV.<br>
+            <ul>
+                <li>
+                    <b>A-R Algorithm</b><br>
+                    <ol>
+                        <li>
+                            Generate \(U \sim \mathcal{U}(0, 1)\);
+                        </li>
+                        <li>
+                            If \(U \geq 2/3\), ACCEPT \(X \leftarrow U\). Otherwise, REJECT and go to 1.
+                        </li>
+                    </ol>
+                </li>
+            </ul>
+        </p>
+    </p>
+    <hr>
+
+    <p>
+        <b>5. Composition Method</b><br>
+        <p>
+            Suppose a RV actually comes from two RV's. The goal is to generate a RV with the following cdf:
+            \[F(x) = \sum_{j=1}^{\infty} p_j F_j (x)\]
+            where \(p_j > 0\) for all \(j, \sum jP_j = 1\), and the \(F_j(x)\)'s are "easy" cdf's to generate from.
+            <p>
+                <ol>
+                    <li>
+                        Generate a positive integer \(J\) such that \(P(J=j) = p_j\) for all \(j\).
+                    </li>
+                    <li>
+                        Return \(X\) from cdf \(F_j(x)\).
+                    </li>
+                </ol>
+            </p>
+        </p>
+    </p>
+    <hr>
+
+    <p>
+        <b>6. Box-Muller Method</b><br>
+        <p> It is an easy way to generate standard normals.</p><br>
+        <b>Theorem:</b> If \(U_1, U_2\) are iid \(\mathcal{U}(0,1)\), then:<br>
+        \[Z_1 = \sqrt{-2ln(U_1)} cos(2\pi U_2)\]
+        \[Z_2 = \sqrt{-2ln(U_1)} cos(2\pi U_2)\]
+        are iid Nor(0,1).
+    </p>
+    <hr>
+
+    <p>
+        <b>7. Polar Method</b><br>
+        <p> It is a little faster than Box-Muller:<br>
+        <ol>
+            <li>
+                Generate \(U_1, U_2\) iid \(\mathcal{U}(0,1)\)<br>
+                &ensp; Let \(V_i = 2U_i - 1\) , \(i = 1, 2\), and \(W = V^{2}_1 + V^{2}_2\).
+            </li>
+            <li>
+                If \(W > 1\), REJECT and go to 1<br>
+                Otherwise, let \(Y = \sqrt{-2(ln(W))/W}\), and ACCEPT \( Z_i \leftarrow V_{i}Y, i = 1,2 \).
+            </li>
+        </ol>
+        Then \(Z_1, Z_2\) are iid Nord(0, 1).
+        </p>
+    </p>
+    <h4>References:</h4>
+    For the thoery <a href="https://en.wikipedia.org/wiki/Random_variate">[1]</a>,
+    <a href="https://www.investopedia.com/terms/u/uniform-distribution.asp">[2]</a> <br>
+    The algorithms are taken from: <a href="https://www2.isye.gatech.edu/~sman/courses/Mexico2010/Module07-RandomVariateGeneration.pdf">[3]
 
     
 
 </body>
 </html>
+
