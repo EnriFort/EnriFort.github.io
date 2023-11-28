@@ -6,8 +6,36 @@
     <link rel="icon" href="../img/icon.png">
     <link rel="stylesheet" type="text/css" href="../CSS/hws.css">
     <link rel="stylesheet" type="text/css" href="../CSS/ths.css">
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
 </head>
 <body>
+    <div>
+        <a href="../index.html">Statistics Homeworks</a>
+    </div>
 
+    <h3>"Online" Algorithms (Data Streams): Ideas and code</h3>
+
+    <p>
+        Sometimes the data could come in a <b>stream</b> form (i.e. instead of coming from a defined set, it is a never ending flow of information).
+        So in this case what is you have got is an endessly growing database, where you are adding a row for each new observation.  
+        The <b>Online algorithms</b> are a new kind of algorithms capable of updating values starting from a stream of data. This way we can update the current value
+        using the last value obtained. In other terms, an online algorithm is one that can process the input step-by-step, in the order than the input is given to it, without having 
+        the whole input available from the beginning.
+    </p>
+
+    <p> 
+        For example, suppose we have a data stream \(x_1, x_2, \dots, x_n\) coming from a trading stock. It is an example of endless flow of data. If we need to compute the 
+        average price, we can't use the classical arithmetic average formula, but instead we need a way of updating the mean at each new \(n\)-th value \(x_n\).
+    </p>
+
+    In the case of the average the right formula is the following:
+    \[ \bar{x}_{n+1} = \bar{x}_n + \frac{(x_i - \bar{x}_n)}{n} \] 
+    where \(\frac{(x_i - \bar{x}_n)}{n}\) is the increment or decrement. The above formula is called <b>recurrence formula for the mean</b>.
+
+
+    <h4>References:</h4>
+    <a href="https://en.wikipedia.org/wiki/Online_algorithm#:~:text=In%20computer%20science%2C%20an%20online,input%20available%20from%20the%20start.">[1]</a>
 </body>
 </html>
