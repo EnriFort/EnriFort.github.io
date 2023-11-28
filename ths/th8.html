@@ -6,8 +6,41 @@
     <link rel="icon" href="../img/icon.png">
     <link rel="stylesheet" type="text/css" href="../CSS/hws.css">
     <link rel="stylesheet" type="text/css" href="../CSS/ths.css">
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
 </head>
 <body>
+    <div>
+        <a href="../index.html">Statistics Homeworks</a>
+    </div>
+
+    <h3>Stochastic processes and SDE's</h3>
+    A <b>Stochastic process</b> (or random process) is defined as a sequence of indexed random variables, where the index is interpreted as time. Formally, it is defined on a shared 
+    probability space \( (\Omega, \mathcal{F}, \mathcal{P}) \), where \(\Omega\) is the sample space, \(F\) is a \(\sigma\)-algebra, and \(P\) is a probability measure. The random variables are 
+    indexed by a set \(T\) and takes values in the same mathematical space \(S\). The latter must be measurable with respect to a \(\sigma\)-algebra \(\Sigma\). Therefore, given a probability space 
+    \( (\Omega, \mathcal{F}, \mathcal{P}) \) and a measurable space \(S, \Sigma\), a stocastic process can be represented as:
+    
+    \[\{ X(t) ; t \in T \}\] 
+
+    Traditionally, a point \(t\) from the set \(T\) has been interpreted as time, thus the R.V. \(X(t)\) represent a value observed at the time \(t\).
+
+    <p>
+        In stochastic processes, a crucial element is the <b>increment</b>, defined as the difference between two R.Vs of the same stochastic process. 
+        For the previous index set of time, an increment refers to the change of the stochastic process over a certain interval of time. 
+    </p>
+    <hr>
+    <p>
+        <b>Stochastic differential equation (SDE)</b><br>
+        A <b>SDE</b> is a differential equation in which one or more component is a stochastic process. A <b>differential equation</b> is described in terms of deterministic increments, while in a SDE the increment is a random variable.
+        The general form of a SDE is the following:
+        \[dX_t = \mu(t,X_t) \, dt + \sigma(t,X_t) \, dW_t
+        \]
+        where \(X_t\) is the state of the system at time \(t\); \(\mu(t,X_t)\) is the deterministic part, which represent the drift;
+        \sigma(t,X_t) is the stochastic part, which involves a Brownian motion or other sources of randomness; \(dt\) is the differential of time, and 
+        \(dW_t\) is a Wiener process. 
+    </p>
+
 
 </body>
 </html>
