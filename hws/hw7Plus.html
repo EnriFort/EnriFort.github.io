@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The LLN Meaning, Proof, Simulations</title>
+    <link rel="icon" href="../img/icon.png">
+    <link rel="stylesheet" type="text/css" href="../CSS/ths.css">
+    <!-- library for LaTeX -->
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+</head>
+<body>
+    
+    <div>
+        <a href="../index.html">Statistics Homeworks</a>
+    </div>
+
+    <h3>HW. 7 - Optional theory part</h3>
+    <h4>Compare also with other possible simulation schemes which have been proposed
+        (eg. Milstein, Runge-Kutta, Heun's, ...), pointing out possible differences.
+    </h4>
+    
+    <p>
+        The Euler-Murayama (E-M) method formula is the following:
+        \[ X_{n+1} - X_{n} = \mu X_n\Delta t_n + \sigma X_n \Delta B_n\]
+
+        In addition to it, which was used in the homeworks, there are different numerical methods for solving the stochastic differential equations. Let's see them in the next sections. 
+        
+    </p>
+    <hr>
+
+    <p>
+        <b>1. Milstein method</b><br>
+        <ul>
+            <li>
+                The Milstein method is an extension of the Euler method which is able to increase the accuracy adding a second-order "correction" term (<i>in green</i>) by applying Ito's
+                lemma to the \(a()\) and \(b()\) functions.
+                    \[X_{n+1} - X_n = a(X_n)\Delta t + b(X_n)\Delta B_n \color{green}{+ 0.5\sigma^2 X_n\left((\Delta B_n)^2-\Delta t\right)}\]
+            </li>
+            <li>
+                It has both strong and weak convergence of order 1 whereas the E-M method has weak convergence of order 1, but strong convergence only of order 0.5.
+            </li>
+            <li>
+                In general, it is more stable than Euler for SDEs with a high degree of noise.
+            </li>
+        </ul>
+    </p>
+    <hr>
+
+    <p>
+        <b>2. Runge-Kutta methods</b><br>
+        <ul>
+            <li>
+                The Milstein method is an extension of the Euler method which is able to increase the accuracy adding a second-order "correction" term (<i>in green</i>) by applying Ito's
+                lemma to the \(a()\) and \(b()\) functions.
+                    \[X_{n+1} - X_n = a(X_n)\Delta t + b(X_n)\Delta B_n \color{green}{+ 0.5\sigma^2 X_n\left((\Delta B_n)^2-\Delta t\right)}\]
+            </li>
+            <li>
+                It has both strong and weak convergence of order 1 whereas the E-M method has weak convergence of order 1, but strong convergence only of order 0.5.
+            </li>
+            <li>
+                In general, it is more stable than Euler for SDEs with a high degree of noise.
+            </li>
+        </ul>
+    </p>
+    
+    <h4>References:</h4>
+    
+    <a href="https://en.wikipedia.org/wiki/Law_of_large_numbers#Weak_law">[1]</a>
+    
+
+</body>
+</html>
