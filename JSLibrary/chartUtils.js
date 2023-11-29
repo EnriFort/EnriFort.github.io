@@ -88,6 +88,16 @@ class chartUtils {
         }
     }
 
+    static cntValueInIntervals(value, frequencies, binSize){
+        const binIndex = Math.floor(value / binSize) * binSize; // choose the right bin index
+
+        if (binIndex in frequencies){
+            frequencies[binIndex]++;
+        }else{
+            frequencies[binIndex] = 1;
+        }
+    }
+
     
     static  CSS_COLORS = [
         "AliceBlue",

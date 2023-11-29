@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <script src="../JSLibrary/Rectangle.js"></script>
-
     <script src="../JSLibrary/distUtils.js"></script>
     <script src="../JSLibrary/coordUtils.js"></script>
     <script src="../JSLibrary/chartUtils.js"></script>
@@ -22,7 +21,7 @@
     <h3>HW. 7 - Attack Simulation: stochastic differential equation (SDE) </h3>
 
     <label for="inputSystems"># Systems: </label>
-    <input type="number" id="inputSystems" value=100 min="10" max="1000" step="10">
+    <input type="number" id="inputSystems" value=400 min="10" max="1000" step="10">
     <label for="inputAttacks"> # Attacks: </label>
     <input type="number" id="inputAttacks" value=500 min="10" max="1000" step="10">
 
@@ -43,11 +42,9 @@
     </select>
 
     <button id="compute" type="button" style="margin-right: 20px;">Simulate Attacks</button>
-    
     <hr>
-    <canvas id="myChart" width="1000" height="700" oncontextmenu="return false"></canvas>
+    <canvas id="myChart" width="1100" height="700" oncontextmenu="return false"></canvas>
 
-    
     <script>
 
         "use strict";
@@ -71,8 +68,10 @@
         let myFrequency;
         let minValue, maxValue, rangeValues;
         let description;
+        let binSize;
+        let discreteValue; // flag variable: true if i'm considering discrete values, false if continous
         
-        const rectChart = new Rectangle(10, 10, myChart.width - 200, myChart.height - 20); // chart where there are the histograms
+        const rectChart = new Rectangle(10, 10, myChart.width - 250, myChart.height - 20); // chart where there are the histograms
         buttonCompute.onclick = main;
         //main();
 
@@ -84,13 +83,14 @@
             sigma = Number(inputSigma.value);
             lambda = Number(inputLambda.value);
             SDE = selectedSDE.value;
+            discreteValue = true;
             
             const sigmaRangeScaler = 4;
             const dt = 1 / nAttacks;
 
             // Based on the frequency type, I set all the variables
             if (SDE == "RANDOM_WALK"){
-                description = "Random Walk";
+                description = "Random Walk / Rademacher SDE";
                 minValue = -sigmaRangeScaler * sigma * Math.sqrt(nAttacks);
                 maxValue = sigmaRangeScaler * sigma * Math.sqrt(nAttacks);
                 myRandomY = () => distUtils.RademacherDist(); // generate the random value for the attack
@@ -107,23 +107,25 @@
 
             else if (SDE == "ARITHMETIC_BROWNIAN"){
                 description = "Arithmetic Brownian";
+                discreteValue = false;
+                minValue = Math.min(0, mu - sigmaRangeScaler * sigma);
+                maxValue = Math.max(0, mu + sigmaRangeScaler * sigma);
+                myRandomY = () => distUtils.GaussianDist(mu * dt, Math.sqrt(dt));
+                myFrequency = (y) => y;
+            }
+
+            else if (SDE == "GEOMETRIC_BROWNIAN"){
+                description = "Geometric Brownian";
+                discreteValue = false;
                 minValue = Math.min(0, mu - sigmaRangeScaler * sigma);
                 maxValue = Math.max(0, mu + sigmaRangeScaler * sigma);
                 myRandomY = () => distUtils.GaussianDist(mu * dt, Math.sqrt(dt) * sigma);
                 myFrequency = (y) => y;
             }
 
-            else if (SDE == "GEOMETRIC_BROWNIAN"){
-                description = "Geometric Brownian";
-                minValue = Math.min(0, mu - sigmaRangeScaler * sigma);
-                maxValue = Math.max(0, mu + sigmaRangeScaler * sigma);
-                myRandomY = () => mu*dt + Math.sqrt(dt)*sigma * distUtils.GaussianDist();
-                myFrequency = (y) => y;
-            }
-
             rangeValues = maxValue - minValue;
+            binSize = rangeValues;
             [xOrigin, yOrigin] = coordUtils.XYtoDevice([0, 0], 0, nAttacks, minValue, rangeValues, rectChart); 
-
         }
 
         function main(){
@@ -140,7 +142,7 @@
                 rct.stroke(newLine);
             }
 
-            console.log(histoFrequencies); // Add this line to inspect histoFrequencies
+            //console.log(histoFrequencies); // Add this line to inspect histoFrequencies
             rectChart.drawRectangle(rct, "white", 2, []);
             const HistoRect = new Rectangle(coordUtils.XtoDevice(nAttacks, 0, nAttacks, rectChart.x, rectChart.width), rectChart.y, myChart.width - rectChart.width - 20, rectChart.height) // instantiate new rectangle for the histograms
             HistoRect.drawRectangle(rct, "rgba(0,100,160,0.5)", 2, [1, 1]); // draw this rectangle
@@ -173,11 +175,15 @@
                 if (x == nAttacks){lastY = yDevice;}
             }
             
-            if (lastY in frequencies) {
+            if (discreteValue){ // discrete case
+                if (lastY in frequencies) {
                 frequencies[lastY] += 1;
-            } else {
-                frequencies[lastY] = 1;
-            }
+                } else {
+                    frequencies[lastY] = 1;
+                }
+            } else { // continous case
+                chartUtils.cntValueInIntervals(lastY, frequencies, binSize); // update frequencies dict for continous values case
+            }            
             return myLine;
         }
 
