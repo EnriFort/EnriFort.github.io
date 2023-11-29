@@ -31,16 +31,17 @@
     <hr>
 
     <p>
-        <b>1. Milstein method</b><br>
+        <b>Milstein method</b><br>
         <ul>
             <li>
                 The Milstein method is an extension of the Euler method which is able to increase the accuracy adding a second-order "correction" term (<i>in green</i>) by applying Ito's
-                lemma to the \(a()\) and \(b()\) functions.
+                lemma to the \(a()\) and \(b()\) functions:
                     \[X_{n+1} - X_n = a(X_n)\Delta t + b(X_n)\Delta B_n \color{green}{+ 0.5\sigma^2 X_n\left((\Delta B_n)^2-\Delta t\right)}\]
             </li>
             <li>
                 It has both strong and weak convergence of order 1 whereas the E-M method has weak convergence of order 1, but strong convergence only of order 0.5.
             </li>
+            <br>
             <li>
                 In general, it is more stable than Euler for SDEs with a high degree of noise.
             </li>
@@ -49,26 +50,45 @@
     <hr>
 
     <p>
-        <b>2. Runge-Kutta methods</b><br>
+        <b>Runge-Kutta methods</b><br>
         <ul>
             <li>
-                The Milstein method is an extension of the Euler method which is able to increase the accuracy adding a second-order "correction" term (<i>in green</i>) by applying Ito's
-                lemma to the \(a()\) and \(b()\) functions.
-                    \[X_{n+1} - X_n = a(X_n)\Delta t + b(X_n)\Delta B_n \color{green}{+ 0.5\sigma^2 X_n\left((\Delta B_n)^2-\Delta t\right)}\]
+                R-K method can applies higher order method to SDEs like the fourth-order Runge-Kutta "RK4", which is defined using the 
+                following recursion formula:
+                \[ y_{n+1} = y_n + \frac{1}{6}(k_1 + 2k_2 + 2k_3 + k_4) \]
             </li>
             <li>
-                It has both strong and weak convergence of order 1 whereas the E-M method has weak convergence of order 1, but strong convergence only of order 0.5.
+                It achieves the same convergence properties as the Milstein method, but it doesn't need to compute derivates of the \(b(\cdot)\).
+            </li>
+        </ul>
+    </p>
+    <hr>
+
+    <p>
+        <b>Heun's method</b><br>
+        It is known as an improved or modified E-M method, or a similar two-stage R-K method.
+        <ul>
+            <li>
+                The update formula is the following:
+                \[ y_{n+1} = y_n + \frac{h}{2} \left( f(t_n, y_n) + f(t_{n+1}, \widetilde{y}_{n+1}) \right) \]
+                where \(\widetilde{y}_{n+1}\) is an intermediate estimate obtained using Euler's method:
+                \[ \widetilde{y}_{n+1} = y_n + h \cdot f(t_n, y_n) \]
             </li>
             <li>
-                In general, it is more stable than Euler for SDEs with a high degree of noise.
+                It converges more rapidly compared to the Euler method beacuse, being a second-order method, the error decreases 
+                with the square of the step size \(h\). As \(h\) approaches zero, Heun's method provides more accurate results.
+            </li>
+            <br>
+            <li>
+                Heun's method offers improved accuracy compared to the Euler method. The error is proportional to \(h^2\).
             </li>
         </ul>
     </p>
     
     <h4>References:</h4>
-    
-    <a href="https://en.wikipedia.org/wiki/Law_of_large_numbers#Weak_law">[1]</a>
-    
-
+    <a href="https://en.wikipedia.org/wiki/Stochastic_differential_equation#:~:text=Numerical%20methods%20for%20solving%20stochastic,representations%20of%20iterated%20stochastic%20integrals.">[1]</a>
+    <a href="https://hautahi.com/sde_simulation">[2]</a>
+    <a href="https://www.sciencedirect.com/topics/mathematics/runge-kutta-method#:~:text=The%20Runge%2DKutta%20Method,-In%20an%20attempt&text=k%201%20%3D%20h%20f%20x,y%20n%20%2B%20b%20k%201%20.&text=f%20x%20n%20%2B%20a%20h,y%200%20%2B%20O%20h%202%20.">[3]</a>
+    <a href="https://en.wikipedia.org/wiki/Heun%27s_method">[4]</a>
 </body>
 </html>
