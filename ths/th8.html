@@ -19,9 +19,9 @@
     A <b>Stochastic process</b> (or random process) is defined as a sequence of indexed random variables, where the index is interpreted as time. Formally, it is defined on a shared 
     probability space \( (\Omega, \mathcal{F}, \mathcal{P}) \), where \(\Omega\) is the sample space, \(F\) is a \(\sigma\)-algebra, and \(P\) is a probability measure. The random variables are 
     indexed by a set \(T\) and takes values in the same mathematical space \(S\). The latter must be measurable with respect to a \(\sigma\)-algebra \(\Sigma\). Therefore, given a probability space 
-    \( (\Omega, \mathcal{F}, \mathcal{P}) \) and a measurable space \(S, \Sigma\), a stocastic process can be represented as:
+    \( (\Omega, \mathcal{F}, \mathcal{P}) \) and a measurable space \( (S, \Sigma) \), a stocastic process can be represented as:
     
-    \[\{ X(t) ; t \in T \}\] 
+    \[\{ X_t : t \in T \}\] 
 
     Traditionally, a point \(t\) from the set \(T\) has been interpreted as time, thus the R.V. \(X(t)\) represent a value observed at the time \(t\).
 
@@ -34,13 +34,30 @@
         <b>Stochastic differential equation (SDE)</b><br>
         A <b>SDE</b> is a differential equation in which one or more component is a stochastic process. A <b>differential equation</b> is described in terms of deterministic increments, while in a SDE the increment is a random variable.
         The general form of a SDE is the following:
-        \[dX_t = \mu(t,X_t) \, dt + \sigma(t,X_t) \, dW_t
+        \[dX_t = \mu(t,X_t) \, dt + \sigma(t,X_t) \, dB_t
         \]
         where \(X_t\) is the state of the system at time \(t\); \(\mu(t,X_t)\) is the deterministic part, which represent the drift;
-        \sigma(t,X_t) is the stochastic part, which involves a Brownian motion or other sources of randomness; \(dt\) is the differential of time, and 
-        \(dW_t\) is a Wiener process. 
+        \(\sigma(t,X_t)\) is the stochastic part; \(dt\) is the differential of time, and \(B_t\) is a Wiener process (Brownian motion).
+
+        A function, or a path, \(X\) is a solution to the SDE above if it satisfies:
+        \[ X_T = \int_{0}^{T} \mu(t, X_t) \, dt + \int_{0}^{T} \sigma(t, X_t) \, dB_t \]
+        where the stochastic process \(X_t\) is called <b>diffusion process</b>. 
     </p>
 
+    <p>
+        an important example of SDE is the arihmetic Brownian motion:
+        \[dX_t = \mu dt + \sigma \, dB_t\]
+        But there are also SDE where \(\mu\) and \(\sigma\) not depend only by the present value of the process
+        \(X_t\), but also by previous values of the process or others processes. In this case the solution, \(X\), is called an <b>Itô process</b> and is not a 
+        markov process. 
+    </p>
+
+    <h4>
+        References:
+        <a href="https://en.wikipedia.org/wiki/Stochastic_process">[1]</a>,
+        <a href="https://ocw.mit.edu/courses/18-s096-topics-in-mathematics-with-applications-in-finance-fall-2013/a671d0d2abe626c371fd5850ad670397_MIT18_S096F13_lecnote21.pdf">[2]</a>,
+        <a href="https://en.wikipedia.org/wiki/Stochastic_differential_equation">[3]</a>.
+    </h4>
 
 </body>
 </html>

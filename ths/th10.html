@@ -6,8 +6,118 @@
     <link rel="icon" href="../img/icon.png">
     <link rel="stylesheet" type="text/css" href="../CSS/hws.css">
     <link rel="stylesheet" type="text/css" href="../CSS/ths.css">
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <script src="../JSLibrary/chartUtils.js"></script>
 </head>
 <body>
+    <div>
+        <a href="../index.html">Statistics Homeworks</a>
+    </div>
+
+    <h3>The Wiener process and the GBM</h3>
+    The <b>Wiener process</b> is the real-valued continous-time most important stochastic process <a href="../ths/th8.html">[1]</a>, 
+    which play a key role in different probability fields, particularly in the stochastic calculus and the theories of Levy processes.
+    The wiener process is called also Brownian motion due its historical association as a model for
+    Brownian movement in liquids.
+    <p>
+        
+        Mathematically, given a probability space \( (\Omega, \mathcal{F}, \mathcal{P}) \), 
+        a real-valued stochastic process \( \{W_t : t \geq 0\}\) is a standard Wiener process if it is characterised by the following
+        properties:
+        <ol>
+            <li>
+                \( \mathbb{P}(W_0 = 0) = 1\), i.e., the initial value of the process is zero with probability one (almost surely);
+            </li>
+            <br>
+            <li>
+                The future increments \(W_t - W_s\) are independent of the past values \(W_u\), where
+                \(0 \leq u \leq s\);
+            </li>
+            <br>
+            <li>
+                The increment \(W_t - W_s\) is Gaussian, i.e., a normal variable with mean 0 and variance \(t - s\).
+            </li>
+            <br>
+            Some definitions can also include an extra property, which states that this stochastic process is stationary:
+            <br>
+            <br>
+            <li>
+                The increment \(W_t - W_s\) is equal in distribution to \(W_{t-s}\), for \(0 \leq u \leq s\).
+            </li>
+        </ol> 
+    </p>
+
+    <img src="../img/Wiener1D-768x576.png" alt="wiener" style="width:500px;height:400px">
+    <div><a href="https://hpaulkeeler.com/wiener-or-brownian-motion-process/">source</a></div>
+    
+    <p>
+        Therefore, by definition, the Wiener process has <b>stationary</b> and <b>independent increments</b>. The latters are normal random variables, which means that they
+        can have both positive and negative real values. The previous two properties are called <i>distributional properties</i>. Another property is the <b>closure properties</b>, 
+        meaning that if you apply some operations to it, you obtain another Wiener process.
+        For example, suppose you have the Wiener process \( W = \{W_t : t \geq 0\}\), and you scale it for a certain costant 
+        \(c \gt 0\), then \( \{W_{ct}/\sqrt{c} : t \geq 0\} \) is still a Wiener process.
+        Regardin the sample pahts of this stochastic process, they are continous almost everywhere 
+        (<i>almost everywhere</i> := the only region where the property does not hold is mathematically negligible).
+
+    </p>
+    <hr>
+    <p>
+       An important derivation of the Wiener process is the <b>geometric Brownian motion (GMB)</b>, a continous-time stochastic process, where the logarithm of the variable subject
+       to random fluctuations follows a Brownian motion with drift. More precisely, a stochastic process \(S_t\) follow a GMB if it satisfies the following SDE:
+       \[dS_t = \mu S_t dt + \sigma S_t dW_t\]
+       where \(W_t\) represent the Wiener process while \(\mu\) and \(\sigma\) denote the drift and volatility, respectively.
+    </p>
+
+    <h4>Simulation:</h4>
+    <p>
+        In the following graph, a simple random walk simulate the Brownian motion, a mathematical model for random movements observed in various natural phenomena. 
+        A particle starts at the center and takes random steps inboth horizontal and vertical directions. 
+    </p>
+    
+    <canvas id="brownianCanvas" width="500" height="300"></canvas>
+
+    <script>
+        const canvas = document.getElementById("brownianCanvas");
+        const ctx = canvas.getContext("2d");
+
+        const numSteps = 500;
+        const stepSize = 2;
+        
+        let x = canvas.width / 2;
+        let y = canvas.height / 2;
+
+        function drawPath() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+
+            ctx.strokeStyle = chartUtils.randomColor();
+
+            for (let i = 0; i < numSteps; i++) {
+                x += stepSize * (Math.random() - 0.5);
+                y += stepSize * (Math.random() - 0.5);
+
+                // Ensure the particle stays within the canvas boundaries
+                x = Math.max(0, Math.min(canvas.width, x));
+                y = Math.max(0, Math.min(canvas.height, y));
+
+                ctx.lineTo(x, y);
+            }
+
+            ctx.stroke();
+        }
+
+        // Call drawPath every 100 milliseconds
+        setInterval(drawPath, 100);
+    </script>
+
+    <h4>References:
+        <a href="https://hpaulkeeler.com/wiener-or-brownian-motion-process/">[2]</a>, 
+        <a href="https://en.wikipedia.org/wiki/Wiener_process">[3]</a>,
+        <a href="https://en.wikipedia.org/wiki/Geometric_Brownian_motion">[4]</a>.
+    </h4>
 
 </body>
 </html>

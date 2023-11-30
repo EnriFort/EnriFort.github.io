@@ -6,8 +6,110 @@
     <link rel="icon" href="../img/icon.png">
     <link rel="stylesheet" type="text/css" href="../CSS/hws.css">
     <link rel="stylesheet" type="text/css" href="../CSS/ths.css">
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
 </head>
 <body>
+    <div>
+        <a href="../index.html">Statistics Homeworks</a>
+    </div>
+
+    <h3>The Poisson Process</h3>
+
+    A point process is a random scattering of point in a given space over time. <b>Poisson processes</b> are a fundamental 
+    type of point process that are used in a variety of scenario in probability and/or statistics. For instance we want to model the total number 
+    of clients \(N(t)\) that have visited a shop till a certain time \(t\). Poisson process can be used to develop probabilistic 
+    models for \(N(t\)), where, in this case, the arrival times of the clients form a Poisson point process.
+    The Poisson process has two key properties: the Poisson property (Poisson distribution of points count) and the independence property, 
+    where the former implies the latter. Let's see what they are about.
+
+    <p>
+        <b>Poisson distribution of point counts</b> <br>
+        A Poisson point process is characterized through the Poisson distribution, that is the statistical distribution <a href="../ths/th5.html">[1]</a>
+        of a random variable \(X\). The latter is a <b>Poisson random variable</b> with mean \(\mu\) if it has probability mass function given by:
+        \[\mathbb{P}(X = n) = \frac{ e^{-\mu} \mu ^n}{n!} \  \text{ for $n = 0,1, 2, \ldots$}\]
+        where \(n!\) is the factorial and the \(\mu^n\) determines the shape of the distribution.  
+
+        <br>By this definition, a Poisson point process is characterized by the unique property that the count of points within a defined region of the
+        process's underlying space follows a random variable with a Poisson distribution.
+    </p>
+
+    <p>
+        <b>Independence property</b> <br>
+        Imagine a set of separate and well-defined subregions within the underlying space. By definition, in a Poisson point process, the number of 
+        points within each distinct subregion is entirely independent and unrelated to the
+        counts in all other subregions. This property is also known as <i>complete randomness</i> or <i>complete independence</i>.
+        In essence, there is absence of interation between different regions and the points themselves.  
+    </p>
+
+    <h4>Simulation:</h4>
+    This graph shows a simulation of a Poisson process: the points on the graph represent events happening at different time intervals, following a Poisson distribution  
+    with an average rate of events per unit time (λ).
+    <br>
+    <br> 
+
+
+    <label for="lambdaInput">λ (Poisson parameter): </label>
+    <input type="number" id="lambdaInput" value="5" min="1" step="1">
+    <button onclick="toggleSimulation()">Pause/Play</button>
+    <hr>
+    <canvas id="simulationCanvas" width="500" height="300"></canvas>
+    
+    <script>
+        const canvas = document.getElementById("simulationCanvas");
+        const ctx = canvas.getContext("2d");
+        let isSimulationRunning = true; // Start simulation by default
+        let lambda = 5; // Initial Poisson parameter
+    
+        function poissonRandom() {
+            const L = Math.exp(-lambda);
+            let p = 1.0;
+            let k = 0;
+    
+            do {
+                k++;
+                p *= Math.random();
+            } while (p > L);
+    
+            return k - 1;
+        }
+    
+        function simulatePoissonProcess() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+            const numPoints = poissonRandom();
+    
+            ctx.fillStyle = "green";
+            for (let i = 0; i < numPoints; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                ctx.beginPath();
+                ctx.arc(x, y, 5, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+    
+            if (isSimulationRunning) {
+                requestAnimationFrame(simulatePoissonProcess);
+            }
+        }
+    
+        function toggleSimulation() {
+            isSimulationRunning = !isSimulationRunning;
+            if (isSimulationRunning) {
+                lambda = parseFloat(document.getElementById("lambdaInput").value);
+                simulatePoissonProcess();
+            }
+        }
+    
+        // Start the simulation on page load
+        simulatePoissonProcess();
+    </script>
+
+    <h4>References:
+    <a href="https://tsoo-math.github.io/ucl/poisson.html">[2]</a> 
+    <a href="https://en.wikipedia.org/wiki/Poisson_point_process">[3]</a>
+    </h4>
 
 </body>
 </html>
