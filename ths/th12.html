@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ito Integration ans Calculus, Concept and Didactical Simulations</title>
+    <title>Ito Integration and Calculus, Concept and Didactical Simulations</title>
     <link rel="icon" href="../img/icon.png">
     <link rel="stylesheet" type="text/css" href="../CSS/hws.css">
     <link rel="stylesheet" type="text/css" href="../CSS/ths.css">
@@ -16,6 +16,81 @@
     </div>
 
     <h3>Ito Integration ans Calculus</h3>
+    
+    <b>Itô calculus</b> extends the traditional methods of calculus (i.e. the mathematical study of continous change) 
+    to handle stochastic processes <a href="th8.html">[1]</a>, in particular the Brownian motion or Wiener processes.
+
+    <p>
+        The core idea is the concept of <b>Itô integration</b>, where both the integrand and the integrators are stochastic processes:
+        
+        \[Y_t =  \int_{0}^{t} H_s \, dX_s\]
+        
+        Here \(H\) represent an integrable stochastic process, and \(X_s\) is a Brownian motion. 
+    </p>
+
+    <p>
+        The outcome of the above integration is yet another stochastic process with time parameter \(t\). 
+        This can also be expressed in <b>differential form</b>: \[dY = H \, dX\]
+        which is analogous to: \[Y - Y_0 = H \cdot X \]
+    </p>
+    
+    <p>
+        Itō calculus plays a crucial role in understanding and modeling systems involving randomness, making it a fundamental tool in fields 
+        like mathematical finance and stochastic differential equations.
+    </p>
+
+    <h4>Simulation:</h4>
+    <p>
+        In this simulation, the blue curve represents the Brownian motion \(B_t\), and the red curve represents the Itō integral \(Y_t(B)\) 
+        of the Brownian motion with respect to itself.
+
+    </p>
+
+    <canvas id="simulationCanvas" width="500" height="300" style="border:1px solid #000;"></canvas>
+
+    <script>
+        const canvas = document.getElementById("simulationCanvas");
+        const ctx = canvas.getContext("2d");
+
+        const steps = 100; // Number of steps
+        const T = 1; // Total time
+        const dt = T / steps; // Time step
+
+        // Generate a Brownian motion X_s
+        const X_s = Array.from({ length: steps }, () => Math.random() - 0.5);
+        const cumulativeSum = X_s.reduce((sums, value, index) => {
+            sums.push((index === 0) ? value : sums[index - 1] + value);
+            return sums;
+        }, []);
+
+        // Compute Itō integral Y_t
+        const Y_t = cumulativeSum.map((value, index) => value * Math.sqrt(dt * (index + 1)));
+
+        // Plot the Brownian motion X_s
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height / 2);
+        for (let i = 0; i < X_s.length; i++) {
+            const x = (i / steps) * canvas.width;
+            const y = (1 - X_s[i]) * (canvas.height / 2);
+            ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = "blue";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Plot the Itō integral Y_t
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height / 2);
+        for (let i = 0; i < Y_t.length; i++) {
+            const x = (i / steps) * canvas.width;
+            const y = (1 - Y_t[i]) * (canvas.height / 2);
+            ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    </script>
+    
 
 </body>
 </html>
