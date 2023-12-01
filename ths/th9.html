@@ -28,7 +28,7 @@
         <b>Poisson distribution of point counts</b> <br>
         A Poisson point process is characterized through the Poisson distribution, that is the statistical distribution <a href="../ths/th5.html">[1]</a>
         of a random variable \(X\). The latter is a <b>Poisson random variable</b> with mean \(\mu\) if it has probability mass function given by:
-        \[\mathbb{P}(X = n) = \frac{ e^{-\mu} \mu ^n}{n!} \  \text{ for $n = 0,1, 2, \ldots$}\]
+        \[(X = n) = \frac{ e^{-\mu} \mu ^n}{n!} \  \text{ for $n = 0,1, 2, \ldots$}\]
         where \(n!\) is the factorial and the \(\mu^n\) determines the shape of the distribution.  
 
         <br>By this definition, a Poisson point process is characterized by the unique property that the count of points within a defined region of the
@@ -52,7 +52,7 @@
 
     <label for="lambdaInput">λ (Poisson parameter): </label>
     <input type="number" id="lambdaInput" value="5" min="1" step="1">
-    <button onclick="toggleSimulation()">Pause/Play</button>
+    <button onclick="toggleSimulation()">Play/Pause</button>
     <hr>
     <canvas id="simulationCanvas" width="500" height="300"></canvas>
     

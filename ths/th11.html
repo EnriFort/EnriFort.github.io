@@ -6,8 +6,116 @@
     <link rel="icon" href="../img/icon.png">
     <link rel="stylesheet" type="text/css" href="../CSS/hws.css">
     <link rel="stylesheet" type="text/css" href="../CSS/ths.css">
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <script src="../JSLibrary/chartUtils.js"></script>
 </head>
 <body>
+    <div>
+        <a href="../index.html">Statistics Homeworks</a>
+    </div>
+
+    <h3>The functional CLT (Donsker's invariance principle)</h3>
+
+    The <b>Donsker's Invariance Principle</b> is a fundamental result in probability theory which states that, under 
+    certain condition, the <i>random walk</i> stochastic process converges to a standard brownian motion, as the sample size grows large.
+
+    <p>
+        Formally, let \(X_1, X_2, X_3,...\) be a sequence of iid random variables with mean 0 and variance 1, and \(S_1, S_2, S_2,...\) their partial sums, i.e., 
+        \(S_k = \sum_{i=1}^{k} X_i\). The latter is known as a <i>random walk</i> (for a simple random walk on \(\mathbb{Z}\) the R.V. \(X_i\) are iid coin flips which take the values of -1 and +1 w.p. 0.5).
+    </p>
+    <p>
+        The process \(W^{(n)} := (W^{(n)}(t), t \in [0, 1])\) defined by
+        \[W^{(n)}(t) := \frac{S \lfloor nt \rfloor}{\sqrt{n}}, \quad t \in [0,1]\] 
+        is the rescaled random walk (partial-sum process).
+    </p>
+
+    <p>
+        The CLT <a href="th2.html">[1]</a> claim that \(W^{(n)} (1)\) converges to the normal distribution. The <b>Donker's invariance principle</b> extend the CLT to the whole function and states the following:
+        \[(W^{(n)}(t), \, t \geq 0)\ \implies (B(t), \, t \geq 0)\]
+        
+        that is, the random function \(W^{(n)}\)
+        <b>converges in distribution</b> to a standard Brownian motion \(B := (B(t))_{t \in [0,1]}\) as \(n \rightarrow \infty\).
+    </p>
+
+    <h4>Simulation:</h4>
+    
+    <p>In the following chart there is a simplified simulation of the Donsker's invariance principle. It shows that the partial sum of random variables, known as the random walk, when normalized tends to converge
+        to a standard Brownian motion or Wiener process <a href="th10.html">[2]</a>.
+    </p>
+
+    <p>In the following chart you can change the number of R.V (steps) \(n\).</p>
+    
+    <label for="numSteps">Number of Steps:</label>
+    <input type="number" id="numSteps" value="1000" min="10" max="20000" step="10">
+    <button onclick="generateChart()">Generate Chart</button>
+    <button onclick="toggleAnimation()">Play/Pause</button>
+
+    <canvas id="chartCanvas" width="600" height="300"></canvas>
+
+    <script>
+        let animationInterval;
+        let isAnimating = true;
+
+        function generateChart() {
+            const canvas = document.getElementById("chartCanvas");
+            const ctx = canvas.getContext("2d");
+            const numSteps = parseInt(document.getElementById("numSteps").value, 10);
+
+            // Generate random variables (standard normal distribution)
+            const randomVariables = Array.from({ length: numSteps }, () => Math.random() - 0.5);
+
+            // Compute the cumulative sum (partial sum)
+            const partialSum = randomVariables.reduce((sums, value, index) => {
+                if (index === 0) {
+                    sums.push(value);
+                } else {
+                    sums.push(sums[index - 1] + value);
+                }
+                return sums;
+            }, []);
+
+            // Normalize the partial sum for visualization
+            const normalizedSum = partialSum.map((value, index) => value / Math.sqrt(index + 1));
+
+            // Clear previous drawings
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Plot the normalized partial sum
+            ctx.beginPath();
+            ctx.moveTo(0, canvas.height / 2);
+
+            for (let i = 0; i < normalizedSum.length; i++) {
+                const x = (i / numSteps) * canvas.width;
+                const y = (1 - normalizedSum[i]) * (canvas.height / 2);
+                ctx.lineTo(x, y);
+            }
+
+            ctx.strokeStyle = chartUtils.randomColor();
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+
+        function toggleAnimation() {
+            isAnimating = !isAnimating;
+
+            if (isAnimating) {
+                animationInterval = setInterval(generateChart, 100);
+            } else {
+                clearInterval(animationInterval);
+            }
+        }
+
+        // Start animation on page load
+        generateChart();
+        animationInterval = setInterval(generateChart, 100);
+    </script>
+
+    <h4>References:
+        <a href="https://en.wikipedia.org/wiki/Donsker%27s_theorem">[3],</a>
+        <a href="https://people.cam.cornell.edu/amt269/DonskerSimulate.html">[4].</a>
+    </h4>
 
 </body>
 </html>
