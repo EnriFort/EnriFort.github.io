@@ -4,8 +4,10 @@
     <meta charset="utf-8">
     <link rel="icon" href="../img/icon.png">
     <link rel="stylesheet" type="text/css" href="../CSS/hws.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Calculate distribution</title>
     <style>
+      
       select {
         width:600px;
         height: 550px;
@@ -31,13 +33,12 @@
 
 <body>
 
-  <div>
-    <a href="../index.html">Statistics Homeworks</a>
-  </div>
+  <a href="../index.html">
+    <i class="fas fa-home"></i> Statistics Homeworks
+</a>
 
-  <h3>HW. 2.1 - Calculate Distribution</h3>
+  <h3>H.W. 2.1 - Calculate Distribution</h3>
   
-
   <div class="list-container">
     <div>
       <label for="variable">Choose 1 or more variables: </label>
@@ -45,14 +46,11 @@
       <select id="variableSelect" multiple></select>
       <br>
       <button id="compute" type="button" style="margin-right: 20px;">Calculate frequencies</button>
-      
     </div>
-
     <div class="second">
       <pre id="results"></pre>
     </div>
   </div>
-  
   
   <script>
 
@@ -198,7 +196,6 @@
       }
     }
 
-    
     function main(){
       resultsTextArea.textContent = ""; // clear results
       const select = document.getElementById('variableSelect');
