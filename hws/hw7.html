@@ -38,8 +38,8 @@
     <select id="SDE">
         <option value="RANDOM_WALK">Random walk</option>
         <option value="POISSON">Poisson</option>
-        <option value="ARITHMETIC_BROWNIAN">Arithmetic Brownian</option>
-        <option value="GEOMETRIC_BROWNIAN">Geometric Brownian</option>
+        <option value="STANDARD_BROWNIAN">Standard Brownian Motion</option>
+        <option value="GENERAL_BROWNIAN">General Brownian Motion</option>
     </select>
 
     <button id="compute" type="button" style="margin-right: 20px;">Simulate Attacks</button>
@@ -71,6 +71,7 @@
         let description;
         let binSize;
         let discreteValue; // flag variable: true if i'm considering discrete values, false if continous
+        let n;
         
         const rectChart = new Rectangle(10, 10, myChart.width - 250, myChart.height - 20); // chart where there are the histograms
         buttonCompute.onclick = main;
@@ -85,7 +86,8 @@
             lambda = Number(inputLambda.value);
             SDE = selectedSDE.value;
             discreteValue = true;
-            
+            n = Math.round(nAttacks / 2);
+
             const sigmaRangeScaler = 4;
             const dt = 1 / nAttacks;
 
@@ -106,17 +108,17 @@
                 myFrequency = (y) => y;                
             }   
 
-            else if (SDE == "ARITHMETIC_BROWNIAN"){
-                description = "Arithmetic Brownian";
+            else if (SDE == "STANDARD_BROWNIAN"){
+                description = "Standard Brownian Motion";
                 discreteValue = false;
-                minValue = Math.min(0, mu - sigmaRangeScaler * sigma);
-                maxValue = Math.max(0, mu + sigmaRangeScaler * sigma);
-                myRandomY = () => distUtils.GaussianDist(mu * dt, Math.sqrt(dt));
+                minValue = -sigmaRangeScaler;
+                maxValue = sigmaRangeScaler;
+                myRandomY = () => distUtils.GaussianDist(0, Math.sqrt(dt));
                 myFrequency = (y) => y;
             }
 
-            else if (SDE == "GEOMETRIC_BROWNIAN"){
-                description = "Geometric Brownian";
+            else if (SDE == "GENERAL_BROWNIAN"){
+                description = "General Brownian Motion";
                 discreteValue = false;
                 minValue = Math.min(0, mu - sigmaRangeScaler * sigma);
                 maxValue = Math.max(0, mu + sigmaRangeScaler * sigma);
