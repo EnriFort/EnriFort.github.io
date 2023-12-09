@@ -25,6 +25,7 @@
       }
 
       .second {
+        padding-top: 30px;
         padding-left: 15px;
       }
        
@@ -41,12 +42,16 @@
   
   <div class="list-container">
     <div>
-      <label for="variable">Choose 1 or more variables: </label>
+      <label for="variable">Select one or more variables: </label>
       <br>
       <select id="variableSelect" multiple></select>
       <br>
+      <label for="nBins">For continous variables (with -) specify the # of class:</label>
+      <input type="number" id="inputBins" value="2" min="2" max="`10" step="1">
+      <br>
       <button id="compute" type="button" style="margin-right: 20px;">Calculate frequencies</button>
     </div>
+
     <div class="second">
       <pre id="results"></pre>
     </div>
@@ -61,7 +66,7 @@
       "Programming Languages": 3,
       "Hard Worker (0-5)": 4,
       "Ambitious (0-5)": 5,
-      "Expected net remuneration (monthly)": 6,
+      "-Expected net remuneration (monthly)": 6,
       "Benefits": 7,
       "Team leader or Team player?": 8,
       "Preferred daily Workload": 9,
@@ -72,8 +77,8 @@
       "Currently working?": 14,
       "Sex": 15,
       "Age": 16,
-      "weight": 17,
-      "height": 18,
+      "-weight": 17,
+      "-height": 18,
       "# of siblings": 19,
       "Main Interests": 20,
       "Main hobbies": 21,
@@ -90,7 +95,7 @@
     }
 
     const dataMatrix = [
-      ["(Anonymous) Stat Unit ID", "Background (degree)", "Expected work sectors", "Programming Languages", "Hard Worker (0-5)", "Ambitious (0-5)", "Expected net remuneration (monthly)", "Benefits", "Team leader or Team player?", "Preferred daily Workload", "How many hours do you study daily?", "Enterpreneurial attitude (0-5)", "Scalability", "Most recent working position", "Currently working?", "Sex", "Age", "weight", "height", "# of siblings", "Main Interests", "Main hobbies", "Play some instruments? Which ones?", "Sports", "Would you like to maintain a YT channel?", "Dream Works", "Priorities in Life", "Country", "Primary language(s)", "Secondary language(s)", "Can this be a 'representative' sample of larger populations? If yes, which ones?", "Do you think that looking at other answers is influencing your responses? Why?"],
+      ["(Anonymous) Stat Unit ID", "Background (degree)", "Expected work sectors", "Programming Languages", "Hard Worker (0-5)", "Ambitious (0-5)", "-Expected net remuneration (monthly)", "Benefits", "Team leader or Team player?", "Preferred daily Workload", "How many hours do you study daily?", "Enterpreneurial attitude (0-5)", "Scalability", "Most recent working position", "Currently working?", "Sex", "Age", "-weight", "-height", "# of siblings", "Main Interests", "Main hobbies", "Play some instruments? Which ones?", "Sports", "Would you like to maintain a YT channel?", "Dream Works", "Priorities in Life", "Country", "Primary language(s)", "Secondary language(s)", "Can this be a 'representative' sample of larger populations? If yes, which ones?", "Do you think that looking at other answers is influencing your responses? Why?"],
       ["1933541", "Engineering in computer science", "cybersecurity", "C, Python, java, JavaScript, PHP, assembly, C++, Ruby on Rails, HTML, CSS, mySQL", "5", "4", "-", "-", "Team leader", "8 hours per day", "-", "2", "Yes", "-", "-", "F", "22", "-", "-", "-", "Cybersecurity", "-", "No", "-", "No", "Cybersecurity engineer", "Happiness", "Italy", "Italian", "English", "No", "No"],
       ["1933529", "Computer and System Engineering", "cybersecurity", "PHP, Java, JavaScript, Python, Ruby on rails, C, C++", "5", "5", "-", "-", "Team leader", "6 hours per day", "-", "3", "Yes", "-", "-", "M", "22", "-", "-", "-", "Cybersecurity", "Gaming", "No", "Rugby", "No", "Cybersecurity engineer", "Happiness", "Italy", "Italian", "-", "No", "No"],
       ["31337", "Computer Science", "cybersecurity", "C, Python, Java, PHP, JavaScript, C#", "5", "5", "2500", "Health assurance", "Team player", "8 hours per day", "8", "3", "Yes", "Penetration Tester", "Yes", "M", "22", "66", "1,73", "1", "Vulnerability Research", "CTFs", "No", "Krav Maga", "Maybe", "Vulnerability researcher", "Happiness", "Italy", "Italian", "English, French", "No", "No, this is personal"],
@@ -153,7 +158,9 @@
     ]
 
     const buttonCompute = document.getElementById("compute");
+    const select = document.getElementById('variableSelect');
     const resultsTextArea = document.getElementById("results");
+    const InputNBins = document.getElementById("inputBins");
 
     function populateSelect(array, selectId) {
       const selectElement = document.getElementById(selectId);
@@ -170,7 +177,7 @@
       });
     }
 
-    function checkIfMoreSelected(selectObj){
+    function checkIfMoreSelected(selectObj){ // check if the user choose more variables in the select 
       let conta = 0;
       for (var i = 0; i < selectObj.options.length; i++){ 
         if (selectObj.options[i].selected) {
@@ -185,14 +192,15 @@
       }
     } 
 
-    function CalculateFrequencies(frequencies, variables, rawIndex){
+    function CalculateFrequencies(continousList, frequencies, variables, rawIndex){
       let columnIndex = headerDict[variables]; // get the index of the right column
+      //console.log(variables[0][0]);
       var cell = dataMatrix[rawIndex][columnIndex]; // get the element of the table
 
       if (cell != "-"){
 
-        num = cell.replace(",", "."); // the number let have point instead of comma to be verified by "isNaN method"
-
+        let num = cell.replace(",", ""); // the number let have point instead of comma to be verified by "isNaN method"
+        
         if (isNaN(num)){ // if it is not a number
           cell2 = cell.split(","); 
         }
@@ -203,12 +211,18 @@
         for (j = 0; j < cell2.length; j++){ // construct the key
           key = cell2[j].toLocaleUpperCase().replace(" ", "");
           if (key != ""){
-            // Compute Absolute frequency
-            if (key in frequencies){
-              frequencies[key] ++;
-            }
-            else{
-              frequencies[key] = 1;
+
+            if (variables[0].startsWith('-')){ // if the variable is a continous quantitative one
+              floatNum = parseFloat(num); // Converts to float
+              continousList.push(floatNum);
+            }else{
+              // Compute Absolute frequency
+              if (key in frequencies){
+                frequencies[key] ++;
+              }
+              else{
+                frequencies[key] = 1;
+              }
             }
           }
         }
@@ -240,42 +254,78 @@
       }
     }
 
+    function putInIntervall(continousList, frequencies, nBins){
+      let maxValue = 0;
+      for (var i=0; i<continousList.length; i++){
+        maxValue = Math.max(maxValue, continousList[i]);
+      }
+      console.log(nBins);
+
+      let binCounts = {};
+      let intervalLenght = maxValue/nBins;
+      
+      for (var i=0; i < continousList.length; i++){
+        //var roundedString = num.toFixed(2);
+        let binIndex = Math.floor(continousList[i] / intervalLenght);
+        console.log(binIndex);
+        let binKey = `${Math.floor(binIndex * intervalLenght)} - ${Math.floor((binIndex + 1) * intervalLenght)}`; // the intervall range
+        if (binKey in frequencies) {
+          frequencies[binKey]++;
+        } else {
+          frequencies[binKey] = 1;
+        }
+      }
+    }
+
     function main(){
+
       resultsTextArea.textContent = ""; // clear results
-      const select = document.getElementById('variableSelect');
+      nBins = Number(InputNBins.value);
+      
       let selectedVariables = [];
       let dictFrequencies = {};
-
-      // OUTPUT string
-      resultsTextArea.innerHTML += `<strong style='color: navy; font-size: 17px;'>RESULT for</strong>`;
+      let contList = [];
+      let contFrequencies = {};
+      let dict = {};
       let result = "";
+      let type = "";
+
       for (var i = 0; i < select.options.length; i++){ 
         if (select.options[i].selected) {
           selectedVariables.push(select.options[i].value);
           result += `<strong style="color: blue;font-size: px;"> / </strong><strong style='color: green; font-size: 17px;'>${select.options[i].value}</strong>`
         }
       }
-      resultsTextArea.innerHTML += result + "\n";
-      ///
-
+      
       if (checkIfMoreSelected(select)){
         for (var i = 1; i < dataMatrix.length; i++){
-          CalculateJoint(dictFrequencies, selectedVariables, i);  
+          CalculateJoint(dictFrequencies, selectedVariables, i); 
+          type = `<strong style='color: navy; font-size: 17px;'>Joint Distribution for</strong>`
         }
       }  
       else{
         for (var i = 1; i < dataMatrix.length; i++){
-          CalculateFrequencies(dictFrequencies, selectedVariables, i);
+          CalculateFrequencies(contList, dictFrequencies, selectedVariables, i);
+          type = `<strong style='color: navy; font-size: 17px;'>Frequency Distribution for</strong>`
         }  
       }
+      resultsTextArea.innerHTML += type + result + "\n";
 
-      for (const [key, value] of Object.entries(dictFrequencies)) {
+      // if I met some continous quantitative variables means I updated contList
+      if (contList.length > 1){
+        putInIntervall(contList, contFrequencies, nBins); // update contFrequencies dict
+        dict = contFrequencies;
+      }
+      else{
+        dict = dictFrequencies;
+      }
+      
+      for (const [key, value] of Object.entries(dict)) {
       
         // Create a string with key and value both in bold, and increase font size
-        let string = `<strong style="font-size: 13px;">${key}</strong>: <strong style="color: green; font-size: 15px;">${value}</strong>\n`;
-      
+        result = `<strong style="font-size: 13px;">${key}</strong>: <strong style="color: green; font-size: 15px;">${value}</strong>\n`;
         // Append the string to the resultsTextArea
-        resultsTextArea.innerHTML += string;
+        resultsTextArea.innerHTML += result;
       }
     }
 
