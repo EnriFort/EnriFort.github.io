@@ -32,11 +32,14 @@
     <input type="number" id="inputSigma" value=1 min="0.1" max="1000" step=".1">
     <label for="inputLambda"> λ: </label>
     <input type="number" id="inputLambda" value="50" min="1" max="1000" step="1">
+    <label for="inputLambda"> P: </label>
+    <input type="number" id="inputProb" value="0.5" min="0.1" max="1" step=".1">
 
     <br><br>
     <label for="SDE"> SDE: </label>
     <select id="SDE">
         <option value="RANDOM_WALK">Random walk</option>
+        <option value="BERNOULLI">Bernoulli</option>
         <option value="POISSON">Poisson</option>
         <option value="STANDARD_BROWNIAN">Standard Brownian Motion</option>
         <option value="GENERAL_BROWNIAN">General Brownian Motion</option>
@@ -55,6 +58,7 @@
         const inputMu = document.getElementById("inputMu");
         const inputSigma = document.getElementById("inputSigma");
         const inputLambda = document.getElementById("inputLambda");
+        const inputProb = document.getElementById("inputProb");
         
         const selectedSDE = document.getElementById("SDE");
         const buttonCompute = document.getElementById("compute");
@@ -63,7 +67,7 @@
         const rct = myChart.getContext("2d"); // Get the 2D rendering context, the rectangle where i draw 
         
         // Global Variables
-        let nSystems, nAttacks, mu, sigma, lambda, SDE;
+        let nSystems, nAttacks, p, mu, sigma, lambda, SDE;
         let xOrigin, yOrigin;
         let myRandomY;
         let myFrequency;
@@ -81,6 +85,8 @@
 
             nAttacks = Math.round(Number(inputAttacks.value));
             nSystems = Number(inputSystems.value);
+            p = Number(inputProb.value);
+            console.log(p);
             mu = Number(inputMu.value);
             sigma = Number(inputSigma.value);
             lambda = Number(inputLambda.value);
@@ -92,7 +98,15 @@
             const dt = 1 / nAttacks;
 
             // Based on the frequency type, I set all the variables
-            if (SDE == "RANDOM_WALK"){
+            if (SDE == "BERNOULLI"){
+                description = "Bernoulli";
+                minValue = 0;
+                maxValue = nAttacks;
+                myRandomY = () => distUtils.BernoulliDist(p); 
+                myFrequency = (y) => y;   
+            }
+
+            else if (SDE == "RANDOM_WALK"){
                 description = "Random Walk / Rademacher SDE";
                 minValue = -sigmaRangeScaler * sigma * Math.sqrt(nAttacks);
                 maxValue = sigmaRangeScaler * sigma * Math.sqrt(nAttacks);

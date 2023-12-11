@@ -22,7 +22,13 @@ class distUtils {
     /* this function is been taken from: https://shorturl.at/dglEX */
     
 
+    static geometric(mean, stdev, dt){
+        return Math.exp((mean - Math.pow(stdev, 2)/2) * dt 
+            + stdev * this.GaussianDist(0, Math.sqrt(dt)));
+    }
     
+    
+
 
     
 
