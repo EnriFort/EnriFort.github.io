@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Statistics Homeworks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/home.css">
+    <link rel="stylesheet" href="CSS/topnav.css"> 
+    <link rel="icon" href="img/icon.png">
+    <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- For useful links icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
+
+</head>
+<body>
+    <div class="topnav" id="myTopnav">
+        <a class="title-site" href="index.html">ENRI STAT</a>
+        <div class="dropdown colored">
+            <button class="dropbtn">MASTER'S COURSES
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a href="stat.html">STATISTICS</a>
+            </div> 
+        </div>
+        <a href="cheatSheet.html">JS CHEATSHEET</a>
+        <a href="contacts.html">CONTACTS</a>
+        <a href="about.html">ABOUT</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
+
+    <div class="div-container">
+        <h2>Statistics Homeworks</h2>
+        <h3>The following page contains all the JavaScript <b>homeworks</b> and <b>theses</b> done during my Statistics Cybersecurity course in the academic year 2023-24.</h3>
+        
+        <hr>
+        
+        <div class="list-container" style="background-color: #e0e0e0; padding: 10px;">
+            
+            <div class="list-element">
+                <b>Homework list:</b>
+                <ol>
+                    <li><a href="hws/hw1.html">Draw Figures</a></li>
+                    <li>
+                        <ul>
+                            <li><a href="hws/hw2_1.html">Ex. 1: Calculate Distribution</a></li>
+                            <li><a href="cheatSheet.html">Ex. 2: CheatSheet</a></li>
+                            <li><a href="hws/hw2_3.html">Ex. 3: Uniform random variates</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="hws/hw3.html">Attack Simulation</a></li>
+                    <li><a href="hws/hw4.html">Improved HW. 2.1</a></li>
+                    <li><a href="hws/hw5.html">Poisson Distribution</a></li>  
+                    <li><a href="hws/hw6.html"> Gambler's Ruin Problem</a></li>
+                    <li><a href="hws/hw7.html">Stochastic Differential Equation (SDE)</a></li>
+                        <ul>
+                            <li>
+                                <a href="hws/hw7Plus.html">Optional part</a>
+                            </li>
+                        </ul>
+                </ol>
+            </div>
+
+            <div class="list-element">
+                <b>Theses list:</b>
+                <ul>
+                    <li><a href="ths/th1.html">Th. 1: The LLN Meaning, Proof, Simulations</a></li>
+                    <li><a href="ths/th2.html">Th. 2: The CLT Meaning, Proof, Simulations</a></li>
+                    <li><a href="ths/th3.html">Th. 3: The Gaussian Distribution Meaning, Derivations, Simulations</a></li>
+                    <li><a href="ths/th4.html">Th. 4: The Glivenko–Cantelli theorem, Proof, Simulations</a></li>
+                    <li><a href="ths/th5.html">Th. 5: Statistical Distributions: Continuous, Discrete, Properties and simulations</a></li>
+                    <li><a href="ths/th6.html">Th. 6: <b>Algorithms for random variates generation</b></a></li>
+                    <ul>
+                        <li><a href="file/Algorithms_for_random_variates_generation.pdf">Main Thesis</a></li>
+                    </ul>
+                </ul>
+            </div>
+
+            <div class="list-element">
+                <ul>
+                    <li><a href="ths/th7.html">Th. 7: "Online" Algorithms (Data Streams): Ideas and code</a></li>
+                    <li><a href="ths/th8.html">Th. 8: Stochastic processes and SDE's</a></li>
+                    <li><a href="ths/th9.html">Th. 9: The Poisson Process: Meaning, Properties, Simulations</a></li>
+                    <li><a href="ths/th10.html">Th. 10: The Wiener process and the GBM, Derivations and simulations</a></li>
+                    <li><a href="ths/th11.html">Th. 11: The functional CLT (Donsker's invariance principle): Proof, Simulations</a></li>
+                    <li><a href="ths/th12.html">Th. 12: Ito Integration ans Calculus, Concept and Didactical Simulations</a></li>     
+                </ul>
+            </div>
+            
+        </div>
+        
+        <!-- Footer section with usefull links -->
+        <div style="background-color: #f8f8f8; padding: 10px; margin-top: 20px; text-align: center;">
+            <p style="font-size: 14px; color: #555;">
+                <strong>Useful links:</strong>
+                <a href="https://github.com/EnriFort" target="_blank" style="margin-right: 10px;">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://enristat.wordpress.com/" target="_blank">
+                    <i class="fab fa-wordpress"></i> My Blog
+                </a>
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        function myFunction() {
+          var x = document.getElementById("myTopnav");
+          if (x.className === "topnav") {
+            x.className += " responsive";
+          } else {
+            x.className = "topnav";
+          }
+        }
+    </script>  
+    
+    
+</body>
+</html>

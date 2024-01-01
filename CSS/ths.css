@@ -4,6 +4,7 @@ body {
     max-width: 800px; /* Set a maximum width for paragraphs and lists */
     margin: 0 auto; /* Center-align the paragraphs and lists */
     text-align: left; /* Left-align the text within paragraphs and lists */
+    padding: 20px;
 }
 
 h3 {
@@ -15,6 +16,8 @@ h3 {
 p {
     line-height: 1.6;
     margin-bottom: 15px;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 h4 {
@@ -33,5 +36,10 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.MathJax_Display, .MJXc-display, .MathJax_SVG_Display {
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 

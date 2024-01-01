@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Contacts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/home.css">
+    <link rel="stylesheet" href="CSS/topnav.css"> 
+    <link rel="icon" href="img/icon.png">
+    <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- For useful links icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
+</head>
+<body>
+    
+    <div class="topnav" id="myTopnav">
+        <a class="title-site" href="index.html">ENRI STAT</a>
+        <div class="dropdown">
+            <button class="dropbtn">MASTER'S COURSES
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a href="stat.html">STATISTICS</a>
+            </div> 
+        </div>
+        <a href="cheatSheet.html">JS CHEATSHEET</a>
+        <a class="active" href="contacts.html">CONTACTS</a>
+        <a href="about.html">ABOUT</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
+
+    <div class="div-entry-title">
+        <h1 class="entry-title">Contacts</h1>
+    </div>
+
+    <div class="div-entry-content">
+        <p>
+            Here you can find some useful links:
+        </p>
+        <ul>
+            <a class="special-link" href="https://github.com/EnriFort" target="_blank" style="margin-right: 10px;">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+        </ul>
+        <ul>
+            <a class="special-link" href="https://enristat.wordpress.com/" target="_blank">
+                <i class="fab fa-wordpress"></i> My Statistics Blog
+            </a>
+        </ul>
+    </div>
+
+    <script>
+        function myFunction() {
+          var x = document.getElementById("myTopnav");
+          if (x.className === "topnav") {
+            x.className += " responsive";
+          } else {
+            x.className = "topnav";
+          }
+        }
+    </script>  
+        
+</body>
+</html>

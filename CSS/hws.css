@@ -1,10 +1,9 @@
 h3 {
-    font-family: Arial, Helvetica, sans-serif;
     color: green;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Lato';
     background-color: #FFFAED;
 }
 
@@ -30,4 +29,27 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.button{
+    background-color: #20603d; 
+    color: white;
+    border-radius: 5px;
+    padding: 6px 18px;
+    transition-duration: 0.4s;
+    border: none;
+}
+
+.button:hover {
+    background-color:green;
+}
+  
+input[type=number] {
+    border: 1px solid green;
+    border-radius: 3px;
+}
+
+select{
+    border: 1px solid green;
+    border-radius: 3px; 
 }

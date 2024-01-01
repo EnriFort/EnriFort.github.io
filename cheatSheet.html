@@ -1,283 +1,313 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>JSCheatsheet</title>
-    <link rel="stylesheet" type="text/css" href="CSS/ChShstyles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css">
+    <link rel="stylesheet" type="text/css" href="CSS/ChShstyles.css">
+    <link rel="stylesheet" href="CSS/topnav.css"> 
     <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+    <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- For useful links icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
 </head>
 
 <body>
 
-<header>
-    <h1>JavaScript Cheatsheet </h1>
-    <h2>by Enri</h2>
-</header>
+    <div class="topnav" id="myTopnav">
+        <a class="title-site" href="index.html">ENRI STAT</a>
+        <div class="dropdown">
+            <button class="dropbtn">MASTER'S COURSES
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a href="stat.html">STATISTICS</a>
+            </div> 
+        </div>
+        <a class="active" href="cheatSheet.html">JS CHEATSHEET</a>
+        <a href="contacts.html">CONTACTS</a>
+        <a href="about.html">ABOUT</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
 
-<main>
-<div class="table-container table-center">
-    <table class="outer-border">
-        <tr class="color-title"><td><h3>Array</h3></td></tr>
-        <tr class="color-title2"><td class="function-name">Create array</td></tr>
+    <div class="div-entry-title">
+        <h1 class="entry-title">JavaScript Cheatsheet</h1>
+    </div>
+
+    <div class="left">
+        <h3 style="text-align: center;">Array</h3>
         
-        <tr>
-            <td>
+        <div class="div-function-name">
+            Create Array
+        </div>
+        <div class="div-function-content">
             <pre><code class="language-javascript">
 let myArray = ["Mr. White", "Mr. Orange", "Mr. Blonde", 
-    "Mr. Pink", "Mr. Blue", "Mr. Brown"];
+    "Mr. Pink", "Mr. Blue", "Mr. Brown"]; 
             </code></pre>
-            </td>
-        </tr>
-        <tr class="color-title2"><td class="function-name">Loop</td></tr>
-        
-        <tr>
-            <td>
+        </div>
+
+        <div class="div-function-name">
+            Loop
+        </div>
+        <div class="div-function-content">
             <pre><code class="language-javascript">
 for (let name of myArray) {
     if (name === "Mr. Pink") {
         console.log("Encountered Mr. Pink. Breaking loop.");
         break; // Exit the loop when "Mr. Pink" is found
     }  
-}
+}; 
             </code></pre>
-            </td>
-        </tr>
+        </div>
 
-        <tr class="color-title2"><td class="function-name">Add element</td></tr>
-        <tr>
-            <td>
+        <div class="div-function-name">
+Add element
+        </div>
+        <div class="div-function-content">
             <pre><code class="language-javascript">
 let newArray = [...myArray, "Nice Guy"];
             </code></pre>
-            </td>
-        </tr>
+        </div>
 
-        <tr class="color-title2"><td class="function-name">Remove element</td></tr>
-        <tr>
-            <td>
+        <div class="div-function-name">
+            Remove element
+        </div>
+        <div class="div-function-content">
             <pre><code class="language-javascript">
 let newArray2 = myArray.filter(name => name !== "Nice Guy");
             </code></pre>
-            </td>
-        </tr>
+        </div>
 
-        <tr class="color-title2"><td class="function-name">Check existence</td></tr>
-        <tr>
-            <td>
+        <div class="div-function-name">
+            Check existence
+                    </div>
+        <div class="div-function-content">
             <pre><code class="language-javascript">
 newArray2.includes("Nice Guy");
             </code></pre>
-            </td>
-        </tr>
-    </table>
+        </div>
+    </div>
 
-    <table class="outer-border">
-        <tr class="color-title"><td><h3>List</h3></td></tr>
-        <tr class="color-title2"><td class="function-name">Create a list</td></tr>
+
+    <div class="main">
+        <h3 style="text-align: center;">List</h3>
         
-        <tr>
-            <td>
+        <div class="div-function-name">
+            Create a List
+        </div>
+        <div class="div-function-content">
             <pre><code class="language-javascript">
 let myList = [1, 2, 3];
             </code></pre>
-            </td>
-        </tr>
-        <tr class="color-title2"><td class="function-name">Remove</td></tr>
-        
-        <tr>
-            <td>
+        </div>
+
+        <div class="div-function-name">
+            Remove
+        </div>
+        <div class="div-function-content">
             <pre><code class="language-javascript">
 myList = myList.filter(item => item !== 2);
             </code></pre>
-            </td>
-        </tr>
+        </div>
 
-        <tr class="color-title2"><td class="function-name">Loop</td></tr>
-        <tr>
-            <td>
+        <div class="div-function-name">
+Loop
+        </div>
+        <div class="div-function-content">
             <pre><code class="language-javascript">
 for (let item of myList) {
     console.log(item);
 }
             </code></pre>
-            </td>
-        </tr>
+        </div>
 
-        <tr class="color-title2"><td class="function-name">Check existence</td></tr>
-        <tr>
-            <td>
+        <div class="div-function-name">
+            Check existence
+        </div>
+        <div class="div-function-content">
             <pre><code class="language-javascript">
 myList.includes(3);
             </code></pre>
-            </td>
-        </tr>
+        </div>
 
-        <tr class="color-title2"><td class="function-name">Get an element</td></tr>
-        <tr>
-            <td>
+        <div class="div-function-name">
+            Get an element
+                    </div>
+        <div class="div-function-content">
             <pre><code class="language-javascript">
 let index = 1; // Index of element to get
 let element = myList[index];
             </code></pre>
-            </td>
-        </tr>
-    </table>
+        </div>
+    </div>
 
-    <table class="outer-border">
-        <tr class="color-title"><td><h3>Dictionary</h3></td></tr>
-        <tr class="color-title2"><td class="function-name">Create a dictionary</td></tr>
+    <div class="right">
+        <h3 style="text-align: center;">Dictionary</h3>
+        
+        <div class="div-function-name">
+            Create a dictionary
+        </div>
+        <div class="div-function-content">
+            <pre><code class="language-javascript">
+const myDictionary = {
+    key1: 'value1',
+    key2: 'value2',
+};
+            </code></pre>
+        </div>
+
+        <div class="div-function-name">
+            Remove a key
+        </div>
+        <div class="div-function-content">
+            <pre><code class="language-javascript">
+delete myDictionary.key1;
+            </code></pre>
+        </div>
+
+        <div class="div-function-name">
+Loop through keys and values
+        </div>
+        <div class="div-function-content">
+            <pre><code class="language-javascript">
+for (const key in myDictionary) {
+    const value = myDictionary[key];
+    console.log(key, value);
+}
+            </code></pre>
+        </div>
+
+        <div class="div-function-name">
+            Check key existence
+        </div>
+        <div class="div-function-content">
+            <pre><code class="language-javascript">
+const keyExists = 'key2' in myDictionary;
+            </code></pre>
+        </div>
+
+        <div class="div-function-name">
+            Get a value by key
+                    </div>
+        <div class="div-function-content">
+            <pre><code class="language-javascript">
+const value = myDictionary.key2;
+            </code></pre>
+        </div>
+    </div>
+
+    <div class="left">
+        <h3 style="text-align: center;">Queue</h3>
+        
+        <div class="div-function-name">
+            Create a Queue
+        </div>
+        <div class="div-function-content">
+            <pre><code class="language-javascript">
+const queue = [];
+            </code></pre>
+        </div>
+
+        <div class="div-function-name">
+            Enqueue (Add) an Element
+        </div>
+        <div class="div-function-content">
+            <pre><code class="language-javascript">
+queue.push('element');
+            </code></pre>
+        </div>
+
+        <div class="div-function-name">
+            Dequeue (Remove) an Element
+        </div>
+        <div class="div-function-content">
+            <pre><code class="language-javascript">
+const removedElement = queue.shift();
+            </code></pre>
+        </div>
+
+        <div class="div-function-name">
+            Peek (Get First) Element
+        </div>
+        <div class="div-function-content">
+            <pre><code class="language-javascript">
+const firstElement = queue[0];
+            </code></pre>
+        </div>
+
+        <div class="div-function-name">
+            Check if Queue is Empty
+                    </div>
+        <div class="div-function-content">
+            <pre><code class="language-javascript">
+const isEmpty = queue.length === 0;
+            </code></pre>
+        </div>
+    </div>
+
+    <div class="main">
+        <h3 style="text-align: center;">Stack</h3>
+        
+        <div class="div-function-name">
+            Create a Stack
+        </div>
+        <div class="div-function-content">
+            <pre><code class="language-javascript">
+const stack = [];
+            </code></pre>
+        </div>
+
+        <div class="div-function-name">
+            Push (Add) an Element
+        </div>
+        <div class="div-function-content">
+            <pre><code class="language-javascript">
+stack.push('element');
+            </code></pre>
+        </div>
+
+        <div class="div-function-name">
+            Pop (Remove) an Element
+        </div>
+        <div class="div-function-content">
+            <pre><code class="language-javascript">
+const removedElement = stack.pop();
+            </code></pre>
+        </div>
+
+        <div class="div-function-name">
+            Peek (Get Top) Element
+        </div>
+        <div class="div-function-content">
+            <pre><code class="language-javascript">
+const topElement = stack[stack.length - 1];
+            </code></pre>
+        </div>
+
+        <div class="div-function-name">
+            Check if Stack is Empty
+                    </div>
+        <div class="div-function-content">
+            <pre><code class="language-javascript">
+const isEmpty = stack.length === 0;
+            </code></pre>
+        </div>
+    </div>
+
+    <script>
+        function myFunction() {
+          var x = document.getElementById("myTopnav");
+          if (x.className === "topnav") {
+            x.className += " responsive";
+          } else {
+            x.className = "topnav";
+          }
+        }
+    </script> 
     
-        <tr>
-            <td>
-            <pre><code class="language-javascript">
-    const myDictionary = {
-        key1: 'value1',
-        key2: 'value2',
-    };
-            </code></pre>
-            </td>
-        </tr>
-        <tr class="color-title2"><td class="function-name">Remove a key</td></tr>
-    
-        <tr>
-            <td>
-            <pre><code class="language-javascript">
-    delete myDictionary.key1;
-            </code></pre>
-            </td>
-        </tr>
-
-        <tr class="color-title2"><td class="function-name">Loop through keys and values</td></tr>
-        <tr>
-            <td>
-            <pre><code class="language-javascript">
-    for (const key in myDictionary) {
-        const value = myDictionary[key];
-        console.log(key, value);
-    }
-            </code></pre>
-            </td>
-        </tr>
-
-        <tr class="color-title2"><td class="function-name">Check key existence</td></tr>
-        <tr>
-            <td>
-            <pre><code class="language-javascript">
-    const keyExists = 'key2' in myDictionary;
-            </code></pre>
-            </td>
-        </tr>
-
-        <tr class="color-title2"><td class="function-name">Get a value by key</td></tr>
-        <tr>
-            <td>
-            <pre><code class="language-javascript">
-    const value = myDictionary.key2;
-            </code></pre>
-            </td>
-        </tr>
-    </table>
-
-    <table class="outer-border">
-        <tr class="color-title"><td><h3>Queue</h3></td></tr>
-        <tr class="color-title2"><td class="function-name">Create a Queue</td></tr>
-    
-        <tr>
-            <td>
-            <pre><code class="language-javascript">
-    const queue = [];
-            </code></pre>
-            </td>
-        </tr>
-        <tr class="color-title2"><td class="function-name">Enqueue (Add) an Element</td></tr>
-    
-        <tr>
-            <td>
-            <pre><code class="language-javascript">
-    queue.push('element');
-            </code></pre>
-            </td>
-        </tr>
-
-        <tr class="color-title2"><td class="function-name">Dequeue (Remove) an Element</td></tr>
-        <tr>
-            <td>
-            <pre><code class="language-javascript">
-    const removedElement = queue.shift();
-            </code></pre>
-            </td>
-        </tr>
-
-        <tr class="color-title2"><td class "function-name">Peek (Get First) Element</td></tr>
-        <tr>
-            <td>
-            <pre><code class="language-javascript">
-    const firstElement = queue[0];
-            </code></pre>
-            </td>
-        </tr>
-
-        <tr class="color-title2"><td class="function-name">Check if Queue is Empty</td></tr>
-        <tr>
-            <td>
-            <pre><code class="language-javascript">
-    const isEmpty = queue.length === 0;
-            </code></pre>
-            </td>
-        </tr>
-    </table>
-
-    <table class="outer-border">
-        <tr class="color-title"><td><h3>Stack</h3></td></tr>
-        <tr class="color-title2"><td class="function-name">Create a Stack</td></tr>
-    
-        <tr>
-            <td>
-            <pre><code class="language-javascript">
-    const stack = [];
-            </code></pre>
-            </td>
-        </tr>
-        <tr class="color-title2"><td class="function-name">Push (Add) an Element</td></tr>
-    
-        <tr>
-            <td>
-            <pre><code class="language-javascript">
-    stack.push('element');
-            </code></pre>
-            </td>
-        </tr>
-
-        <tr class="color-title2"><td class="function-name">Pop (Remove) an Element</td></tr>
-        <tr>
-            <td>
-            <pre><code class="language-javascript">
-    const removedElement = stack.pop();
-            </code></pre>
-            </td>
-        </tr>
-
-        <tr class="color-title2"><td class="function-name">Peek (Get Top) Element</td></tr>
-        <tr>
-            <td>
-            <pre><code class="language-javascript">
-    const topElement = stack[stack.length - 1];
-            </code></pre>
-            </td>
-        </tr>
-
-        <tr class="color-title2"><td class="function-name">Check if Stack is Empty</td></tr>
-        <tr>
-            <td>
-            <pre><code class="language-javascript">
-    const isEmpty = stack.length === 0;
-            </code></pre>
-            </td>
-        </tr>
-    </table>
-</div>
-</main>
 </body>
 </html>
 

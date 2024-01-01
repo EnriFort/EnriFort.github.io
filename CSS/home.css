@@ -1,0 +1,93 @@
+body {
+    background-color:#FFFAED;
+    font-family: 'Lato';
+    margin: 0px;
+}
+
+h3 { 
+    font-weight: normal;  
+}
+
+h2 {
+    color: green;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+}
+
+/* Adjust the color of the links*/
+a {
+    color: #0066cc; 
+    text-decoration: none;
+}
+
+.special-link {
+    color: green; 
+}
+
+
+a:hover {
+    text-decoration: underline;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.list-container { /* css for list of hws and thesis*/
+    display: flex;
+}
+
+/* Column which contains hwZ */
+.list-element {
+    float: left;
+    width: calc(94% / 3); /* The width is 20%, by default */
+}
+
+.div-container{
+    margin: 10px;
+    margin-top: 60px;
+}
+
+.entry-title {
+    font-size: 33px;
+    font-weight: 300;
+    line-height: 1.0909090909;
+    text-transform: uppercase;
+}
+
+.second-title {
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.0909090909;
+}
+
+.div-entry-title{
+    margin: 100px 50px 0;
+}
+
+.div-entry-content{
+    margin: 0 50px 0;
+    max-width: 500px;
+}
+
+.div-paragraph{
+    text-align: justify;
+    text-justify: inter-word;
+    margin: left;
+    line-height: 25px;
+}
+
+figure {
+    margin: 0;
+    padding: 0; 
+    margin-right: 20px; 
+}
+
+.img-responsive {
+    width: 100%;
+    height: auto;
+}
+
+p {
+    width: 100%;
+}
