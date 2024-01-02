@@ -46,6 +46,7 @@ body {
     margin-bottom: 10px;
 }
 
+
 .left {
     float: left;
     width: calc(94% / 3); /* The width is 20%, by default */
@@ -84,12 +85,16 @@ body {
 }
 
 .div-function-name{
-    background-color: #ace1af;
+    background-color: #ace1af;    
     padding-left: 15px;
+    line-height: 19px;
+    color: #000 !important;
+    font-weight: bold;
+    
 }
 
 .div-function-content{
-    background-color: #e5e5e5;
+    background-color: white;
 }
 
 .div-container{
@@ -101,5 +106,6 @@ body {
 @media screen and (max-width: 800px) {
     .left, .main, .right {
       width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+      margin: 0 10px 0 10px;
     }
 }
