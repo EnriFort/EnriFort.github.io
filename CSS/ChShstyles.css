@@ -5,12 +5,18 @@
 }
 
 body {
-    background-color: #e5e5e5;
     font-family: 'Lato';
     font-size: 13px;
     margin: 0;
     padding: 0;
+    background-color:#FFFAED;
+    /* 
+    background-color: #ffffff;
+    opacity: 1;
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #ffffff 400px ), repeating-linear-gradient( #ffecba55, #ffecba );
+    */
 }
+
 
 .entry-title {
     font-size: 33px;
@@ -19,8 +25,15 @@ body {
     text-transform: uppercase;
 }
 
+
 .div-entry-title{
     margin: 100px 50px 0;
+}
+
+.div-entry-title-img{
+    margin: 100px 50px 0;
+    display: flex;
+    justify-content: space-around;
 }
 
 .div-header{
@@ -44,7 +57,6 @@ body {
     border-top: 2px solid #bbb;
     border-bottom: 2px solid #aaa;
     border-right: 1px solid #ddd;
-    
 }
   
 .main {

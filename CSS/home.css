@@ -33,6 +33,10 @@ li {
     margin-bottom: 10px;
 }
 
+ul {
+    margin-left: -15px;
+}
+
 .list-container { /* css for list of hws and thesis*/
     display: flex;
 }
@@ -41,6 +45,7 @@ li {
 .list-element {
     float: left;
     width: calc(94% / 3); /* The width is 20%, by default */
+    margin-right: 10px;
 }
 
 .div-container{
@@ -91,3 +96,28 @@ figure {
 p {
     width: 100%;
 }
+
+.div-bg-img{
+    margin: 0 50px 0;
+    max-width: 300px;
+    position: relative;
+}
+
+/* to position text over image */ 
+.centered {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+}
+
+/*img with opacity*/
+.bg-img{
+    /* transition: 1s ease; */
+    opacity: 0.1;
+}
+
+/*
+.bg-img:hover{
+    opacity: 1;
+}
+*/
