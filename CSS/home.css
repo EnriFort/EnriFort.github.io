@@ -45,7 +45,8 @@ ul {
 .list-element {
     float: left;
     width: calc(94% / 3); /* The width is 20%, by default */
-    margin-right: 10px;
+    margin-right: 15px;
+    line-height: 150%;
 }
 
 .div-container{
@@ -121,3 +122,4 @@ p {
     opacity: 1;
 }
 */
+
