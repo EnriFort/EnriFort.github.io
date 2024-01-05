@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="scroll-behavior: smooth">
 <head>
     <meta charset="utf-8">
     <title>JSCheatsheet</title>
@@ -32,6 +32,10 @@
         <a href="about.html">ABOUT</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top">
+        <i class="fas fa-long-arrow-alt-up"></i>
+    </button>
 
     <div class="div-entry-title">
         <h1 class="entry-title">JavaScript Cheatsheet<img src="img/jsLogo.png" alt="js" width="70px" style="vertical-align: middle;">
@@ -300,6 +304,7 @@ const isEmpty = stack.length === 0;
     </div>
 
     <script>
+        /* For navbar */
         function myFunction() {
           var x = document.getElementById("myTopnav");
           if (x.className === "topnav") {
@@ -308,6 +313,30 @@ const isEmpty = stack.length === 0;
             x.className = "topnav";
           }
         }
+
+        /* For Scroll Back To Top Button */
+        
+        // Get the button:
+        let mybutton = document.getElementById("myBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+        
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+                mybutton.style.transitionDuration = 10;
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+        
     </script> 
     
 </body>
