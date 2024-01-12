@@ -16,8 +16,7 @@ body {
     background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #ffffff 400px ), repeating-linear-gradient( #ffecba55, #ffecba );
     */
 }
-
-
+    
 .entry-title {
     font-size: 33px;
     font-weight: 300;
