@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kathara</title>
+    <link rel="icon" href="../img/icon.png">
+    <link rel="stylesheet" type="text/css" href="../CSS/hws.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <a href="../pnd.html">
+        <i class="fa-solid fa-arrow-left"></i> Practical Network Defense
+    </a>
+    <br>
+    <br>
+
+
+    <b>Main Kathara commands (aliases):</b> <br>
+    - start (restart) a lab: lstart/lrestart <br>
+    - stop a running lab: lclean <br>
+    - wipe the kathara environment: kwipe <br>
+    - list virtual networks and virtual interfaces of VMs: docker network list <br>
+    <br>
+
+    <b>IP commands:</b> <br>
+    -clean IP address of an ethernet interface: ip addr flush ethN; <br>
+    <br>
+
+    <b>Guide</b> <br>
+
+    Ex.1 <br>
+
+    A host has to receive 4 main pieces of information: <br>
+    - IP address <br>
+    - The Netmask <br>
+    - The IP address of its default Gateway <br>
+    - The IP address of a DNS <br>
+    <br>
+    <br>
+
+    <ol>
+        <li>
+            launch kahara lstart <br>
+        </li>
+        <li>
+            for pc1: <br>
+            - nano /etc/network/interfaces <br>
+            - paste these commands: <br>
+            &ensp;auto eth0 <br>
+            &ensp;iface eth0 inet static <br>
+                    &emsp;address 192.168.100.31/29 <br>
+                    &emsp;gateway 192.168.100.30 <br>
+                    &emsp;dns-nameservers 151.100.4.2 151.100.4.13 <br>
+            - write in the terminal: ifup eht0 <br>
+        </li>
+        <li>
+            For pc2: <br>
+            - ifconfig eth0 192.168.100.32 <br>
+            - ifconfig eth0 netmask 255.255.255.248 <br>
+            - ifconfig eth0 up <br>
+            - nano etc/resolve/conf <br>
+                - write nameserver 151.100.4.2 <br>
+                        nameserver 151.100.4.13 <br> 
+
+        </li>
+    </ol>
+
+
+    <br>
+    <br>
+
+
+</body>
