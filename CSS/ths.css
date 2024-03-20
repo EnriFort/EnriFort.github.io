@@ -24,6 +24,13 @@ h4 {
     color: green;
 }
 
+code {
+    background-color: #3b3b3b;
+    color: #f8f8f2;
+    padding: 0px 3px 0px 3px;
+    
+}
+
 ul {
     list-style-type: disc;
     margin-left: 20px;

@@ -1,73 +1,134 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Kathara</title>
-    <link rel="icon" href="../img/icon.png">
-    <link rel="stylesheet" type="text/css" href="../CSS/hws.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>The LLN Meaning, Proof, Simulations</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="../img/icon.png">
+        <link rel="stylesheet" type="text/css" href="../CSS/ths.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <!-- library for LaTeX -->
+        <script type="text/javascript" async
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+    </head>
 <body>
 
     <a href="../pnd.html">
         <i class="fa-solid fa-arrow-left"></i> Practical Network Defense
     </a>
-    <br>
-    <br>
+   
+        
+    <h4>
+    1. static configuration
+    </h4>
 
-
-    <b>Main Kathara commands (aliases):</b> <br>
-    - start (restart) a lab: lstart/lrestart <br>
-    - stop a running lab: lclean <br>
-    - wipe the kathara environment: kwipe <br>
-    - list virtual networks and virtual interfaces of VMs: docker network list <br>
-    <br>
-
-    <b>IP commands:</b> <br>
-    -clean IP address of an ethernet interface: ip addr flush ethN; <br>
-    <br>
-
-    <b>Guide</b> <br>
-
-    Ex.1 <br>
-
-    A host has to receive 4 main pieces of information: <br>
-    - IP address <br>
-    - The Netmask <br>
-    - The IP address of its default Gateway <br>
-    - The IP address of a DNS <br>
-    <br>
-    <br>
-
-    <ol>
+    <p>A host has to receive 4 main pieces of information: <br>
+    - The IP address; <br>
+    - The Netmask; <br>
+    - The IP address of its default Gateway; <br>
+    - The IP address of a DNS. <br>
+    </p>
+    
+    <ul>
         <li>
-            launch kahara lstart <br>
+            First, let's see how to <b>assign address space</b>: <br>
+            192.168.100.30/29 <br>
+	        30 = 00011110 <br>
+	        pow		43210 <br>
+        	16+8+4+2 = 30 <br>
+            <br>
+            network     |host  <br>      
+            -------00011|110 <br>
+            -------00011|000 -> 192.168.100.24 (reserved for the network) <br>
+            -------00011|111 -> 192.168.100.31 (reserved for the broadcast) <br>
+            <br>
+	        So the addresses start from .25 to .30 (only 6). 
         </li>
+        <br>
         <li>
-            for pc1: <br>
-            - nano /etc/network/interfaces <br>
-            - paste these commands: <br>
-            &ensp;auto eth0 <br>
-            &ensp;iface eth0 inet static <br>
-                    &emsp;address 192.168.100.31/29 <br>
-                    &emsp;gateway 192.168.100.30 <br>
-                    &emsp;dns-nameservers 151.100.4.2 151.100.4.13 <br>
-            - write in the terminal: ifup eht0 <br>
+            Type <code>kahara lstart</code> in the terminal;
         </li>
+        <br>
         <li>
-            For pc2: <br>
-            - ifconfig eth0 192.168.100.32 <br>
-            - ifconfig eth0 netmask 255.255.255.248 <br>
-            - ifconfig eth0 up <br>
-            - nano etc/resolve/conf <br>
-                - write nameserver 151.100.4.2 <br>
-                        nameserver 151.100.4.13 <br> 
-
+            For <b>pc1</b> (manual configuration using interfaces file):
+            <ul>
+                <li>
+                    <code>nano /etc/network/interfaces.d/eth0</code>
+                </li>
+                <li>
+                    write these lines: <br>
+                    <code>
+                        
+                    auto eth0 <br>
+                    iface eth0 inet static <br>
+                    address 192.168.100.25/29 <br>                                     
+        	        gateway 192.168.100.30 <br>
+        	        dns-nameserver 8.8.8.8 <br>
+                    </code>  
+                </li>
+                <li>
+                    if the last line doesn't work write:
+                    <ul>
+                        <li>
+                            <code>cat > /etc/resolv.conf</code> <br>
+                            <code>nameserver 8.8.8.8</code>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    write in the terminal:: 
+                    <ul>
+                        <li>
+                            <code>ifup eth0</code> (interface up, to make the host read startup file).
+                        </li>
+                    </ul> 
+                </li>
+            </ul>
         </li>
-    </ol>
-
-
-    <br>
-    <br>
+        <br>
+        Write in the terminal or in startup file:
+        <li>
+            For <b>pc2</b> (using ifconfig):
+            <ul>
+                <li>
+                    <code>ifconfig eth0 192.168.100.26 netmask 255.255.255.248 broadcast 192.168.100.31</code>
+                </li>
+                <li>
+                    <code>ifconfig eth0 up</code> (not needed)
+                </li>
+                <li>
+                    <code>route add default gw 192.168.100.30</code>
+                </li>
+                <li>
+                    <code>echo "nameserver 8.8.8.8" > etc/resolv.conf</code>
+                </li>
+            </ul>
+        </li>
+        <br>
+        <li>
+            For <b>pc3</b> (using ip):
+            <ul>
+                <li>
+                    <code>ip addr add 192.168.100.27/29 broadcast 192.168.100.31 dev eth0</code> (in pc1 broadcast domain is added automatically)
+                </li>
+                <li>
+                    <code>ip route add 151.101.0.0/24 via 192.168.100.30</code> (facultative, to add a particular route)
+                </li>
+                <li>
+                    <code>ip route add default via 192.168.100.30</code>
+                </li>
+                <li>
+                    <code>
+                        echo "nameserver 8.8.8.8" > etc/resolv.conf
+                    </code>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <h4>
+        2. DHCP configuration
+    </h4>
 
 
 </body>
