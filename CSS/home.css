@@ -15,6 +15,10 @@ h2 {
     padding-bottom: 5px;
 }
 
+h4 {
+    color: green;
+}
+
 /* Adjust the color of the links*/
 a {
     color: #0066cc; 
@@ -46,6 +50,12 @@ ul {
 .list-element {
     float: left;
     width: calc(94% / 3); /* The width is 20%, by default */
+    margin-right: 15px;
+    line-height: 150%;
+}
+
+.list-element-pnd{
+    float: left;
     margin-right: 15px;
     line-height: 150%;
 }

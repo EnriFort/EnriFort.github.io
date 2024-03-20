@@ -32,17 +32,74 @@
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
   </div>
 
-  <div class="div-container">
+  <div class="div-container" style="max-width: 700px;">
       <h2>Practical Network Defense</h2>
       <div class="div-paragraph">
           <h3>
-            <a class="special-link" href="pnd/kathara.html" target="_blank">
-             Here
-          </a>
-             you can find my Kathara Lab, done during the relative course in the academic year 2023-24.
+            The following page show the exercises done during the course with Kathará: a container-based framework for experimenting computer networking.
+            
+            <h4>Important tips for kathara:</h4>
+            <ul>
+              <li>
+                When you create a folder with pc name (e.g. pc1),
+              every time you start kathara, the content inside pc1 folder
+              will be copied inside the root directory of pc1.
+              This is good when for example you don't want to write inside
+              /etc/network/interfaces every time at startup;
+              </li>
+              <li>
+                If you don't want to write every time the commands in the terminal, 
+              you just need to put them inside 'startup' file (e.g. pc1.startup);
+              </li>
+              <li>
+                run kathara '--noterminals' to start the device without opening the 'ugly' terminals
+                <ul>
+                  <li>
+                    then use 'kathara connect pcN' to open a terminal.
+                  </li>
+                </ul>
+
+              </li>
+            </ul>
+          
+            <h4>Main commands (aliases):</h4>
+            
+            <ul>
+              <li>
+                start (restart) a lab: <code>'lstart/lrestart'</code>
+              </li>
+              <li>
+                stop a running lab: <code>'lclean'</code>
+              </li>
+              <li>
+                wipe the kathara environment: <code>'kwipe'</code>
+              </li>
+              <li>
+                list virtual networks and virtual interfaces of VMs: <code>'docker network list'</code>
+              </li>
+              <li>
+                clean all the IP addresses of an ethernet interface: <code>'ip addr flush eth0'</code>
+              </li>
+              <li>
+                <code>'arp/ip neigh'</code>
+              </li>
+              <li>
+                show all the ip addresses that we have: <code>'ifconfig/ip addr'</code> 
+              </li>
+              <li>
+                show the routes: <code>'ip route'</code>
+              </li>
+            </ul>
+
+            <div class="list-container" style="background-color: #e0e0e0; padding: 10px;">
+            
+              <div class="list-element-pnd">
+                  <b>Labs List</b>
+                  <ol>
+                      <li><a href="pnd/lab1.html">Static configuration/dhcp/route</a></li>
+                  </ol>
+              </div>
           </h3>
       </div>
   </div>
-  
-
 </body>
