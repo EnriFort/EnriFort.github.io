@@ -123,11 +123,17 @@ p {
 }
 
 /*img with opacity*/
-.bg-img{
+.bg-img {
     /* transition: 1s ease; */
     opacity: 0.1;
 }
 
+.profile-img {
+    max-width: 300px;
+    position: relative;
+    margin: 0 50px 0;
+    border-radius: 50%;
+}
 /*
 .bg-img:hover{
     opacity: 1;

@@ -22,7 +22,6 @@
           </button>
           <div class="dropdown-content">
             <a href="stat.html">STATISTICS</a>
-            <a href="dist.html">DISTRIBUTED SYSTEMS</a>
             <a href="pnd.html">PRACTICAL NETWORK DEFENSE</a>
             <a href="eth.html">ETHICAL HACKING</a>
           </div> 
@@ -34,72 +33,9 @@
   </div>
 
   <div class="div-container" style="max-width: 700px;">
-      <h2>Practical Network Defense</h2>
-      <div class="div-paragraph">
-          
-            <p>The following page contain the exercises done during the course using <b>Kathará</b>: a container-based framework for experimenting computer networking.</p>
-            
-            <h4>Important tips for kathara:</h4>
-            <ul>
-              <li>
-              When you create a folder with pc name (e.g. pc1),
-              every time you start kathará, the content inside pc1 folder
-              will be copied inside the root directory of pc1.
-              This is good when for example you don't want to write inside
-              <i>/etc/network/interfaces</i> every time at startup;
-              </li>
-              <li>
-                If you don't want to write every time the commands in the terminal, 
-              you just need to put them inside 'startup' file (e.g. pc1.startup);
-              </li>
-              <li>
-                run kathara with <code>'--noterminals'</code> option to start the device without opening the 'ugly' terminals:
-                <ul>
-                  <li>
-                    then use <code>'kathara connect pcN'</code> to open a terminal.
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          
-            <h4>Main commands (aliases):</h4>
-            
-            <ul>
-              <li>
-                start (restart) a lab: <code>'lstart/lrestart'</code>
-              </li>
-              <li>
-                stop a running lab: <code>'lclean'</code>
-              </li>
-              <li>
-                wipe the kathara environment: <code>'kwipe'</code>
-              </li>
-              <li>
-                list virtual networks and virtual interfaces of VMs: <code>'docker network list'</code>
-              </li>
-              <li>
-                clean all the IP addresses of an ethernet interface: <code>'ip addr flush eth0'</code>
-              </li>
-              <li>
-                <code>'arp/ip neigh'</code>
-              </li>
-              <li>
-                show all the ip addresses that we have: <code>'ifconfig/ip addr'</code> 
-              </li>
-              <li>
-                show the routes: <code>'ip route'</code>
-              </li>
-            </ul>
-
-            <div class="list-container" style="background-color: #e0e0e0; padding: 10px;">
-            
-              <div class="list-element-pnd">
-                  <b>Labs List</b>
-                  <ol>
-                      <li><a href="pnd/lab1.html">Static configuration/dhcp/route</a></li>
-                  </ol>
-              </div>
-          
-      </div>
+    <h2>Practical Network Defense</h2>
+    <div class="div-paragraph">
+      <p>My Practical Network Defense Material can be seen <a href="https://github.com/EnriFort/MSc-Cybersecurity/tree/5a9b28c8a08f8e42cd210a9b83010afddcc4639c/Practical%20Network%20Defense"><i class="fab fa-github"></i> here</a>.</p>
+    </div>
   </div>
 </body>
