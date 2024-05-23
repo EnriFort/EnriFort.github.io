@@ -1,3 +1,3 @@
 # EnriFort.github.io
-My personal site containing my Cybersecurity journey
+This is my personal site containing my Cybersecurity journey and more.   
 
