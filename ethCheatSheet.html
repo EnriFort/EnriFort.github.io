@@ -30,7 +30,7 @@
             </div> 
         </div>
         <div class="dropdown colored">
-            <button class="dropbtn">CHEATSHEETS
+            <button class="dropbtn">ETH CHEATSHEETS
               <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
@@ -54,263 +54,66 @@
 
     <div class="left">
         <h2 style="text-align: center;">NMap</h2>
-        
+        <div class="div-function-description">Nmap is one of the most feature rich scanning tools which perform both <b>host discovery</b> (determine if the system is alive) and <b>port-scanning</b> (determine which services are running or listening) functionality. </div>
         <div class="div-function-name">
             Command Syntax
         </div>
         <div class="div-function-content">
-            <code class="language-javascript">
-                nmap [Scan Type(s)] [Options] <target>
-            </code>
+            <i><b>nmap [Scan Type(s)] [Options] <target></b></i>
         </div>
-
         <div class="div-function-name">
-            Loop
+            Host Discovery
         </div>
         <div class="div-function-content">
-            <pre><code class="language-javascript">
-for (let name of myArray) {
-    if (name === "Mr. Pink") {
-        console.log("Encountered Mr. Pink. Breaking loop.");
-        break; // Exit the loop when "Mr. Pink" is found
-    }  
-}; 
-            </code></pre>
+            <b>-sn</b>: Ping scan (no-port scan) -  Sends an icmp echo request;<br>
+            <b>-PE/PP/PM</b>: ICMP echo, timestamp, and netmask request discovery probes.
         </div>
-
         <div class="div-function-name">
-Add element
+            Scan Techniques
         </div>
         <div class="div-function-content">
-            <pre><code class="language-javascript">
-let newArray = [...myArray, "Nice Guy"];
-            </code></pre>
+            <b>-sT</b>: TCP Connect scan; <br>
+            <b>-sS</b>: TCP SYN scan; <i>(half open)</i><br>
+            <b>-sU</b>: UDP scan; <br>
+            <b>-sA</b>: ACK scan; <br>
         </div>
-
         <div class="div-function-name">
-            Remove element
+            Options
         </div>
         <div class="div-function-content">
-            <pre><code class="language-javascript">
-let newArray2 = myArray.filter(name => name !== "Nice Guy");
-            </code></pre>
-        </div>
-
-        <div class="div-function-name">
-            Check existence
-                    </div>
-        <div class="div-function-content">
-            <pre><code class="language-javascript">
-newArray2.includes("Nice Guy");
-            </code></pre>
+            <b>-f</b>: fragment packets; <i>(to bypass simple packet filter firewall);</i> <br>
+            <b>-sV</b>: get the versions of services running on the target machine; <br>
+            <b>-O</b>: detect the operating system on the target machine; <br>
+            <b>--reason</b>: display the reason a port is in a particular state; <br>
+            <b>-p &ltport ranges></b>: Only scan specified ports; <br>
+            <b>-v</b>: Enable verbosity; <br>
         </div>
     </div>
 
 
     <div class="main">
-        <h2 style="text-align: center;">List</h2>
-        
+        <h2 style="text-align: center;">Metasploit</h2>
+         
         <div class="div-function-name">
-            Create a List
+            Command Syntax
         </div>
         <div class="div-function-content">
-            <pre><code class="language-javascript">
-let myList = [1, 2, 3];
-            </code></pre>
+            nmap [Scan Type(s)] [Options] <target>
         </div>
-
         <div class="div-function-name">
-            Remove
+            Options
         </div>
         <div class="div-function-content">
-            <pre><code class="language-javascript">
-myList = myList.filter(item => item !== 2);
-            </code></pre>
-        </div>
-
-        <div class="div-function-name">
-Loop
-        </div>
-        <div class="div-function-content">
-            <pre><code class="language-javascript">
-for (let item of myList) {
-    console.log(item);
-}
-            </code></pre>
-        </div>
-
-        <div class="div-function-name">
-            Check existence
-        </div>
-        <div class="div-function-content">
-            <pre><code class="language-javascript">
-myList.includes(3);
-            </code></pre>
-        </div>
-
-        <div class="div-function-name">
-            Get an element
-                    </div>
-        <div class="div-function-content">
-            <pre><code class="language-javascript">
-let index = 1; // Index of element to get
-let element = myList[index];
-            </code></pre>
+            <b>-sS</b>: TCP SYN scan; <br>
+            <b>-sU</b>: UDP scan; <br>
+            <b>-sV</b>: get the versions of services running on the target machine; <br>
+            <b>-O</b>: detect the operating system on the target machine; <br>
+            <b>--reason</b>: display the reason a port is in a particular state; <br>
+            <b>-p &ltport ranges></b>: Only scan specified ports; <br>
         </div>
     </div>
 
-    <div class="right">
-        <h2 style="text-align: center;">Dictionary</h2>
-        
-        <div class="div-function-name">
-            Create a dictionary
-        </div>
-        <div class="div-function-content">
-            <pre><code class="language-javascript">
-const myDictionary = {
-    key1: 'value1',
-    key2: 'value2',
-};
-            </code></pre>
-        </div>
-
-        <div class="div-function-name">
-            Remove a key
-        </div>
-        <div class="div-function-content">
-            <pre><code class="language-javascript">
-delete myDictionary.key1;
-            </code></pre>
-        </div>
-
-        <div class="div-function-name">
-Loop through keys and values
-        </div>
-        <div class="div-function-content">
-            <pre><code class="language-javascript">
-for (const key in myDictionary) {
-    const value = myDictionary[key];
-    console.log(key, value);
-}
-            </code></pre>
-        </div>
-
-        <div class="div-function-name">
-            Check key existence
-        </div>
-        <div class="div-function-content">
-            <pre><code class="language-javascript">
-const keyExists = 'key2' in myDictionary;
-            </code></pre>
-        </div>
-
-        <div class="div-function-name">
-            Get a value by key
-                    </div>
-        <div class="div-function-content">
-            <pre><code class="language-javascript">
-const value = myDictionary.key2;
-            </code></pre>
-        </div>
-    </div>
-
-    <div class="left">
-        <h2 style="text-align: center;">Queue</h2>
-        
-        <div class="div-function-name">
-            Create a Queue
-        </div>
-        <div class="div-function-content">
-            <pre><code class="language-javascript">
-const queue = [];
-            </code></pre>
-        </div>
-
-        <div class="div-function-name">
-            Enqueue (Add) an Element
-        </div>
-        <div class="div-function-content">
-            <pre><code class="language-javascript">
-queue.push('element');
-            </code></pre>
-        </div>
-
-        <div class="div-function-name">
-            Dequeue (Remove) an Element
-        </div>
-        <div class="div-function-content">
-            <pre><code class="language-javascript">
-const removedElement = queue.shift();
-            </code></pre>
-        </div>
-
-        <div class="div-function-name">
-            Peek (Get First) Element
-        </div>
-        <div class="div-function-content">
-            <pre><code class="language-javascript">
-const firstElement = queue[0];
-            </code></pre>
-        </div>
-
-        <div class="div-function-name">
-            Check if Queue is Empty
-                    </div>
-        <div class="div-function-content">
-            <pre><code class="language-javascript">
-const isEmpty = queue.length === 0;
-            </code></pre>
-        </div>
-    </div>
-
-    <div class="main">
-        <h2 style="text-align: center;">Stack</h2>
-        
-        <div class="div-function-name">
-            Create a Stack
-        </div>
-        <div class="div-function-content">
-            <pre><code class="language-javascript">
-const stack = [];
-            </code></pre>
-        </div>
-
-        <div class="div-function-name">
-            Push (Add) an Element
-        </div>
-        <div class="div-function-content">
-            <pre><code class="language-javascript">
-stack.push('element');
-            </code></pre>
-        </div>
-
-        <div class="div-function-name">
-            Pop (Remove) an Element
-        </div>
-        <div class="div-function-content">
-            <pre><code class="language-javascript">
-const removedElement = stack.pop();
-            </code></pre>
-        </div>
-
-        <div class="div-function-name">
-            Peek (Get Top) Element
-        </div>
-        <div class="div-function-content">
-            <pre><code class="language-javascript">
-const topElement = stack[stack.length - 1];
-            </code></pre>
-        </div>
-
-        <div class="div-function-name">
-            Check if Stack is Empty
-                    </div>
-        <div class="div-function-content">
-            <pre><code class="language-javascript">
-const isEmpty = stack.length === 0;
-            </code></pre>
-        </div>
-    </div>
+    
 
     <script>
         /* For navbar */

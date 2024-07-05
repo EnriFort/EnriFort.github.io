@@ -95,13 +95,24 @@ body {
     
 }
 
+.div-function-description{
+    background-color: #f5f2f0;
+    padding-left: 15px;
+    line-height: 19px;
+    color: #000 !important;
+    padding-bottom: 10px;
+    padding-right: 15px;
+}
+
 .div-function-content{
     background-color: white;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .div-container{
     margin: auto;
-    
 }
 
 /* Use a media query to add a break point at 800px: */
