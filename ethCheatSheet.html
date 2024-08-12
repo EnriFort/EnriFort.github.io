@@ -54,12 +54,12 @@
 
     <div class="left">
         <h2 style="text-align: center;">NMap</h2>
-        <div class="div-function-description">Nmap is one of the most feature rich scanning tools which perform both <b>host discovery</b> (determine if the system is alive) and <b>port-scanning</b> (determine which services are running or listening) functionality. </div>
+        <div class="div-paragraph">Nmap is one of the most feature rich scanning tools which perform both <b>host discovery</b> (determine if the system is alive) and <b>port-scanning</b> (determine which services are running or listening) functionality. </div>
         <div class="div-function-name">
             Command Syntax
         </div>
         <div class="div-function-content">
-            <i><b>nmap [Scan Type(s)] [Options] <target></b></i>
+            <code>nmap [Scan Type(s)] [Options] &lt;target&gt;</code>
         </div>
         <div class="div-function-name">
             Host Discovery
@@ -81,37 +81,80 @@
             Options
         </div>
         <div class="div-function-content">
-            <b>-f</b>: fragment packets; <i>(to bypass simple packet filter firewall);</i> <br>
+            <b>-f</b>: fragment packets - to bypass simple packet filter firewall;</i> <br>
             <b>-sV</b>: get the versions of services running on the target machine; <br>
             <b>-O</b>: detect the operating system on the target machine; <br>
             <b>--reason</b>: display the reason a port is in a particular state; <br>
             <b>-p &ltport ranges></b>: Only scan specified ports; <br>
             <b>-v</b>: Enable verbosity; <br>
         </div>
+        <div class="div-function-name">
+            Script Scan
+        </div>
+        <div class="div-function-content">
+            <b>-sC</b>: equivalent to --script=default;</i> <br>
+            <b>--script=&lt;Lua scripts></b>: &lt;Lua scripts> is a comma separated list of
+                directories, script-files or script-categories; <br><br>
+                <i><b>Examples:</b><br>
+                <b>--script=-vulners</b>: detect CVEs, with exploits (based on banners);<br>
+                <b>--script=-http-php-version</b>:identify PHP version;<br>
+                <b>--script=-smb-*</b>:various SMB enumeration and brute forcing;<br>
+                </i>
+        </div>
     </div>
 
 
     <div class="main">
-        <h2 style="text-align: center;">Metasploit</h2>
-         
+        <h2 style="text-align: center;">Netcat</h2>
+        <div class="div-paragraph">Netcat is a networking utility which reads and write data from the command line. It has TCP and UDP port-scanning capabilities
+            which are useful in some scenario when you need to minimize your footprint on a system. 
+        </div>
         <div class="div-function-name">
             Command Syntax
         </div>
         <div class="div-function-content">
-            nmap [Scan Type(s)] [Options] <target>
+            <code>nc [options] &lt;host&gt; &lt;port&gt;</code>
         </div>
         <div class="div-function-name">
-            Options
+            Host Discovery
         </div>
         <div class="div-function-content">
-            <b>-sS</b>: TCP SYN scan; <br>
-            <b>-sU</b>: UDP scan; <br>
-            <b>-sV</b>: get the versions of services running on the target machine; <br>
-            <b>-O</b>: detect the operating system on the target machine; <br>
-            <b>--reason</b>: display the reason a port is in a particular state; <br>
-            <b>-p &ltport ranges></b>: Only scan specified ports; <br>
+            <b>-u</b>: UDP scanning;<br>
+            <b>-z</b>: zero mode I/O - Report connection status without estabilish a connection;<br>
+        </div>
+        <div class="div-function-name">
+            Banner Grabbing
+        </div>
+        <div class="div-function-content">
+            <code>nc -v www.example.com 80</code><br>
         </div>
     </div>
+
+
+
+    <div class="right">
+        <h2 style="text-align: center;">Metasploit</h2>
+        <div class="div-paragraph">Metasploit is an exploit framework used to modularize exploits and payloads.</div>
+        <div class="div-function-name">
+            Command Syntax
+        </div>
+        <div class="div-function-content">
+            <code>msfconsole [Options] </code>
+        </div>
+        <div class="div-function-name">
+            Basic Commands
+        </div>
+        <div class="div-function-content">
+            <b>db_connect</b>: connect to the database;<br>
+            <b>db_nmap</b>: allows you ro run Nmap scan and import data directly into the database;</i><br>
+            <b>db_import</b>: import external result into the database;<br>
+            <b>host</b>: list all hosts in the database;<br>
+            <b>services</b>: show all available open port and services on the identified hosts;<br>
+        </div>
+    </div>
+
+
+
 
     
 
