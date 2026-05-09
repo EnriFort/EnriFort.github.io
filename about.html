@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>About</title>
+  <title>About — Enri Stat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Enrico — Cybersecurity Master's student at Sapienza University of Rome.">
   <link rel="stylesheet" href="CSS/home.css">
   <link rel="stylesheet" href="CSS/topnav.css"> 
-  <link rel="icon" href="img/icon.png">
-  <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- For useful links icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
+  
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="img/icon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/icon/favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+
   <div class="topnav" id="myTopnav">
     <a class="title-site" href="index.html">ENRI STAT</a>
     <div class="dropdown">
@@ -28,51 +35,62 @@
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-content">
-        <a href="cheatSheet.html">JAVASCRIPT</a>
-        <a href="ethCheatSheet.html">ETHICAL HACKING</a>
+        <a href="JSChSh.html">JAVASCRIPT</a>
+        <a href="ETHChSh.html">ETHICAL HACKING</a>
       </div> 
     </div>
+    <a href="works.html">WORKS</a>
     <a href="contacts.html">CONTACTS</a>
     <a class="active" href="about.html">ABOUT</a>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
   </div>
 
-  <div class="div-entry-title">
+  <!-- ── PAGE HEADER ── -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="hero-tag">ENRI STAT</div>
       <h1 class="entry-title">About</h1>
+    </div>
   </div>
 
-  <div class="div-entry-content">
-      <p class="div-paragraph">
-          Hi :) I'm Enrico. I'm based in Viterbo, and I'm currently studying CyberSecurity at the Sapienza University of Rome.
-          I'm interested in Security, Networks, and exploring the intersection of technology and society. 
-          I like to play video games, especially immersing myself in captivating RPGs.
-      </p>
+  <!-- ── BIO ── -->
+  <div class="about-page">
 
-      <figure>
-        <img src="img/vegeta.png" alt="vegeta" class="img-responsive" style="width: 350px; height: 350px;">
+    <div class="about-page-grid">
+      <div class="about-page-text">
+        <h2 class="about-page-section">// WHO I AM</h2>
+        <p class="div-paragraph">
+          Hi! I'm Enrico, based in Viterbo, currently studying CyberSecurity at the 
+          Sapienza University of Rome. I'm interested in security, networks, and exploring 
+          the intersection of technology and society. I also like to play video games, 
+          especially immersive RPGs.
+        </p>
 
+        <h2 class="about-page-section">// WHY "ENRI STAT"?</h2>
+        <p class="div-paragraph">
+          This site was initially created to host the JS exercises for my Cybersecurity 
+          Statistics master's degree. So I decided to call my blog <em>Enri Stat</em>, 
+          where 'stat' stands for 'statistics'. Now I consider this site as my current 
+          <strong>stat</strong>us.
+        </p>
+        <a href="file/CV_Enrico_Fortuna_EN.pdf" class="btn" target="_blank" style="margin-top: 1.5rem;">
+          <i class="fas fa-download"></i> CURRICULUM
+        </a>
+      </div>
 
-      </figure>
+      <div class="about-page-img">
+        <img src="img/vegeta.png" alt="Vegeta" style="width: 280px; height: 280px; object-fit: cover; border: 2px solid var(--border);">
+      </div>
+    </div>
+
   </div>
 
-  <div class="div-entry-content">
-    <h1 class="second-title">WHY "Enri Stat"?</h1>
-
-    <p class="div-paragraph">
-      This site was initially created to host the JS exercises for my Cybersecurity Statistics master's degree.
-      So I decided to call my blog <em>Enri Stat</em>, where 'stat' stands for 'statistics'. Now I can consider this site as my current <b>stat</b>us.
-    </p>
-</div>
-  
   <script>
-      function myFunction() {
-        var x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-          x.className += " responsive";
-        } else {
-          x.className = "topnav";
-        }
-      }
-  </script>  
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      x.className = x.className === "topnav" ? "topnav responsive" : "topnav";
+    }
+  </script>
+
 </body>
 </html>

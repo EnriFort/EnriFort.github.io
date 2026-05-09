@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth">
+<head>
+  <meta charset="utf-8">
+  <title>JS Cheatsheet — Enri Stat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="img/jsLogo.png">
+  <link rel="stylesheet" href="CSS/topnav.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css">
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+  <link rel="stylesheet" href="CSS/cheatsheet.css">
+</head>
+<body>
+
+  <div class="topnav" id="myTopnav">
+    <a class="title-site" href="index.html">ENRI STAT</a>
+    <div class="dropdown">
+      <button class="dropbtn">MASTER'S COURSES <i class="fa fa-caret-down"></i></button>
+      <div class="dropdown-content">
+        <a href="stat.html">STATISTICS</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">CHEATSHEETS <i class="fa fa-caret-down"></i></button>
+      <div class="dropdown-content">
+        <a class="active" href="JSChSh.html">JAVASCRIPT</a>
+        <a href="ETHChSh.html">ETHICAL HACKING</a>
+      </div>
+    </div>
+    <a href="works.html">WORKS</a>
+    <a href="contacts.html">CONTACTS</a>
+    <a href="about.html">ABOUT</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+  </div>
+
+  <button onclick="topFunction()" id="myBtn" title="Go to top">
+    <i class="fas fa-long-arrow-alt-up"></i>
+  </button>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="hero-tag">CHEATSHEETS</div>
+      <h1 class="entry-title">
+        JavaScript Cheatsheet
+        <img src="img/jsLogo.png" alt="js" width="44px">
+      </h1>
+    </div>
+  </div>
+
+  <div class="cheatsheet-layout">
+
+    <!-- TOC -->
+    <nav class="toc">
+      <div class="toc-title">// CONTENTS</div>
+      <a href="#array"><i class="fas fa-list fa-fw"></i> Array</a>
+      <a href="#list"><i class="fas fa-stream fa-fw"></i> List</a>
+      <a href="#dictionary"><i class="fas fa-book fa-fw"></i> Dictionary</a>
+      <a href="#queue"><i class="fas fa-arrow-right fa-fw"></i> Queue</a>
+      <a href="#stack"><i class="fas fa-layer-group fa-fw"></i> Stack</a>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="cheatsheet-content">
+
+      <!-- ARRAY -->
+      <div class="cs-section" id="array">
+        <div class="cs-section-header">
+          <span class="section-icon"><i class="fas fa-list"></i></span>
+          <h2>ARRAY</h2>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Create Array <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">let myArray = ["Mr. White", "Mr. Orange", "Mr. Blonde",
+    "Mr. Pink", "Mr. Blue", "Mr. Brown"];</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Loop <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">for (let name of myArray) {
+    if (name === "Mr. Pink") {
+        console.log("Encountered Mr. Pink. Breaking loop.");
+        break;
+    }
+};</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Add element <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">let newArray = [...myArray, "Nice Guy"];</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Remove element <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">let newArray2 = myArray.filter(name => name !== "Nice Guy");</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Check existence <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">newArray2.includes("Nice Guy");</code></pre></div>
+        </div>
+      </div>
+
+      <!-- LIST -->
+      <div class="cs-section" id="list">
+        <div class="cs-section-header">
+          <span class="section-icon"><i class="fas fa-stream"></i></span>
+          <h2>LIST</h2>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Create a List <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">let myList = [1, 2, 3];</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Remove <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">myList = myList.filter(item => item !== 2);</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Loop <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">for (let item of myList) {
+    console.log(item);
+}</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Check existence <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">myList.includes(3);</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Get an element <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">let index = 1;
+let element = myList[index];</code></pre></div>
+        </div>
+      </div>
+
+      <!-- DICTIONARY -->
+      <div class="cs-section" id="dictionary">
+        <div class="cs-section-header">
+          <span class="section-icon"><i class="fas fa-book"></i></span>
+          <h2>DICTIONARY</h2>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Create a dictionary <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">const myDictionary = {
+    key1: 'value1',
+    key2: 'value2',
+};</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Remove a key <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">delete myDictionary.key1;</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Loop through keys and values <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">for (const key in myDictionary) {
+    const value = myDictionary[key];
+    console.log(key, value);
+}</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Check key existence <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">const keyExists = 'key2' in myDictionary;</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Get a value by key <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">const value = myDictionary.key2;</code></pre></div>
+        </div>
+      </div>
+
+      <!-- QUEUE -->
+      <div class="cs-section" id="queue">
+        <div class="cs-section-header">
+          <span class="section-icon"><i class="fas fa-arrow-right"></i></span>
+          <h2>QUEUE</h2>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Create a Queue <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">const queue = [];</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Enqueue (Add) an Element <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">queue.push('element');</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Dequeue (Remove) an Element <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">const removedElement = queue.shift();</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Peek (Get First) Element <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">const firstElement = queue[0];</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Check if Queue is Empty <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">const isEmpty = queue.length === 0;</code></pre></div>
+        </div>
+      </div>
+
+      <!-- STACK -->
+      <div class="cs-section" id="stack">
+        <div class="cs-section-header">
+          <span class="section-icon"><i class="fas fa-layer-group"></i></span>
+          <h2>STACK</h2>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Create a Stack <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">const stack = [];</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Push (Add) an Element <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">stack.push('element');</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Pop (Remove) an Element <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">const removedElement = stack.pop();</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Peek (Get Top) Element <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">const topElement = stack[stack.length - 1];</code></pre></div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Check if Stack is Empty <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code"><pre><code class="language-javascript">const isEmpty = stack.length === 0;</code></pre></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      x.className = x.className === "topnav" ? "topnav responsive" : "topnav";
+    }
+
+    let mybutton = document.getElementById("myBtn");
+    window.onscroll = function() {
+      mybutton.style.display = (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) ? "block" : "none";
+    };
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+
+    function toggleEntry(el) {
+      const code = el.nextElementSibling;
+      const isOpen = code.classList.contains('open');
+      el.classList.toggle('open', !isOpen);
+      code.classList.toggle('open', !isOpen);
+    }
+  </script>
+
+</body>
+</html>

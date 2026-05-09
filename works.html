@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Works — Enri Stat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="University works, papers and reports by Enrico — Cybersecurity Master's student at Sapienza.">
+  <link rel="stylesheet" href="CSS/home.css">
+  <link rel="stylesheet" href="CSS/topnav.css">
+    
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="img/icon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/icon/favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="topnav" id="myTopnav">
+    <a class="title-site" href="index.html">ENRI STAT</a>
+    <div class="dropdown">
+      <button class="dropbtn">MASTER'S COURSES <i class="fa fa-caret-down"></i></button>
+      <div class="dropdown-content">
+        <a href="stat.html">STATISTICS</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">CHEATSHEETS <i class="fa fa-caret-down"></i></button>
+      <div class="dropdown-content">
+        <a href="JSChSh.html">JAVASCRIPT</a>
+        <a href="ETHChSh.html">ETHICAL HACKING</a>
+      </div>
+    </div>
+    <a class="active" href="works.html">WORKS</a>
+    <a href="contacts.html">CONTACTS</a>
+    <a href="about.html">ABOUT</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="hero-tag">ENRI STAT</div>
+      <h1 class="entry-title">Works</h1>
+      <p class="page-header-sub">
+        Reports, documents and thesis written during my academic and personal journey.
+      </p>
+    </div>
+  </div>
+
+  <!-- WORKS CONTENT -->
+  <div class="works-page">
+
+    <!-- FILTER TAGS -->
+    <div class="works-filters">
+      <span class="works-filter-label">// FILTER</span>
+      <button class="filter-btn active" onclick="filterWorks('all', this)">ALL</button>
+      <button class="filter-btn" onclick="filterWorks('blockchain', this)">BLOCKCHAIN</button>
+      <button class="filter-btn" onclick="filterWorks('cybersecurity', this)">CYBERSECURITY</button>
+      <button class="filter-btn" onclick="filterWorks('law', this)">LAW</button>
+      <button class="filter-btn" onclick="filterWorks('thesis', this)">THESIS</button>
+      <button class="filter-btn" onclick="filterWorks('other', this)">OTHER</button>
+    </div>
+
+    <!-- WORKS GRID -->
+    <div class="works-grid">
+
+      <!-- MODIFICA: aggiungi/rimuovi card qui sotto -->
+      <!-- Ogni card ha data-category con una delle categorie dei filter button -->
+
+
+      <div class="work-card" data-category="thesis Wi-Fi-sensing deep-learning">
+        <div class="work-card-top">
+          <div class="work-card-tags">
+            <span class="work-tag">THESIS</span>
+            <span class="work-tag">Wi-Fi SENSING</span>
+            <span class="work-tag">DEEP LEARNING</span>
+          </div>
+          <i class="fas fa-file-pdf work-card-icon"></i>
+        </div>
+        <h3 class="work-card-title">Object Synthesis via Wi-Fi Signals</h3>
+        <p class="work-card-desc">
+          Bachelor's thesis exploring how Wi-Fi signals can be used to synthesize images 
+          of objects. A two-branch neural network is trained on Channel State Information 
+          (CSI) amplitude and polarization data, without any camera input.
+        </p>
+        <div class="work-card-footer">
+          <span class="work-card-course">Bachelor's Thesis</span>
+          <a href="file/tesiTriennale.pdf" class="work-card-link" target="_blank">
+            <i class="fas fa-external-link-alt"></i> Open PDF
+          </a>
+        </div>
+      </div>
+
+
+      <div class="work-card" data-category="cybersecurity blockchain">
+        <div class="work-card-top">
+          <div class="work-card-tags">
+            <span class="work-tag">CYBERSECURITY</span>
+            <span class="work-tag">BLOCKCHAIN</span>
+          </div>
+          <i class="fas fa-file-pdf work-card-icon"></i>
+        </div>
+        <h3 class="work-card-title">ThreatLedger</h3>
+        <p class="work-card-desc">
+          <!-- DESCRIZIONE -->
+          A business continuity plan of a decentralized application (DApp) designed to improve 
+          Cyber Threat Intelligence sharing via blockchain, enabling secure and anonymous 
+          collaboration between organizations in real time.
+        </p>
+        <div class="work-card-footer">
+          <span class="work-card-course">Cybersecurity Seminars</span>
+          <!-- Percorso del PDF -->
+          <a href="file/ThreatLedger.pdf" class="work-card-link" target="_blank">
+            <i class="fas fa-external-link-alt"></i> Open PDF
+          </a>
+        </div>
+      </div>
+
+      <div class="work-card" data-category="cybersecurity law">
+        <div class="work-card-top">
+          <div class="work-card-tags">
+            <span class="work-tag">CYBERSECURITY</span>
+            <span class="work-tag">LAW</span>
+          </div>
+          <i class="fas fa-file-pdf work-card-icon"></i>
+        </div>
+        <h3 class="work-card-title">Identity and Authenticity in the Digital World</h3>
+        <p class="work-card-desc">
+          A short essay exploring how social media alters our perception of identity and 
+          authenticity, drawing on Heidegger's "Being and Time" and reflecting on the 
+          risks of online life.
+        </p>
+        <div class="work-card-footer">
+          <span class="work-card-course">Cyber and Computer Law</span>
+          <a href="file/CCL_Essay.pdf" class="work-card-link" target="_blank">
+            <i class="fas fa-external-link-alt"></i> Open PDF
+          </a>
+        </div>
+      </div>
+
+      <div class="work-card" data-category="statistics other">
+        <div class="work-card-top">
+          <div class="work-card-tags">
+            <span class="work-tag">STATISTICS</span>
+            <span class="work-tag">OTHER</span>
+          </div>
+          <i class="fas fa-file-pdf work-card-icon"></i>
+        </div>
+        <h3 class="work-card-title">Algorithms for Random Variates Generation</h3>
+        <p class="work-card-desc">
+          An analysis of the main algorithms used to generate random variates from 
+          probability distributions, starting from the uniform distribution U(0,1) 
+          to produce discrete and continuous distributions.
+        </p>
+        <div class="work-card-footer">
+          <span class="work-card-course">Statistics for Cybersecurity</span>
+          <a href="file/Algorithms_for_random_variates_generation.pdf" class="work-card-link" target="_blank">
+            <i class="fas fa-external-link-alt"></i> Open PDF
+          </a>
+        </div>
+      </div>
+      
+      <div class="work-card" data-category="cybersecurity">
+        <div class="work-card-top">
+          <div class="work-card-tags">
+            <span class="work-tag">CYBERSECURITY</span>
+          </div>
+          <i class="fas fa-file-pdf work-card-icon"></i>
+        </div>
+        <h3 class="work-card-title">Vulnerable Virtual Machine Design and Write-Up</h3>
+        <p class="work-card-desc">
+          Design and write-up of a deliberately vulnerable virtual machine for a university ethical hacking course, 
+          implementing 6 real-world attack scenarios: 3 for local user acces and 3 for privilege escalation. 
+        </p>
+        <div class="work-card-footer">
+          <span class="work-card-course">Ethical Hacking</span>
+          <a href="file/ETH_Vulnerable_Virtual_Machine.pdf" class="work-card-link" target="_blank">
+            <i class="fas fa-external-link-alt"></i> Open PDF
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      x.className = x.className === "topnav" ? "topnav responsive" : "topnav";
+    }
+
+    function filterWorks(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.querySelectorAll('.work-card').forEach(card => {
+        const categories = card.dataset.category.split(' ');
+        const match = category === 'all' || categories.includes(category);
+        card.style.display = match ? 'flex' : 'none';
+      });
+    }
+  </script>
+
+</body>
+</html>

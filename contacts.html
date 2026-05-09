@@ -1,82 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Contacts</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/home.css">
-    <link rel="stylesheet" href="CSS/topnav.css"> 
-    <link rel="icon" href="img/icon.png">
-    <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- For useful links icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
+  <meta charset="utf-8">
+  <title>Contacts — Enri Stat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Enrico — Cybersecurity Master's student at Sapienza University of Rome.">
+  <link rel="stylesheet" href="CSS/home.css">
+  <link rel="stylesheet" href="CSS/topnav.css"> 
+  
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="img/icon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/icon/favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    
-    <div class="topnav" id="myTopnav">
-        <a class="title-site" href="index.html">ENRI STAT</a>
-        <div class="dropdown">
-            <button class="dropbtn">MASTER'S COURSES
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a href="stat.html">STATISTICS</a>
-            </div> 
+
+  <div class="topnav" id="myTopnav">
+    <a class="title-site" href="index.html">ENRI STAT</a>
+    <div class="dropdown">
+      <button class="dropbtn">MASTER'S COURSES
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="stat.html">STATISTICS</a>
+      </div> 
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">CHEATSHEETS
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="JSChSh.html">JAVASCRIPT</a>
+        <a href="ETHChSh.html">ETHICAL HACKING</a>
+      </div> 
+    </div>
+    <a href="works.html">WORKS</a>
+    <a class="active" href="contacts.html">CONTACTS</a>
+    <a href="about.html">ABOUT</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+  </div>
+
+  <!-- ── PAGE HEADER ── -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="hero-tag">ENRI STAT</div>
+      <h1 class="entry-title">Contacts</h1>
+    </div>
+  </div>
+
+  <!-- ── CONTACTS CONTENT ── -->
+  <div class="contacts-page">
+
+    <p class="div-paragraph" style="margin-bottom: 2.5rem;">
+      Want to get in touch? Join my Discord server or find me on the platforms below.
+    </p>
+
+    <h2 class="about-page-section">// REACH ME</h2>
+
+    <div class="contacts-grid">
+
+      <a href="https://discord.gg/DwuDVC58wV" rel="nofollow" class="contact-card" target="_blank">
+        <i class="fab fa-discord contact-card-icon"></i>
+        <div>
+          <div class="contact-card-title">Discord</div>
+          <div class="contact-card-sub">Join my server</div>
         </div>
-        <div class="dropdown">
-            <button class="dropbtn">CHEATSHEETS
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a href="cheatSheet.html">JAVASCRIPT</a>
-              <a href="ethCheatSheet.html">ETHICAL HACKING</a>
-            </div> 
+      </a>
+
+      <a href="https://github.com/EnriFort" target="_blank" class="contact-card">
+        <i class="fab fa-github contact-card-icon"></i>
+        <div>
+          <div class="contact-card-title">GitHub</div>
+          <div class="contact-card-sub">EnriFort</div>
         </div>
-        <a class="active" href="contacts.html">CONTACTS</a>
-        <a href="about.html">ABOUT</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+      </a>
     </div>
 
-    <div class="div-entry-title">
-        <h1 class="entry-title">Contacts</h1>
-    </div>
-        
-    <div class="div-bg-img">
-        <figure class="bg-img">
-            <img src="img/Haunter-Pokemon-PNG-HD.png" alt="haunter" class="img-responsive">
-        </figure>
+  </div>
 
-        <div class="centered">
-            <p>
-                You can contact me by joining <a href="https://discord.gg/mah3cV26" rel="nofollow">my server</a>.
-            </p>
-            <p>
-                Here you can find some useful links:
-            </p>
-            <ul>
-                <a class="special-link" href="https://github.com/EnriFort" target="_blank" style="margin-right: 10px;">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-            </ul>
-            <ul>
-                <a class="special-link" href="https://enristat.wordpress.com/" target="_blank">
-                    <i class="fab fa-wordpress"></i> My Statistics Blog
-                </a>
-            </ul>
-        </div>
-    </div>
+  <script>
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      x.className = x.className === "topnav" ? "topnav responsive" : "topnav";
+    }
+  </script>
 
-    <script>
-        function myFunction() {
-          var x = document.getElementById("myTopnav");
-          if (x.className === "topnav") {
-            x.className += " responsive";
-          } else {
-            x.className = "topnav";
-          }
-        }
-    </script>  
-        
 </body>
 </html>

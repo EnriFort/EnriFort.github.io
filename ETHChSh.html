@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth">
+<head>
+  <meta charset="utf-8">
+  <title>Ethical Hacking Cheatsheet — Enri Stat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="img/ethlogo.png">
+  <link rel="stylesheet" href="CSS/topnav.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css">
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+  <link rel="stylesheet" href="CSS/cheatsheet.css">
+</head>
+<body>
+
+  <div class="topnav" id="myTopnav">
+    <a class="title-site" href="index.html">ENRI STAT</a>
+    <div class="dropdown">
+      <button class="dropbtn">MASTER'S COURSES <i class="fa fa-caret-down"></i></button>
+      <div class="dropdown-content">
+        <a href="stat.html">STATISTICS</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">CHEATSHEETS <i class="fa fa-caret-down"></i></button>
+      <div class="dropdown-content">
+        <a href="JSChSh.html">JAVASCRIPT</a>
+        <a class="active" href="ETHChSh.html">ETHICAL HACKING</a>
+      </div>
+    </div>
+    <a href="works.html">WORKS</a>
+    <a href="contacts.html">CONTACTS</a>
+    <a href="about.html">ABOUT</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+  </div>
+
+  <button onclick="topFunction()" id="myBtn" title="Go to top">
+    <i class="fas fa-long-arrow-alt-up"></i>
+  </button>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="hero-tag">CHEATSHEETS</div>
+      <h1 class="entry-title">
+        Ethical Hacking Cheatsheet
+        <img src="img/ethlogo.png" alt="eth" width="44px">
+      </h1>
+    </div>
+  </div>
+
+  <div class="cheatsheet-layout">
+
+    <!-- TOC -->
+    <nav class="toc">
+      <div class="toc-title">// CONTENTS</div>
+      <a href="#nmap"><i class="fas fa-network-wired fa-fw"></i> NMap</a>
+      <a href="#netcat"><i class="fas fa-terminal fa-fw"></i> Netcat</a>
+      <a href="#metasploit"><i class="fas fa-crosshairs fa-fw"></i> Metasploit</a>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="cheatsheet-content">
+
+      <!-- NMAP -->
+      <div class="cs-section" id="nmap">
+        <div class="cs-section-header">
+          <span class="section-icon"><i class="fas fa-network-wired"></i></span>
+          <h2>NMAP</h2>
+        </div>
+        <div class="cs-desc">
+          Feature-rich scanning tool for <b>host discovery</b> and <b>port scanning</b> — determines if systems are alive and which services are listening.
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Command Syntax <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code">
+            <div class="cs-entry-body"><code>nmap [Scan Type(s)] [Options] &lt;target&gt;</code></div>
+          </div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Host Discovery <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code">
+            <div class="cs-entry-body">
+              <b>-sn</b>: Ping scan (no-port scan) — sends an ICMP echo request<br>
+              <b>-PE/PP/PM</b>: ICMP echo, timestamp, and netmask request discovery probes
+            </div>
+          </div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Scan Techniques <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code">
+            <div class="cs-entry-body">
+              <b>-sT</b>: TCP Connect scan<br>
+              <b>-sS</b>: TCP SYN scan <i>(half open)</i><br>
+              <b>-sU</b>: UDP scan<br>
+              <b>-sA</b>: ACK scan
+            </div>
+          </div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Options <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code">
+            <div class="cs-entry-body">
+              <b>-f</b>: fragment packets — bypass simple packet filter firewalls<br>
+              <b>-sV</b>: get versions of services running on target<br>
+              <b>-O</b>: detect operating system on target<br>
+              <b>--reason</b>: display why a port is in a particular state<br>
+              <b>-p &lt;port ranges&gt;</b>: only scan specified ports<br>
+              <b>-v</b>: enable verbosity
+            </div>
+          </div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Script Scan <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code">
+            <div class="cs-entry-body">
+              <b>-sC</b>: equivalent to <code>--script=default</code><br>
+              <b>--script=&lt;Lua scripts&gt;</b>: comma-separated list of directories, script-files or script-categories<br><br>
+              <i>Examples:</i><br>
+              <b>--script=vulners</b>: detect CVEs with exploits (based on banners)<br>
+              <b>--script=http-php-version</b>: identify PHP version<br>
+              <b>--script=smb-*</b>: SMB enumeration and brute forcing
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NETCAT -->
+      <div class="cs-section" id="netcat">
+        <div class="cs-section-header">
+          <span class="section-icon"><i class="fas fa-terminal"></i></span>
+          <h2>NETCAT</h2>
+        </div>
+        <div class="cs-desc">
+          Networking utility that reads and writes data from the command line. Useful when you need to minimize your footprint on a system.
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Command Syntax <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code">
+            <div class="cs-entry-body"><code>nc [options] &lt;host&gt; &lt;port&gt;</code></div>
+          </div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Host Discovery <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code">
+            <div class="cs-entry-body">
+              <b>-u</b>: UDP scanning<br>
+              <b>-z</b>: zero mode I/O — report connection status without establishing a connection
+            </div>
+          </div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Banner Grabbing <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code">
+            <div class="cs-entry-body"><code>nc -v www.example.com 80</code></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- METASPLOIT -->
+      <div class="cs-section" id="metasploit">
+        <div class="cs-section-header">
+          <span class="section-icon"><i class="fas fa-crosshairs"></i></span>
+          <h2>METASPLOIT</h2>
+        </div>
+        <div class="cs-desc">
+          Exploit framework used to modularize exploits and payloads.
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Command Syntax <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code">
+            <div class="cs-entry-body"><code>msfconsole [Options]</code></div>
+          </div>
+        </div>
+        <div class="cs-entry">
+          <div class="cs-entry-name" onclick="toggleEntry(this)">Basic Commands <i class="fas fa-chevron-down toggle-icon"></i></div>
+          <div class="cs-entry-code">
+            <div class="cs-entry-body">
+              <b>db_connect</b>: connect to the database<br>
+              <b>db_nmap</b>: run Nmap scan and import data directly into the database<br>
+              <b>db_import</b>: import external results into the database<br>
+              <b>hosts</b>: list all hosts in the database<br>
+              <b>services</b>: show open ports and services on identified hosts
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <div class="cs-section-header">
+          <span class="section-icon"><i class="fas fa-hard-hat"></i></span>
+          <h2>WORK IN PROGRESS</h2>
+        </div>
+        <div class="cs-desc">
+          More tools and techniques coming soon — this cheatsheet is actively updated.
+        </div>
+      </div>     
+
+    </div>
+  </div>
+
+  <script>
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      x.className = x.className === "topnav" ? "topnav responsive" : "topnav";
+    }
+
+    let mybutton = document.getElementById("myBtn");
+    window.onscroll = function() {
+      mybutton.style.display = (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) ? "block" : "none";
+    };
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+
+    function toggleEntry(el) {
+      const code = el.nextElementSibling;
+      const isOpen = code.classList.contains('open');
+      el.classList.toggle('open', !isOpen);
+      code.classList.toggle('open', !isOpen);
+    }
+  </script>
+
+</body>
+</html>

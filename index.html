@@ -1,82 +1,148 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Enri Stat</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Enri Stat — Cybersecurity Master's student. Blog, cheatsheets and projects.">
+
   <link rel="stylesheet" href="CSS/home.css"> 
   <link rel="stylesheet" href="CSS/topnav.css"> 
-  <link rel="icon" href="img/icon.png">
-  <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="img/icon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/icon/favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+  
   <!-- For useful links icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Sora:wght@300;400;600&display=swap" rel="stylesheet">  
 </head>
 
 <body>
-    
-    <div class="topnav" id="myTopnav">
-        <a class="title-site" href="index.html">ENRI STAT</a>
-        <div class="dropdown">
-            <button class="dropbtn">MASTER'S COURSES
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a href="stat.html">STATISTICS</a>
-            </div> 
-        </div>
-        <div class="dropdown">
-          <button class="dropbtn">CHEATSHEETS
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a href="cheatSheet.html">JAVASCRIPT</a>
-            <a href="ethCheatSheet.html">ETHICAL HACKING</a>
-          </div> 
-      </div>
-        <a href="contacts.html">CONTACTS</a>
-        <a href="about.html">ABOUT</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
-    </div>
 
-    <div class="div-entry-title">
-        <h1 class="entry-title">Enri Stat</h1>
+  <!-- ── TOPNAV  ── -->
+  <div class="topnav" id="myTopnav">
+    <a class="title-site" href="index.html">ENRI STAT</a>
+    <div class="dropdown">
+      <button class="dropbtn">MASTER'S COURSES <i class="fa fa-caret-down"></i></button>
+      <div class="dropdown-content">
+        <a href="stat.html">STATISTICS</a>
+      </div> 
     </div>
+    <div class="dropdown">
+      <button class="dropbtn">CHEATSHEETS <i class="fa fa-caret-down"></i></button>
+      <div class="dropdown-content">
+        <a href="JSChSh.html">JAVASCRIPT</a>
+        <a href="ETHChSh.html">ETHICAL HACKING</a>
+      </div> 
+    </div>
+    <a href="works.html">WORKS</a>
+    <a href="contacts.html">CONTACTS</a>
+    <a href="about.html">ABOUT</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+  </div>
 
-    <div class="div-entry-content">
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-tag">CYBERSECURITY STUDENT</div>
+    <h1>Enri<br><span>Stat.</span></h1>
+    <p class="hero-sub">
+      Master's student in Cybersecurity. This is my digital space — 
+      notes, cheatsheets, projects and whatever I find worth sharing.
+    </p>
+    <div class="hero-cta">
+      <a href="about.html" class="btn">ABOUT ME</a>
+      <a href="contacts.html" class="btn btn-ghost">CONTACT</a>
+      <a href="file/CV_Enrico_Fortuna_EN.pdf" class="btn btn-ghost" target="_blank">
+        <i class="fas fa-download"></i> CURRICULUM
+      </a>
+    </div>
+  </section>
+  
+  
+  <!-- ── ABOUT STRIP ── -->
+  <div class="about-strip">
+    <div class="about-inner">
+      <div>
+        <h2>// WHO I AM</h2>
         <p>
-            <strong>My personal and professional Blog</strong>
+          I'm Enrico, a Cybersecurity Master's student with a passion for ethical hacking,
+          network security and Blockchain. This site is where I document what I learn.
         </p>
-
-        <figure>
-            <img src="img/HokusaiOnda.jpeg" alt="The Great Wave off Kanagawa." class="img-responsive">
-            <figcaption><small>The Great Wave off Kanagawa <em>(Kanagawa-oki Nami Ura) - Katsushika Hokusai.</em></small></figcaption>
-        </figure>
-        
-        <p class="div-paragraph">
-            Welcome to my website! This is not just a blog; it's my digital corner where i 
-            share insights, experiences, and the journey of my CyberSecurity master's degree.
-            Feel free to navigate through the different sections using the top navigation bar.   
-        </p>
-
-        <p class="div-paragraph">
-          <span style="color: #3366ff;">
-            Please <a href="contacts.html" style="color: #339966;">contact me</a> if you encounter any bug/error in the website or if you have any suggestion, thanks.
-          </span>
-          
-        </p>
+        <div class="about-tags">
+          <span class="tag active">ETHICAL HACKING</span>
+          <span class="tag active">NETWORK SECURITY</span>
+          <span class="tag active">BLOCKCHAIN</span>
+          <span class="tag">LINUX</span>
+          <span class="tag">C</span>
+          <span class="tag">PYTHON</span>
+        </div>
+      </div>
+      <!-- MODIFICA QUI: sostituisci con il tuo img src="img/foto.jpg" -->
+      <div class="about-photo">
+        <img src="img/vegeta.png" alt="Vegeta" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">
+      </div>
     </div>
+  </div>
+  
+  
+  <!-- ── CARDS SEZIONI ── -->
+  <div class="sections">
+    <a href="stat.html" class="card">
+      <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+      <h3>MASTER'S COURSES</h3>
+      <p>Notes and resources from my Cybersecurity Master's degree courses.</p>
+    </a>
+    <a href="ETHChSh.html" class="card">
+      <div class="card-icon"><i class="fas fa-terminal"></i></div>
+      <h3>ETHICAL HACKING</h3>
+      <p>Cheatsheet with tools, commands and techniques for penetration testing.</p>
+    </a>
+    <a href="JSChSh.html" class="card">
+      <div class="card-icon"><i class="fab fa-js-square"></i></div>
+      <h3>JAVASCRIPT</h3>
+      <p>Quick reference for JavaScript syntax, patterns and common snippets.</p>
+    </a>
+    <a href="works.html" class="card">
+      <div class="card-icon"><i class="fas fa-file-alt"></i></div>
+      <h3>WORKS</h3>
+      <p>Reports, documents and thesis written during my academic and personal journey.</p>
+    </a>
+  </div>
+  
+  
+  <!-- ── USEFUL LINKS ── -->
+  <div class="links-section">
+    <div class="links-inner">
+      <h2>// FIND ME ON</h2>
+      <div class="link-row">
+        <a href="https://github.com/EnriFort" class="link-item"><i class="fab fa-github"></i> GitHub</a>
+        <a href="https://discord.gg/DwuDVC58wV" class="link-item"><i class="fab fa-discord"></i> Discord</a>
+        <!-- <a href="https://www.hackthebox.com/profile/Eric9" class="link-item"><i class="fas fa-trophy"></i> HackTheBox</a> -->
+        <a href="https://tryhackme.com/p/Eric9" class="link-item"><i class="fas fa-flag"></i> TryHackMe</a>
+      </div>
+    </div>
+  </div>
+ 
+  <footer>
+    &copy; 2026 Enri Stat — built with curiosity.
+  </footer>
+  
 
-    <script>
-        function myFunction() {
-          var x = document.getElementById("myTopnav");
-          if (x.className === "topnav") {
-            x.className += " responsive";
-          } else {
-            x.className = "topnav";
-          }
-        }
-    </script>  
-        
+  <script>
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }
+  </script> 
+          
 </body>
 </html>
