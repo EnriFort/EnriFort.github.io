@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth">
+<head>
+  <meta charset="utf-8">
+  <title>Blockchain Q&A — Enri Stat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blockchain, Bitcoin and Ethereum Q&A — Cybersecurity Master's degree notes.">
+  <link rel="stylesheet" href="CSS/home.css">
+  <link rel="stylesheet" href="CSS/topnav.css">
+  <link rel="stylesheet" href="CSS/qa.css">
+  <link rel="icon" href="img/icon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Sora:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- marked.js for markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- KaTeX for math rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+</head>
+<body>
+
+  <div class="topnav" id="myTopnav">
+    <a class="title-site" href="index.html">ENRI STAT</a>
+    <div class="dropdown">
+      <button class="dropbtn">MASTER'S COURSES <i class="fa fa-caret-down"></i></button>
+      <div class="dropdown-content">
+        <a href="stat.html">STATISTICS</a>
+        <a class="active" href="blockchain.html">BLOCKCHAIN</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">CHEATSHEETS <i class="fa fa-caret-down"></i></button>
+      <div class="dropdown-content">
+        <a href="cheatSheet.html">JAVASCRIPT</a>
+        <a href="ethCheatSheet.html">ETHICAL HACKING</a>
+      </div>
+    </div>
+    <a href="works.html">WORKS</a>
+    <a href="contacts.html">CONTACTS</a>
+    <a href="about.html">ABOUT</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+  </div>
+
+  <button onclick="topFunction()" id="myBtn" title="Go to top">
+    <i class="fas fa-long-arrow-alt-up"></i>
+  </button>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="hero-tag">MASTER'S COURSES</div>
+      <h1 class="entry-title">Blockchain & Distributed Ledger</h1>
+      <p class="page-header-sub">Blockchain Q&A — click a question to expand the answer.</p>
+    </div>
+  </div>
+
+  <div class="qa-layout">
+    <nav class="toc" id="toc">
+      <div class="toc-title">// CONTENTS</div>
+    </nav>
+    <div class="qa-content" id="qa-content">
+      <p style="color:var(--text-dim);font-family:var(--font-mono);font-size:.8rem;">Loading...</p>
+    </div>
+  </div>
+
+  <script src="JSLibrary/qa.js"></script>
+  <script>
+    // Wait for KaTeX auto-render to be available, then load the markdown
+    window.addEventListener('load', function() {
+      loadQA('notes/blockchain.md');
+    });
+  </script>
+
+</body>
+</html>
